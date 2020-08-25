@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Weather
+comment1.params=
+comment1.target=Weather()
+comment10.params=APIResult
+comment10.target=java.lang.String\ getWindSpeed(java.lang.String)
+comment11.params=APIResult
+comment11.target=java.lang.String\ getDescription(java.lang.String)
+comment2.params=Location\ type
+comment2.target=java.lang.String\ toString(java.lang.String,\ java.lang.String)
+comment3.params=APIResult
+comment3.target=int\ getKelvin(java.lang.String)
+comment4.params=APIResult
+comment4.target=int\ getCelcius(java.lang.String)
+comment5.params=APIResult
+comment5.target=int\ getFahrenheit(java.lang.String)
+comment6.params=APIResult\ keyword\ space
+comment6.target=java.lang.String\ find(java.lang.String,\ java.lang.String,\ int)
+comment7.params=APIResult
+comment7.target=java.lang.String\ getTemp(java.lang.String)
+comment8.params=APIResult
+comment8.target=java.lang.String\ getCity(java.lang.String)
+comment9.params=APIResult
+comment9.target=java.lang.String\ getCountry(java.lang.String)
+numComments=12

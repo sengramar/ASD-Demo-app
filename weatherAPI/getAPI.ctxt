@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=getAPI
+comment1.params=Location
+comment1.target=java.lang.String\ getAPIResult(java.lang.String)
+numComments=2
