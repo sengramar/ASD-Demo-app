@@ -14,6 +14,20 @@
         <title>Current Weather Page</title>
     </head>
     <body>
-        <h1>Current Weather</h1>
+        <div class="content">
+            <br><br>
+            <div class="header"> <h1>Current Weather</h1></div>
+        
+         <div class="sidenav">
+            <br><br>
+            <a href="index.html">HOME</a>
+            <a href="401_current_weather.jsp">CURRENT WEATHER</a>
+            <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
+            <a href="601_weather_history.jsp">WEATHER HISTORY</a>
+            <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
+        </div>
+        
+        
+        </div>
     </body>
 </html>

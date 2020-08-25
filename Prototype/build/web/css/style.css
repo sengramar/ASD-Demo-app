@@ -75,5 +75,8 @@ h1 {
   margin-left: -80px;
 }
 
+button {
+    border-radius: 25px;
+}
 
 
