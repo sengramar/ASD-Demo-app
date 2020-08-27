@@ -22,8 +22,10 @@
         String State = (String) session.getAttribute("State");
         int LocationID = (Integer) session.getAttribute("LocationID");
 %>
-        <h1>Register</h1>
-<form method="POST">
+      <center>     
+          <h1 class="header">Register</h1><br>
+<div class="regbox">
+        <form method="POST">
 <table>
 <tr>
 <td><p class="subtitle"><label for="Email">Email </label></p></td>
@@ -59,11 +61,12 @@
 </tr>
 </table
 <p><button type="submit" formaction="Registration_Servlet" ><h2> Add <h2></button><p> </form>
-
-
+</div>
+   
                    
                     
-<a>Go back to main menu </a>
-<a href="index.html"> click here!</a>
+    <br><a>Go back to main menu </a>
+<a href="index.html"> click here!</a> 
+    </center>
     </body>
 </html>
