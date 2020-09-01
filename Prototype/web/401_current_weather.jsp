@@ -13,12 +13,14 @@
         <link rel="stylesheet" href="css/style.css"/>
         <title>Current Weather Page</title>
     </head>
-    <body>
+   <body>
         <%       
-        String Location = (String) session.getAttribute("Location");
         String CurrentTempt = (String) session.getAttribute("CurrentTempt");
         String City = (String) session.getAttribute("City");
         String Country = (String) session.getAttribute("Country");
+        String Cloudy = (String) session.getAttribute("Cloudy");
+        String Humidity = (String) session.getAttribute("Humidity");
+        String WindDegree = (String) session.getAttribute("WindDegree");
         String WindSpeed = (String) session.getAttribute("WindSpeed");
         String Description = (String) session.getAttribute("Description");
         %>
@@ -26,9 +28,29 @@
             <br><br>
             <div class="header"> <h1>Current Weather</h1></div>
             <h2> Currently in <%=City %>, <%=Country%></h2>
-            <h2> <%=Description %></h2>
-            <h2> With Current Temperature <%=CurrentTempt %></h2>
-            <h2> And Wind Speed <%=WindSpeed %></h2>
+            <h2> <%=Description.toUpperCase() %> </h2>
+            <table>
+            <td>
+                <tr>
+                   <h2> Current Temperature <%=CurrentTempt%>°C </h2>
+                </tr>
+            </td>
+            <td>
+                <tr>
+                   <h2> Wind Speed <%=WindSpeed%> m/s at <%=WindDegree %>°</h2>
+                </tr>
+            </td>
+            <td>
+                <tr>
+                   <h2> Humidity = <%=Humidity%>%</h2>
+                </tr>
+            </td>
+            <td>
+                <tr>
+                   <h2> Clouds = <%=Cloudy%>%</h2>
+                </tr>
+            </td>
+            </table> 
         
          <div class="sidenav">
             <br><br>

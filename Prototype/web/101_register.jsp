@@ -51,6 +51,7 @@
 </tr>
 <tr>
 <td><p hidden><input type="LocationID" name="LocationID" Required ="True" value=<%= LocationID%>></p></td>
+<td><p hidden><input type="text" name="Redirect" value= "101_register.jsp"></p></td>
 </tr>
 <tr>
     <td><p class="subtitle"><label for="State">State </label></p></td>

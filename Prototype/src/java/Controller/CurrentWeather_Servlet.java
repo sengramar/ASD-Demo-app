@@ -56,6 +56,10 @@ public class CurrentWeather_Servlet extends HttpServlet
         String City = "" + API.getCity(APIResult);
         String Country = "" + API.getCountry(APIResult);
         String CurrentTempt = Integer.toString(API.getCelcius(APIResult));
+        
+        String Cloudy = "" + API.getCloudy(APIResult);
+        String Humidity = "" + API.getHumidity(APIResult);
+        String WindDegree = API.getWindDeg(APIResult);
         String WindSpeed = API.getWindSpeed(APIResult);
         String Description = "" + API.getDescription(APIResult);
         
@@ -63,6 +67,11 @@ public class CurrentWeather_Servlet extends HttpServlet
         session.setAttribute("CurrentTempt", CurrentTempt);
         session.setAttribute("City", City);
         session.setAttribute("Country", Country);
+        
+        session.setAttribute("Cloudy", Cloudy);
+        session.setAttribute("Humidity", Humidity);
+        session.setAttribute("WindDegree", WindDegree);
+        
         session.setAttribute("WindSpeed", WindSpeed);
         session.setAttribute("Description", Description);
 
