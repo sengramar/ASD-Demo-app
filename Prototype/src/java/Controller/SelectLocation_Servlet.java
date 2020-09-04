@@ -2,6 +2,7 @@ package Controller;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,9 +31,22 @@ public class SelectLocation_Servlet extends HttpServlet
         //this code can be re-used
         session.setAttribute("State", State);
         session.setAttribute("LocationID", LocationID);
+        
+        response.sendRedirect(Redirect);//redirect to index.html page
+        }
+        else if (Redirect.equals("CurrentWeather_Servlet"))
+        {
+            String Country = request.getParameter("Country");
+            String State = request.getParameter("State");
+            
+            String Location = State + ","+ Country;
+            session.setAttribute("Location", Location);
+            
+            RequestDispatcher rd = request.getRequestDispatcher("CurrentWeather_Servlet");
+            rd.forward(request, response);
         }
        
         
-        response.sendRedirect(Redirect);//redirect to index.html page
+        
     }
 }

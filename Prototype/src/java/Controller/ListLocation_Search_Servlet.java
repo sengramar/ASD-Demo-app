@@ -27,23 +27,8 @@ public class ListLocation_Search_Servlet extends HttpServlet
     {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String Redirect = (String) request.getParameter("Redirect");
-        
-        if (Redirect.equals("101_register.jsp"))
-        {
-        String Email = (String) request.getParameter("Email");
-        String Password = (String) request.getParameter("Password");
-        String Firstname = (String) request.getParameter("Firstname");
-        String Lastname = (String) request.getParameter("Lastname");
-        //this string needed so when they go back to register.jsp
-        //they still have email,password,etc.
-        //can be re-used
-        session.setAttribute("Email", Email);
-        session.setAttribute("Password", Password);
-        session.setAttribute("Firstname", Firstname);
-        session.setAttribute("Lastname", Lastname);
-        }
-        
+        String Search_txt_box = (String) request.getParameter("search");
+        String Search = Search_txt_box.substring(0, 1).toUpperCase() + Search_txt_box.substring(1);   
         
         try
         {
@@ -55,10 +40,9 @@ public class ListLocation_Search_Servlet extends HttpServlet
         }
         try
         {
-        list = Query.List_Location();//run query
+        list = Query.List_Location(Search);//run query
         Connector.closeConnection();//close connection
         session.setAttribute("List", list);//set attribute to be redirected
-        session.setAttribute("Redirect", Redirect);
         }
         catch(SQLException ex)
         {

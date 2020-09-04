@@ -15,7 +15,9 @@
     </head>
    <body>
         <%       
-        String CurrentTempt = (String) session.getAttribute("CurrentTempt");
+        String Celcius = (String) session.getAttribute("Celcius");
+        String Kelvin = (String) session.getAttribute("Kelvin");
+        String Fahrenheit = (String) session.getAttribute("Fahrenheit");
         String City = (String) session.getAttribute("City");
         String Country = (String) session.getAttribute("Country");
         String Cloudy = (String) session.getAttribute("Cloudy");
@@ -32,12 +34,12 @@
             <table>
             <td>
                 <tr>
-                   <h2> Current Temperature <%=CurrentTempt%>°C </h2>
+                   <h2> Current Temperature <%=Celcius%>°C || <%=Fahrenheit%>°F || <%=Kelvin%>K </h2>
                 </tr>
             </td>
             <td>
                 <tr>
-                   <h2> Wind Speed <%=WindSpeed%> m/s at <%=WindDegree %>°</h2>
+                   <h2> Wind Speed <%=WindSpeed%> km/h at <%=WindDegree %>°</h2>
                 </tr>
             </td>
             <td>
@@ -50,8 +52,12 @@
                    <h2> Clouds = <%=Cloudy%>%</h2>
                 </tr>
             </td>
-            </table> 
-        
+            
+            </table>                 
+        <form action="ListLocation_Servlet" method="POST">
+        <td><p hidden><input type="text" name="Redirect" value= "CurrentWeather_Servlet"></p></td>     
+        <input type="submit" value="Change Location" ></form>
+        </form>
          <div class="sidenav">
             <br><br>
             <a href="index.html">HOME</a>
@@ -65,5 +71,6 @@
         
         
         </div>
+
     </body>
 </html>
