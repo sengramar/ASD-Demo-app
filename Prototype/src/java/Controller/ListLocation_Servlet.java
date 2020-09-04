@@ -55,7 +55,7 @@ public class ListLocation_Servlet extends HttpServlet
         }
         try
         {
-        list = Query.List_Location();//run query
+        list = Query.List_Location("");//run query
         Connector.closeConnection();//close connection
         session.setAttribute("List", list);//set attribute to be redirected
         session.setAttribute("Redirect", Redirect);
