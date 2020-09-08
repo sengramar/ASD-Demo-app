@@ -15,12 +15,12 @@
     </head>
     <body>
         <%       
-        String Location = (String) session.getAttribute("Location");
-        String CurrentTempt = (String) session.getAttribute("CurrentTempt");
-        String City = (String) session.getAttribute("City");
-        String Country = (String) session.getAttribute("Country");
-        String WindSpeed = (String) session.getAttribute("WindSpeed");
-        String Description = (String) session.getAttribute("Description");
+            String Location = (String) session.getAttribute("Location");
+            String CurrentTempt = (String) session.getAttribute("CurrentTempt");
+            String City = (String) session.getAttribute("City");
+            String Country = (String) session.getAttribute("Country");
+            String WindSpeed = (String) session.getAttribute("WindSpeed");
+            String Description = (String) session.getAttribute("Description");
         %>
         <div class="content">
             <br><br>

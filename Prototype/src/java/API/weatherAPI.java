@@ -38,7 +38,9 @@ public class weatherAPI
         String find = "";
         for (int i = 0; i < 30; i++)
         {
-            if((""+ APIResult.charAt(startnum + space + i)).equals((",")) || (""+ APIResult.charAt(startnum + space + i)).equals(("\"")) )
+            if((""+ APIResult.charAt(startnum + space + i)).equals((",")) 
+              || (""+ APIResult.charAt(startnum + space + i)).equals(("\"")) 
+              || (""+ APIResult.charAt(startnum + space + i)).equals(("}")) )
             {
                 break;
             } 
@@ -58,6 +60,18 @@ public class weatherAPI
     public String getCountry(String APIResult)
     {
         return find(APIResult,"country",10);
+    }
+    public String getCloudy(String APIResult)
+    {
+        return find(APIResult,"all",5);
+    }
+    public String getHumidity(String APIResult)
+    {
+        return find(APIResult,"humidity",10);
+    }
+    public String getWindDeg(String APIResult)
+    {
+        return find(APIResult,"deg",5);
     }
     public String getWindSpeed(String APIResult)
     {
