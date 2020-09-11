@@ -22,7 +22,7 @@
     <Body>
         <table style="width: 70%" class="fl-table">
             
-<form action="" method="POST" >
+<form action="ListLocation_Search_Servlet" method="POST" >
 <%-- 
 Search Servlet
 --%>

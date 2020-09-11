@@ -27,7 +27,6 @@ public class CurrentWeather_Servlet extends HttpServlet
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
-            
     {
         weatherAPI API = new weatherAPI();
         
@@ -51,18 +50,33 @@ public class CurrentWeather_Servlet extends HttpServlet
             Email = (String) session.getAttribute("Email");
         }
         
-        
+        System.out.println(Location);
         String APIResult = API.request(Location);
         String City = "" + API.getCity(APIResult);
         String Country = "" + API.getCountry(APIResult);
-        String CurrentTempt = Integer.toString(API.getCelcius(APIResult));
+        String Celcius = Integer.toString(API.getCelcius(APIResult));
+        String Fahrenheit = Integer.toString(API.getFahrenheit(APIResult));
+        String Kelvin = Integer.toString(API.getKelvin(APIResult));
+        
+        
+        String Cloudy = "" + API.getCloudy(APIResult);
+        String Humidity = "" + API.getHumidity(APIResult);
+        String WindDegree = API.getWindDeg(APIResult);
         String WindSpeed = API.getWindSpeed(APIResult);
         String Description = "" + API.getDescription(APIResult);
         
         session.setAttribute("Location", Location);
-        session.setAttribute("CurrentTempt", CurrentTempt);
+        session.setAttribute("Celcius", Celcius);
+        session.setAttribute("Fahrenheit", Fahrenheit);
+        session.setAttribute("Kelvin", Kelvin);
+        
         session.setAttribute("City", City);
         session.setAttribute("Country", Country);
+        
+        session.setAttribute("Cloudy", Cloudy);
+        session.setAttribute("Humidity", Humidity);
+        session.setAttribute("WindDegree", WindDegree);
+        
         session.setAttribute("WindSpeed", WindSpeed);
         session.setAttribute("Description", Description);
 
