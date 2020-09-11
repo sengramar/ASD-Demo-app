@@ -66,7 +66,7 @@ public class DBManager
     }
     
     public boolean CheckUser(String Email, String UserPassword)throws SQLException {   
-        String query = "select * from \"USER\" where EMAIL = '" + Email + "' and PASSWORD = '" + UserPassword + "'";
+        String query = "select * from USERS where EMAIL = '" + Email + "' and PASSWORD = '" + UserPassword + "'";
         ResultSet rs = st.executeQuery(query); //Query Result
             while (rs.next()) {
                 String user_password = rs.getString("r_password");
