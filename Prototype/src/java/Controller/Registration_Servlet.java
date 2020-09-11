@@ -56,6 +56,6 @@ public class Registration_Servlet extends HttpServlet
         {
             java.util.logging.Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
-        response.sendRedirect("index.html");//redirect to index.html page
+        response.sendRedirect("index.jsp");//redirect to index.html page
     }
 }
