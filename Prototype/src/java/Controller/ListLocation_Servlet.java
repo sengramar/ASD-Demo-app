@@ -25,14 +25,26 @@ public class ListLocation_Servlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        
+        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        String Redirect = (String) request.getParameter("Redirect");
+        
+        if (Redirect.equals("101_register.jsp"))
+        {
         String Email = (String) request.getParameter("Email");
         String Password = (String) request.getParameter("Password");
         String Firstname = (String) request.getParameter("Firstname");
         String Lastname = (String) request.getParameter("Lastname");
+        //this string needed so when they go back to register.jsp
+        //they still have email,password,etc.
+        //can be re-used
+        session.setAttribute("Email", Email);
+        session.setAttribute("Password", Password);
+        session.setAttribute("Firstname", Firstname);
+        session.setAttribute("Lastname", Lastname);
+        }
         
-        response.setContentType("text/html;charset=UTF-8");
+        
         try
         {
         Connector = new DBConnector();
@@ -43,13 +55,10 @@ public class ListLocation_Servlet extends HttpServlet
         }
         try
         {
-        list = Query.List_Location();//run query
+        list = Query.List_Location("");//run query
         Connector.closeConnection();//close connection
         session.setAttribute("List", list);//set attribute to be redirected
-        session.setAttribute("Email", Email);
-        session.setAttribute("Password", Password);
-        session.setAttribute("Firstname", Firstname);
-        session.setAttribute("Lastname", Lastname);
+        session.setAttribute("Redirect", Redirect);
         }
         catch(SQLException ex)
         {
