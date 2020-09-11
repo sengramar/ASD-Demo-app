@@ -53,6 +53,6 @@ public class Registration_Admin_Servlet extends HttpServlet {
         {
             java.util.logging.Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
-        response.sendRedirect("index.html");
+        response.sendRedirect("index.jsp");
     }
 }
