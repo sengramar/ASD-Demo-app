@@ -14,13 +14,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author yses9
  */
+
 public class Validator implements Serializable {
     private static String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";
     private static String namePattern = "([A-Z][a-z]+[\\s])+[A-Z][a-z]*";
     private static String passwordPattern = "([a-z]{4,})([0-9]*)";
     private static String integerPattern = "[0-9]*";
-    private static String pricePattern = "(^[1-9](\\d+)?(\\.\\d{1,2})?$)|(^0$)|(^\\d\\.\\d{1,2}$)";
-    private static String phonePattern = "[0-9]{2} [0-9]{4} [0-9]{4}";
 
     public Validator() {}
     
