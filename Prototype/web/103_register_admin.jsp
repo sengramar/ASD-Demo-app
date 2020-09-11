@@ -52,7 +52,7 @@
 </div>
 
     <br><a>Go back to main menu </a>
-<a href="index.html"> click here!</a> 
+<a href="index.jsp"> click here!</a> 
     </center>
     </body>
 </html>
