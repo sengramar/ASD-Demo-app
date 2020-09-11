@@ -35,7 +35,7 @@
             <p><button type="submit" formaction="101_register_admin.jsp"><h2> SUBMIT <h2></button><p> </form>
         </div>
             <br><a>Go back to main menu</a>
-            <a href="index.html"> click here!</a>
+            <a href="index.jsp"> click here!</a>
     </center>
     </body>
 </html>
