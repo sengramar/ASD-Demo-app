@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.Location;
+import Model.User;
 import java.sql.*;
 import java.util.LinkedList;
 
@@ -63,4 +64,39 @@ public class DBManager
        return 1;
    }
     }
+    
+    public boolean CheckUser(String Email, String UserPassword)throws SQLException {   
+        String query = "select * from \"USER\" where EMAIL = '" + Email + "' and PASSWORD = '" + UserPassword + "'";
+        ResultSet rs = st.executeQuery(query); //Query Result
+            while (rs.next()) {
+                String user_password = rs.getString("r_password");
+                String email = rs.getString("email");
+
+                if (email.equals(Email) && user_password.equals(UserPassword)) {
+                    return true;
+                }
+            }
+         return false;
+    }
+    
+    public User FindUser(String Email, String UserPassword)throws SQLException {   
+        String query = "select * from USERS where EMAIL = '" + Email + "' and PASSWORD = '" + UserPassword + "'";
+        ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                String user_password = rs.getString(3);
+                String email = rs.getString(4);
+
+                if (email.equals(Email) && user_password.equals(UserPassword)) {
+                    int userid = rs.getInt("userid");
+                    int locationId = rs.getInt("locationId");
+                    String firstname = rs.getString("firstname");
+                    String lastname = rs.getString("lastname");
+
+                    return new User(userid, locationId, user_password, email, firstname, lastname);
+                }
+            }
+         return null;
+    }
+   
 }
