@@ -29,7 +29,12 @@
             </div>
    
             <div style="text-align: center;"> 
-            <a href="101_register.jsp" style="font-size: 20px;"> Sign Up</a>
+            <form action="IndexRegister_Servlet" method="POST">
+            <button type="submit">Sign Up (USER)</button>
+            </form>
+            <a href="101_check_admin.jsp">
+                <button type="submit">Sign Up (ADMIN)</button>
+            </a>
         &emsp;
             <a href="201_login.jsp"  style="font-size: 20px;"> Sign In</a>
             </div>
