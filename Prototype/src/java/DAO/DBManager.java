@@ -98,5 +98,32 @@ public class DBManager
             }
          return null;
     }
+    
+    public void CreateAdmin(String Email, String AdminPassword, String Firstname, String Lastname)throws SQLException 
+    {   
+    int ID = generateAdminID();
+    //generate ID
+    String query = "INSERT INTO \"ADMIN\" (ADMINID, ADMIN_PASSWORD, EMAIL, FIRSTNAME, LASTNAME) "
+            + "VALUES ("+ID+",'"+AdminPassword+"','"+Email+"','"+Firstname+"','"+Lastname+")";
+    st.executeUpdate(query);  
+    //execute query
+    }
+    
+    public int generateAdminID() throws SQLException
+    {
+    String query;
+        query = "SELECT MAX(ADMINID) as ID FROM \"ADMIN\""; 
+   ResultSet rs = st.executeQuery(query);
+   if(rs.next())
+   {
+    int ID = rs.getInt("ID");
+    ID = ID +1;
+    return ID;     
+   }
+   else
+   {
+       return 1;
+   }
+    }
    
 }
