@@ -7,8 +7,10 @@ package Controller;
 
 import DAO.DBManager;
 import Model.User;
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -29,14 +31,22 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException
     {
+        try {
         HttpSession session = request.getSession();
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = (User) session.getAttribute("user");
         int userID = user.getUserId();
-
-        session.invalidate();
-        request.getRequestDispatcher("index.jsp").include(request, response);
-
-        
+        String logoutDateTime;
+            java.util.Date date = new java.util.Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            logoutDateTime = formatter.format(date);
+            
+            int accesslogId = manager.findAccessLogID(userID);
+            manager.storeLogout(accesslogId, logoutDateTime);
+            session.invalidate();
+            request.getRequestDispatcher("202_logout.jsp").include(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(LogoutServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
