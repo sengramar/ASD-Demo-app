@@ -10,6 +10,7 @@ import DAO.DBManager;
 import Model.User;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -32,6 +33,10 @@ public class Login_Servlet extends HttpServlet  {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {               
+        String loginDateTime;
+        java.util.Date date = new java.util.Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        loginDateTime = formatter.format(date);
         HttpSession session = request.getSession();
         try
         {
@@ -56,10 +61,15 @@ public class Login_Servlet extends HttpServlet  {
                 //response.sendRedirect("201_login.jsp");
             }
                 if (user != null) {
+                   try {
                     session.setAttribute("user", user);
                      response.sendRedirect("main.jsp");
                     //request.getRequestDispatcher("index.jsp").include(request, response);
                     userID = user.getUserId();
+                      manager.storeLogin(userID, loginDateTime);
+            } catch (SQLException ex) {
+                Logger.getLogger(Login_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 }
                 else {
                     session.setAttribute("existErr", " - Email or password incorrect");
