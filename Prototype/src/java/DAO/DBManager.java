@@ -109,6 +109,25 @@ public class DBManager
     //execute query
     }
     
+    public void storeLogin(int userId, String loginDateTime) throws SQLException {
+        st.executeUpdate("INSERT INTO ACCESSLOG (accesslogID, userId, loginTime)" + "VALUES (default, " + userId + ", '" + loginDateTime + "')");
+    }
+
+    public void storeLogout(int accesslogId, String logoutDateTime) throws SQLException {
+        st.executeUpdate("UPDATE ACCESSLOG SET logoutTime = '" + logoutDateTime + "'" + "WHERE accesslogId = " + accesslogId + "");
+    }
+        
+    public int findAccessLogID(int userId) throws SQLException {
+        String query = "SELECT accesslogID FROM ACCESSLOG WHERE userid = " + userId + " AND logoutTime IS NULL";
+        ResultSet rs = st.executeQuery(query);
+        int id;
+        while (rs.next()) {
+            id = rs.getInt("accesslogID");
+                return id;
+        }
+        return 0;
+    }
+    
     public int generateAdminID() throws SQLException
     {
     String query;
