@@ -5,9 +5,9 @@
  */
 package Controller;
 
+import DAO.DBConnector;
 import DAO.DBManager;
 import Model.User;
-import java.io.PrintWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -27,26 +27,40 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet (name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
 public class LogoutServlet extends HttpServlet {
-    @Override
+    //@Override
+    private DBConnector Connector;
+    private DBManager manager;
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException
     {
-        try {
+        String logoutDateTime;
+        java.util.Date date = new java.util.Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        logoutDateTime = formatter.format(date);
         HttpSession session = request.getSession();
-        DBManager manager = (DBManager) session.getAttribute("manager");
+        try
+        {
+            Connector = new DBConnector();//open new connector
+            manager = new DBManager(Connector.openConnection()); //open connection 
+        }catch (ClassNotFoundException | SQLException ex)
+        {
+            java.util.logging.Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE,null,ex);
+        }
+
         User user = (User) session.getAttribute("user");
         int userID = user.getUserId();
-        String logoutDateTime;
-            java.util.Date date = new java.util.Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            logoutDateTime = formatter.format(date);
-            
+        
+        try{  
             int accesslogId = manager.findAccessLogID(userID);
             manager.storeLogout(accesslogId, logoutDateTime);
             session.invalidate();
-            request.getRequestDispatcher("202_logout.jsp").include(request, response);
+            response.sendRedirect("index.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(LogoutServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        
     }
+
 }
