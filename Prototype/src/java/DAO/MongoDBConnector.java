@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ *
 package DAO;
 import java.util.*;
 import Controller.*;
@@ -21,6 +21,7 @@ import java.net.UnknownHostException;
  *
  * @author Nayoon
  */
+/*
 public class MongoDBConnector {
     private List<Document> users = new ArrayList();
     private String owner;
@@ -60,3 +61,4 @@ public class MongoDBConnector {
 //        userlist.insertMany(users);
 //    }
 }
+*/

@@ -1,86 +1,69 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
+import DAO.DBConnector;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
+import Model.User;
+import DAO.DBManager;
 /**
  *
- * @author soyoung
+ * @author bert_
  */
 public class EditAccount extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EditAccount</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EditAccount at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+    
+             private DBConnector Connector;
+            private DBManager Query;
+    
+     @Override   
+     protected void doPost(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {       
+             //1- retrieve the current session
+             HttpSession session = request.getSession();
+             
+             
+             
+             int userId = Integer.parseInt(request.getParameter("userId"));
+             String firstname= request.getParameter("firstname");
+             String lastname = request.getParameter("lastname");
+             String email= request.getParameter("email");
+             String password= request.getParameter("password");
+             int location = Integer.parseInt(request.getParameter("location"));
+             
+             
+             User user = new User (userId, location, password, email, firstname, lastname);
+            try
+        {
+            Connector = new DBConnector();//open new connector
+            Query = new DBManager(Connector.openConnection()); //open connection 
+        }catch (ClassNotFoundException | SQLException ex)
+        {
+            java.util.logging.Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+        try
+        {
+        Query.updateUser(userId, location, password, email, firstname, lastname);//run query
+        Connector.closeConnection();//close connection
+        }
+        catch(SQLException ex)
+        {
+            java.util.logging.Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        if(user != null){
+                                session.setAttribute("user", user);
+                                
+                                session.setAttribute("updated"," : Upadte was Successful");
+                                request.getRequestDispatcher("301_account_management.jsp").include(request,response);
+                            }else{
+                                session.setAttribute("updated"," : Upadte was NOT Successful");
+                                request.getRequestDispatcher("301_account_management.jsp").include(request,response);
+                            }
+                     
+                     response.sendRedirect("301_account_management.jsp");
+     }
 }
