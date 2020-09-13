@@ -39,6 +39,7 @@ public class LogoutServlet extends HttpServlet {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         logoutDateTime = formatter.format(date);
         HttpSession session = request.getSession();
+        
         try
         {
             Connector = new DBConnector();//open new connector
@@ -48,18 +49,12 @@ public class LogoutServlet extends HttpServlet {
             java.util.logging.Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
 
+        //            int accesslogId = manager.findAccessLogID(userID);
+        //            manager.storeLogout(accesslogId, logoutDateTime);
         User user = (User) session.getAttribute("user");
         int userID = user.getUserId();
-        
-        try{  
-            int accesslogId = manager.findAccessLogID(userID);
-            manager.storeLogout(accesslogId, logoutDateTime);
-            session.invalidate();
-            response.sendRedirect("index.jsp");
-        } catch (SQLException ex) {
-            Logger.getLogger(LogoutServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        session.invalidate();
+        response.sendRedirect("index.jsp");
         
     }
 
