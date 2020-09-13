@@ -3,17 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Backup%20Ryo/Semester%205/Advance%20Software%20Development/Github/ASD-Demo-app/Prototype/src/java/Controller/ConnServlet.java</file>
-            <file>file:/D:/Backup%20Ryo/Semester%205/Advance%20Software%20Development/Github/ASD-Demo-app/Prototype/web/101_register.jsp</file>
-            <file>file:/D:/Backup%20Ryo/Semester%205/Advance%20Software%20Development/Github/ASD-Demo-app/Prototype/src/java/Controller/IndexRegister_Servlet.java</file>
-            <file>file:/D:/Backup%20Ryo/Semester%205/Advance%20Software%20Development/Github/ASD-Demo-app/Prototype/src/java/API/weatherAPI.java</file>
-            <file>file:/D:/Backup%20Ryo/Semester%205/Advance%20Software%20Development/Github/ASD-Demo-app/Prototype/src/java/API/API.java</file>
-            <file>file:/D:/Backup%20Ryo/Semester%205/Advance%20Software%20Development/Github/ASD-Demo-app/Prototype/src/java/Controller/ListLocation_Search_Servlet.java</file>
-            <file>file:/D:/Backup%20Ryo/Semester%205/Advance%20Software%20Development/Github/ASD-Demo-app/Prototype/src/java/Controller/Registration_Servlet.java</file>
-            <file>file:/D:/Backup%20Ryo/Semester%205/Advance%20Software%20Development/Github/ASD-Demo-app/Prototype/src/java/Controller/ListLocation_Servlet.java</file>
-            <file>file:/D:/Backup%20Ryo/Semester%205/Advance%20Software%20Development/Github/ASD-Demo-app/Prototype/web/401_current_weather.jsp</file>
-            <file>file:/D:/Backup%20Ryo/Semester%205/Advance%20Software%20Development/Github/ASD-Demo-app/Prototype/src/java/Controller/SelectLocation_Servlet.java</file>
-            <file>file:/D:/Backup%20Ryo/Semester%205/Advance%20Software%20Development/Github/ASD-Demo-app/Prototype/src/java/Controller/CurrentWeather_Servlet.java</file>
+            <file>file:/Users/soyoung/Documents/GitHub/IoTBay/ASD-Demo-app/Prototype/src/java/DAO/MongoDBConnector.java</file>
+            <file>file:/Users/soyoung/Documents/GitHub/IoTBay/ASD-Demo-app/Prototype/web/index.jsp</file>
+            <file>file:/Users/soyoung/Documents/GitHub/IoTBay/ASD-Demo-app/Prototype/src/java/Controller/ConnServlet.java</file>
+            <file>file:/Users/soyoung/Documents/GitHub/IoTBay/ASD-Demo-app/Prototype/src/java/Model/User.java</file>
+            <file>file:/Users/soyoung/Documents/GitHub/IoTBay/ASD-Demo-app/Prototype/web/main.jsp</file>
+            <file>file:/Users/soyoung/Documents/GitHub/IoTBay/ASD-Demo-app/Prototype/web/201_login.jsp</file>
         </group>
     </open-files>
 </project-private>
