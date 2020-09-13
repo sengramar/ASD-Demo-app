@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
-    <dependencies>
+     <dependencies>
         <!-- GAE SDK dependency -->
         <dependency>
             <groupId>com.google.appengine</groupId>
@@ -127,7 +127,6 @@
     <version>27.1-jre</version>
 </dependency>      
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
