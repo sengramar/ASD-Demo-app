@@ -66,7 +66,7 @@ public class DBManager
     }
     
     public boolean CheckUser(String Email, String UserPassword)throws SQLException {   
-        String query = "select * from USERS where EMAIL = '" + Email + "' and PASSWORD = '" + UserPassword + "'";
+        String query = "select * from USERS where EMAIL = '" + Email + "' and USERPASSWORD = '" + UserPassword + "'";
         ResultSet rs = st.executeQuery(query); //Query Result
             while (rs.next()) {
                 String user_password = rs.getString("r_password");
@@ -80,12 +80,12 @@ public class DBManager
     }
     
     public User FindUser(String Email, String UserPassword)throws SQLException {   
-        String query = "select * from USERS where EMAIL = '" + Email + "' and PASSWORD = '" + UserPassword + "'";
+        String query = "select * from USERS where EMAIL = '" + Email + "' and USERPASSWORD = '" + UserPassword + "'";
         ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                String user_password = rs.getString(3);
-                String email = rs.getString(4);
+                String user_password = rs.getString(USERPASSWORD);
+                String email = rs.getString(EMAIL);
 
                 if (email.equals(Email) && user_password.equals(UserPassword)) {
                     int userid = rs.getInt("userid");
@@ -93,7 +93,7 @@ public class DBManager
                     String firstname = rs.getString("firstname");
                     String lastname = rs.getString("lastname");
 
-                    return new User(userid, locationId, user_password, email, firstname, lastname);
+                    return new User(userId, locationId, user_password, email, firstname, lastname);
                 }
             }
          return null;
