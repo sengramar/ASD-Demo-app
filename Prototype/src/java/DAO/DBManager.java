@@ -84,8 +84,8 @@ public class DBManager
         ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                String user_password = rs.getString(USERPASSWORD);
-                String email = rs.getString(EMAIL);
+                String user_password = rs.getString("userPassword");
+                String email = rs.getString("email");
 
                 if (email.equals(Email) && user_password.equals(UserPassword)) {
                     int userid = rs.getInt("userid");
