@@ -93,7 +93,7 @@ public class DBManager
                     String firstname = rs.getString("firstname");
                     String lastname = rs.getString("lastname");
 
-                    return new User(userid, locationId, user_password, email, firstname, lastname);
+                    return new User(userId, locationId, user_password, email, firstname, lastname);
                 }
             }
          return null;
@@ -143,6 +143,13 @@ public class DBManager
    {
        return 1;
    }
-    }
+}
    
+
+
+public void updateUser(int userId, int location, String password, String email, String firstname, String lastname) throws SQLException { 
+        st.executeUpdate("UPDATE USERS SET USERID="+userId+",LOCATIONID="+location+",PASSWORD='"+password+"',EMAIL='"+email+"',FIRSTNAME='"+firstname+"',LASTNAME='"+lastname+"' WHERE USERID="+userId);
+   //code for update-operation   
+
+    }   
 }
