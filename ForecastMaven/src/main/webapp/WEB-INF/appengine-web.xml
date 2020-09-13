@@ -2,7 +2,7 @@
 
 <appengine-web-app xlmns="http://appengine.google.com/ns/1.0">
     
-    <application>ForecastMaven</application>
+    <application>asd-group3</application>
     <version>1</version>
     <runtime>java8</runtime>
     
