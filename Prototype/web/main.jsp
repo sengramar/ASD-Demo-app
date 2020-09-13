@@ -12,7 +12,7 @@
 </head>
 <body>
     <%
-            User user = (User)session.getAttribute("customer");
+            User user = (User)session.getAttribute("user");
             DBManager manager = (DBManager)session.getAttribute("manager"); 
             String email = request.getParameter("Email");
             String password = request.getParameter("Password");
@@ -41,6 +41,10 @@
             <p align="center">Lulu lala I hope it wont be raining</p>
         <form action="IndexRegister_Servlet" method="POST">
             <button type="submit" class="button">Register</button>
+        </form>
+            
+        <form action="Login_Servlet" method="POST">
+            <button type="submit" class="button">Login</button>
         </form>
 
   <div class="w3-container w3-padding-32" id="projects">

@@ -143,6 +143,13 @@ public class DBManager
    {
        return 1;
    }
-    }
+}
    
+
+
+public void updateUser(int userId, int location, String password, String email, String firstname, String lastname) throws SQLException { 
+        st.executeUpdate("UPDATE USERS SET USERID="+userId+",LOCATIONID="+location+",PASSWORD='"+password+"',EMAIL='"+email+"',FIRSTNAME='"+firstname+"',LASTNAME='"+lastname+"' WHERE USERID="+userId);
+   //code for update-operation   
+
+    }   
 }
