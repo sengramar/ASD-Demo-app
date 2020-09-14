@@ -1,4 +1,5 @@
 Heroku CLI
+//Works on git-bash
 
 heroku login
 
