@@ -1,0 +1,1 @@
+heroku war:deploy ForecastMaven/target/ForecastMaven-1.0.war --app asd-group3
