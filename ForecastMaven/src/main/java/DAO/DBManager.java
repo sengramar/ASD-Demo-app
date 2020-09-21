@@ -65,35 +65,35 @@ public class DBManager
    }
     }
     
-    public boolean CheckUser(String Email, String UserPassword)throws SQLException {   
-        String query = "select * from USERS where EMAIL = '" + Email + "' and USERPASSWORD = '" + UserPassword + "'";
+    public boolean CheckUser(String Email, String User_Password)throws SQLException {   
+        String query = "select * from USERS where EMAIL = '" + Email + "' and USER_PASSWORD = '" + User_Password + "'";
         ResultSet rs = st.executeQuery(query); //Query Result
             while (rs.next()) {
-                String user_password = rs.getString("r_password");
+                String user_password = rs.getString("user_password");
                 String email = rs.getString("email");
 
-                if (email.equals(Email) && user_password.equals(UserPassword)) {
+                if (email.equals(Email) && user_password.equals(User_Password)) {
                     return true;
                 }
             }
          return false;
     }
     
-    public User FindUser(String Email, String UserPassword)throws SQLException {   
-        String query = "select * from USERS where EMAIL = '" + Email + "' and USERPASSWORD = '" + UserPassword + "'";
+    public User FindUser(String Email, String User_Password)throws SQLException {   
+        String query = "select * from USERS where EMAIL = '" + Email + "' and USER_PASSWORD = '" + User_Password + "'";
         ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
                 String user_password = rs.getString("userPassword");
                 String email = rs.getString("email");
 
-                if (email.equals(Email) && user_password.equals(UserPassword)) {
-                    int userid = rs.getInt("userid");
+                if (email.equals(Email) && user_password.equals(User_Password)) {
+                    int userId = rs.getInt("userId");
                     int locationId = rs.getInt("locationId");
                     String firstname = rs.getString("firstname");
                     String lastname = rs.getString("lastname");
 
-                    return new User(userid, locationId, user_password, email, firstname, lastname);
+                    return new User(userId, locationId, user_password, email, firstname, lastname);
                 }
             }
          return null;
