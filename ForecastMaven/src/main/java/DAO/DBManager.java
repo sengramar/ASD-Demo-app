@@ -79,6 +79,20 @@ public class DBManager
          return false;
     }
     
+     public boolean CheckAdmin (String Email, String AdminPassword)throws SQLException {   
+        String query = "select * from ADMINISTRATOR where EMAIL = '" + Email + "' and ADMINPASSWORD = '" + AdminPassword + "'";
+        ResultSet rs = st.executeQuery(query); //Query Result
+            while (rs.next()) {
+                String adminPassword = rs.getString("adminPassword");
+                String email = rs.getString("email");
+
+                if (email.equals(Email) && adminPassword.equals(AdminPassword)) {
+                    return true;
+                }
+            }
+         return false;
+    }
+    
     public User FindUser(String Email, String User_Password)throws SQLException {   
         String query = "select * from USERS where EMAIL = '" + Email + "' and USER_PASSWORD = '" + User_Password + "'";
         ResultSet rs = st.executeQuery(query);
@@ -99,6 +113,25 @@ public class DBManager
          return null;
     }
     
+    public Administrator FindAdmin(String Email, String AdminPassword) throws SQLException {   
+        String query = "select * from ADMINISTRATOR where EMAIL = '" + Email + "' and ADMINPASSWORD = '" + AdminPassword + "'";
+        ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                String adminPassword = rs.getString("AdminPassword");
+                String email = rs.getString("email");
+
+                if (email.equals(Email) && adminPassword.equals(AdminPassword)) {
+                    int adminId = rs.getInt("adminId");
+                    String firstname = rs.getString("firstname");
+                    String lastname = rs.getString("lastname");
+
+                    return new Administrator (adminId, adminPassword, email, firstname, lastname);
+                }
+            }
+         return null;
+    }
+    
     public void CreateAdmin(String Email, String AdminPassword, String Firstname, String Lastname)throws SQLException 
     {   
     int ID = generateAdminID();
@@ -113,12 +146,27 @@ public class DBManager
         st.executeUpdate("INSERT INTO ACCESSLOG (accesslogID, userId, loginTime)" + "VALUES (default, " + userId + ", '" + loginDateTime + "')");
     }
 
+    public void storeAdminLogin(int adminId, String loginDateTime) throws SQLException {
+        st.executeUpdate("INSERT INTO ACCESSLOG (accesslogID, adminId, loginTime)" + "VALUES (default, " + adminId + ", '" + loginDateTime + "')");
+    }
+    
     public void storeLogout(int accesslogId, String logoutDateTime) throws SQLException {
         st.executeUpdate("UPDATE ACCESSLOG SET logoutTime = '" + logoutDateTime + "'" + "WHERE accesslogId = " + accesslogId + "");
     }
         
     public int findAccessLogID(int userId) throws SQLException {
         String query = "SELECT accesslogID FROM ACCESSLOG WHERE userid = " + userId + " AND logoutTime IS NULL";
+        ResultSet rs = st.executeQuery(query);
+        int id;
+        while (rs.next()) {
+            id = rs.getInt("accesslogID");
+                return id;
+        }
+        return 0;
+    }
+    
+    public int findAdminAccessLogID(int adminId) throws SQLException {
+        String query = "SELECT accesslogID FROM ACCESSLOG WHERE adminId = " + adminId + " AND logoutTime IS NULL";
         ResultSet rs = st.executeQuery(query);
         int id;
         while (rs.next()) {
