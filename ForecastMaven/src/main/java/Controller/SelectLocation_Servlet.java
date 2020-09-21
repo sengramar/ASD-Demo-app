@@ -37,11 +37,13 @@ public class SelectLocation_Servlet extends HttpServlet
         else if (Redirect.equals("CurrentWeather_Servlet"))
         {
             String Country = request.getParameter("Country");
-            String State = request.getParameter("State");
+            String Region = request.getParameter("Region");
+            int LocationID = Integer.parseInt(request.getParameter("ID"));
             
-            String Location = State + ","+ Country;
+            String Location = Region + ","+ Country;
             session.setAttribute("Location", Location);
-            
+             session.setAttribute("LocationID", LocationID);
+             
             RequestDispatcher rd = request.getRequestDispatcher("CurrentWeather_Servlet");
             rd.forward(request, response);
         }

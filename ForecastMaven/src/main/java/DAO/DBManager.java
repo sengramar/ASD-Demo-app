@@ -31,7 +31,7 @@ public class DBManager
     public LinkedList<String> List_Location(String Search) throws SQLException 
     {
    LinkedList<String> list_data = new LinkedList<String>(); 
-   String query = "SELECT * FROM LOCATION WHERE COUNTRY LIKE '%"+Search+"%' OR STATE LIKE '%"+Search+"%'OR REGION LIKE '%"+Search+"%'";
+   String query = "SELECT * FROM ASD.LOCATION WHERE COUNTRY LIKE '%"+Search+"%' OR STATE LIKE '%"+Search+"%'OR REGION LIKE '%"+Search+"%'";
    //show users by a word that is contained in username/userlastname/useremail 
    st.executeQuery(query);  //execute query
    ResultSet rs = st.executeQuery(query);//Query Result
@@ -64,21 +64,23 @@ public class DBManager
        return 1;
    }
     }
-     public boolean CheckUser(String Email, String UserPassword)throws SQLException {   
-        String query = "select * from USERS where EMAIL = '" + Email + "' and USER_PASSWORD = '" + UserPassword + "'";
+
+    public boolean CheckUser(String Email, String User_Password)throws SQLException {   
+        String query = "select * from USERS where EMAIL = '" + Email + "' and USER_PASSWORD = '" + User_Password + "'";
         ResultSet rs = st.executeQuery(query); //Query Result
             while (rs.next()) {
                 String user_password = rs.getString("user_password");
                 String email = rs.getString("email");
 
-                if (email.equals(Email) && user_password.equals(UserPassword)) {
+                if (email.equals(Email) && user_password.equals(User_Password)) {
                     return true;
                 }
             }
          return false;
     }
     
-    public boolean CheckAdmin (String Email, String AdminPassword)throws SQLException {   
+
+     public boolean CheckAdmin (String Email, String AdminPassword)throws SQLException {   
         String query = "select * from ADMINISTRATOR where EMAIL = '" + Email + "' and ADMINPASSWORD = '" + AdminPassword + "'";
         ResultSet rs = st.executeQuery(query); //Query Result
             while (rs.next()) {
@@ -92,15 +94,18 @@ public class DBManager
          return false;
     }
     
-    public User FindUser(String Email, String UserPassword)throws SQLException {   
-        String query = "select * from USERS where EMAIL = '" + Email + "' and USER_PASSWORD = '" + UserPassword + "'";
+
+    public User FindUser(String Email, String User_Password)throws SQLException {   
+        String query = "select * from USERS where EMAIL = '" + Email + "' and USER_PASSWORD = '" + User_Password + "'";
         ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
                 String user_password = rs.getString("user_password");
                 String email = rs.getString("email");
 
-                if (email.equals(Email) && user_password.equals(UserPassword)) {
+
+                if (email.equals(Email) && user_password.equals(User_Password)) {
+
                     int userId = rs.getInt("userId");
                     int locationId = rs.getInt("locationId");
                     String firstname = rs.getString("firstname");
@@ -130,6 +135,7 @@ public class DBManager
             }
          return null;
     }
+
     public void CreateAdmin(String Email, String AdminPassword, String Firstname, String Lastname)throws SQLException 
     {   
     int ID = generateAdminID();
@@ -149,6 +155,10 @@ public class DBManager
     }
 	
 
+    public void storeAdminLogin(int adminId, String loginDateTime) throws SQLException {
+        st.executeUpdate("INSERT INTO ACCESSLOG (accesslogID, adminId, loginTime)" + "VALUES (default, " + adminId + ", '" + loginDateTime + "')");
+    }
+    
     public void storeLogout(int accesslogId, String logoutDateTime) throws SQLException {
         st.executeUpdate("UPDATE ACCESSLOG SET logoutTime = '" + logoutDateTime + "'" + "WHERE accesslogId = " + accesslogId + "");
     }
