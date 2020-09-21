@@ -93,7 +93,7 @@ public class DBManager
                     String firstname = rs.getString("firstname");
                     String lastname = rs.getString("lastname");
 
-                    return new User(userId, locationId, user_password, email, firstname, lastname);
+                    return new User(userid, locationId, user_password, email, firstname, lastname);
                 }
             }
          return null;
