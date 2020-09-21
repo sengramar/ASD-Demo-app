@@ -47,7 +47,7 @@ public class AdminLogin_Servlet extends HttpServlet  {
             java.util.logging.Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
         String Email = (String) request.getParameter("Email");
-        String AdminPassword = (String) request.getParameter("Password");
+        String AdminPassword = (String) request.getParameter("AdminPassword");
         System.out.println("test");
         //DBManager manager = (DBManager) session.getAttribute("manager");
         Administrator admin =null;
