@@ -92,15 +92,15 @@ public class DBManager
          return false;
     }
     
-    public User FindUser(String Email, String User_Password)throws SQLException {   
-        String query = "select * from USERS where EMAIL = '" + Email + "' and USER_PASSWORD = '" + User_Password + "'";
+    public User FindUser(String Email, String UserPassword)throws SQLException {   
+        String query = "select * from USERS where EMAIL = '" + Email + "' and USER_PASSWORD = '" + UserPassword + "'";
         ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
                 String user_password = rs.getString("user_password");
                 String email = rs.getString("email");
 
-                if (email.equals(Email) && user_password.equals(User_Password)) {
+                if (email.equals(Email) && user_password.equals(UserPassword)) {
                     int userId = rs.getInt("userId");
                     int locationId = rs.getInt("locationId");
                     String firstname = rs.getString("firstname");
