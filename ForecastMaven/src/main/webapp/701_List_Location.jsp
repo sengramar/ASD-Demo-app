@@ -20,7 +20,7 @@
     </head>
 
     <Body>
-        <table style="width: 70%" class="fl-table">
+<table style="width: 70%" class="fl-table">
             
 <form action="ListLocation_Search_Servlet" method="POST" >
 <%-- 

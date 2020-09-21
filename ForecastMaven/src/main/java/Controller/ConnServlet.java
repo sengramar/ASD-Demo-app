@@ -25,7 +25,7 @@ public class ConnServlet extends HttpServlet {
     private DBManager manager;
     private Connection conn;
     
-    //Create and instance of DBConnector for the deployment session
+    //Create and instance of MongoDBConnector for the deployment session
     @Override 
     public void init() {
         try {
@@ -36,7 +36,7 @@ public class ConnServlet extends HttpServlet {
         }      
     }
     
-    //Add the DBConnector, DBManager, Connection instances to the session
+    //Add the MongoDBConnector, DBManager, Connection instances to the session
     @Override 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
