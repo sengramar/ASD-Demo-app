@@ -18,28 +18,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import API.weatherAPI;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import DAO.*;
 
 
 @WebServlet(name = "CurrentWeather_Servlet", urlPatterns = {"/CurrentWeather_Servlet"})
 public class CurrentWeather_Servlet extends HttpServlet 
 {
-    //set DBConnector and Manager as private attribute so I can call anytime and close it when finish executing query
-    
+    private MongoDBManager Query;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd");   
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String date = (dateFormat.format(now));
+        String time = (timeFormat.format(now));
+        
+        
         weatherAPI API = new weatherAPI();
         
         HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         String Email, Location;
+        int LocationId = 0;
         if(session.getAttribute("Location") == null)
         {
             Location = "Sydney, AU";
+            LocationId = 1;
         }
         else
         {
             Location = (String) session.getAttribute("Location");
+            LocationId = (int) session.getAttribute("LocationID");
         }
         if(session.getAttribute("Email") == null)
         {
@@ -50,7 +63,6 @@ public class CurrentWeather_Servlet extends HttpServlet
             Email = (String) session.getAttribute("Email");
         }
         
-        System.out.println(Location);
         String APIResult = API.request(Location);
         String City = "" + API.getCity(APIResult);
         String Country = "" + API.getCountry(APIResult);
@@ -64,6 +76,9 @@ public class CurrentWeather_Servlet extends HttpServlet
         String WindDegree = API.getWindDeg(APIResult);
         String WindSpeed = API.getWindSpeed(APIResult);
         String Description = "" + API.getDescription(APIResult);
+        
+        Query = new MongoDBManager();
+        Query.saveToWeatherHistory(date,time,LocationId,Celcius,Humidity,WindSpeed,WindDegree,Cloudy,Description);//run query
         
         session.setAttribute("Location", Location);
         session.setAttribute("Celcius", Celcius);
