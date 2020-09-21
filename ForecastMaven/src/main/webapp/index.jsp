@@ -28,6 +28,7 @@
             <a href="601_weather_history.jsp">WEATHER HISTORY</a>
             <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
             <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
+            <a href="801_Map_Location.jsp">LOCATION MAP</a>
         </div>
 
         <div class="content">
