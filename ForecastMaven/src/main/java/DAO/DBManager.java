@@ -31,7 +31,7 @@ public class DBManager
     public LinkedList<String> List_Location(String Search) throws SQLException 
     {
    LinkedList<String> list_data = new LinkedList<String>(); 
-   String query = "SELECT * FROM LOCATION WHERE COUNTRY LIKE '%"+Search+"%' OR STATE LIKE '%"+Search+"%'OR REGION LIKE '%"+Search+"%'";
+   String query = "SELECT * FROM ASD.LOCATION WHERE COUNTRY LIKE '%"+Search+"%' OR STATE LIKE '%"+Search+"%'OR REGION LIKE '%"+Search+"%'";
    //show users by a word that is contained in username/userlastname/useremail 
    st.executeQuery(query);  //execute query
    ResultSet rs = st.executeQuery(query);//Query Result

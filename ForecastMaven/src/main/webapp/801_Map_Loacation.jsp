@@ -10,8 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://www.w2schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="css/style.css"/>
-        
+        <link rel="stylesheet" href="css/style.css"/>        
         <title class="title">Location Map Page</title>
     </head>
     <body>
@@ -72,7 +71,7 @@
             <a href="601_weather_history.jsp">WEATHER HISTORY</a>
             <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
         </div>
-        
+
     </body>
     
 </html>
