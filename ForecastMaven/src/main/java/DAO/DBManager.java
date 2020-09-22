@@ -64,7 +64,7 @@ public class DBManager
        return 1;
    }
     }
-    
+
     public boolean CheckUser(String Email, String User_Password)throws SQLException {   
         String query = "select * from USERS where EMAIL = '" + Email + "' and USER_PASSWORD = '" + User_Password + "'";
         ResultSet rs = st.executeQuery(query); //Query Result
@@ -79,6 +79,7 @@ public class DBManager
          return false;
     }
     
+
      public boolean CheckAdmin (String Email, String AdminPassword)throws SQLException {   
         String query = "select * from ADMINISTRATOR where EMAIL = '" + Email + "' and ADMINPASSWORD = '" + AdminPassword + "'";
         ResultSet rs = st.executeQuery(query); //Query Result
@@ -93,15 +94,18 @@ public class DBManager
          return false;
     }
     
+
     public User FindUser(String Email, String User_Password)throws SQLException {   
         String query = "select * from USERS where EMAIL = '" + Email + "' and USER_PASSWORD = '" + User_Password + "'";
         ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                String user_password = rs.getString("userPassword");
+                String user_password = rs.getString("user_password");
                 String email = rs.getString("email");
 
+
                 if (email.equals(Email) && user_password.equals(User_Password)) {
+
                     int userId = rs.getInt("userId");
                     int locationId = rs.getInt("locationId");
                     String firstname = rs.getString("firstname");
@@ -131,7 +135,7 @@ public class DBManager
             }
          return null;
     }
-    
+
     public void CreateAdmin(String Email, String AdminPassword, String Firstname, String Lastname)throws SQLException 
     {   
     int ID = generateAdminID();
@@ -142,9 +146,14 @@ public class DBManager
     //execute query
     }
     
-    public void storeLogin(int userId, String loginDateTime) throws SQLException {
+     public void storeLogin(int userId, String loginDateTime) throws SQLException {
         st.executeUpdate("INSERT INTO ACCESSLOG (accesslogID, userId, loginTime)" + "VALUES (default, " + userId + ", '" + loginDateTime + "')");
     }
+    
+    public void storeAdminLogin(int adminId, String loginDateTime) throws SQLException {
+        st.executeUpdate("INSERT INTO ACCESSLOG (accesslogID, adminId, loginTime)" + "VALUES (default, " + adminId + ", '" + loginDateTime + "')");
+    }
+	
 
     public void storeAdminLogin(int adminId, String loginDateTime) throws SQLException {
         st.executeUpdate("INSERT INTO ACCESSLOG (accesslogID, adminId, loginTime)" + "VALUES (default, " + adminId + ", '" + loginDateTime + "')");
