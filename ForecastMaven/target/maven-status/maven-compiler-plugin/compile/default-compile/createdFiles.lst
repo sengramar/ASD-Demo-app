@@ -1,4 +1,5 @@
 Controller/CheckAdminServlet.class
+DAO/MongoDBManager.class
 Controller/CurrentWeather_Servlet.class
 Controller/ListLocation_Search_Servlet.class
 Controller/WeatherForecast_Servlet.class
@@ -16,10 +17,12 @@ Controller/IndexAdminRegister_Servlet.class
 Controller/Registration_Servlet.class
 Controller/Login_Servlet.class
 API/API.class
+DAO/MongoDB.class
 Controller/ListLocation_Servlet.class
 DAO/DBManager.class
 Controller/ConnServlet.class
 Controller/Registration_Admin_Servlet.class
 Controller/SelectLocation_Servlet.class
 Controller/Validator.class
+DAO/MongoDBConnector.class
 Controller/DeleteUser_Servlet.class

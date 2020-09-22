@@ -47,8 +47,8 @@ public class EditAccount extends HttpServlet {
         }
         try
         {
-        Query.updateUser(userId, location, password, email, firstname, lastname);//run query
-        Connector.closeConnection();//close connection
+            Query.updateUser(userId, location, password, email, firstname, lastname);//run query
+            Connector.closeConnection();//close connection
         }
         catch(SQLException ex)
         {
