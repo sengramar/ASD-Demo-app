@@ -4,6 +4,7 @@ D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\Foreca
 D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\Model\User.java
 D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\API\API.java
 D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\Controller\IndexAdminRegister_Servlet.java
+D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\Controller\LocationMap_Servlet.java
 D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\Controller\WeatherForecast_Servlet.java
 D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\Controller\CheckAdminServlet.java
 D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\Controller\SelectLocation_Servlet.java
@@ -24,4 +25,5 @@ D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\Foreca
 D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\Controller\Registration_Servlet.java
 D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\DAO\DBManager.java
 D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\DAO\MongoDBManager.java
+D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\Controller\WindSpeed_Servlet.java
 D:\Backup Ryo\Semester 5\Advance Software Development\Github\ASD-Demo-app\ForecastMaven\src\main\java\Model\Location.java

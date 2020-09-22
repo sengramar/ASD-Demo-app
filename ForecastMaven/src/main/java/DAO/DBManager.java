@@ -21,7 +21,7 @@ public class DBManager
     {   
     int ID = generateUserID();
     //generate ID
-    String query = "INSERT INTO \"USER\" (USERID, USER_PASSWORD, EMAIL, FIRSTNAME, LASTNAME, LOCATIONID) "
+    String query = "INSERT INTO USERS (USERID, USER_PASSWORD, EMAIL, FIRSTNAME, LASTNAME, LOCATIONID) "
             + "VALUES ("+ID+",'"+UserPassword+"','"+Email+"','"+Firstname+"','"+Lastname+"',"+LocationID+")";
     //Insert into USERDB using all the parameters  
     st.executeUpdate(query);  
@@ -49,7 +49,7 @@ public class DBManager
     public int generateUserID() throws SQLException
     {
     String query;
-        query = "SELECT MAX(USERID) as ID FROM \"USER\"";
+        query = "SELECT MAX(USERID) as ID FROM USERS";
    //execute this query using the statement field    
    ResultSet rs = st.executeQuery(query);
    //search the ResultSet for a user using the parameters
