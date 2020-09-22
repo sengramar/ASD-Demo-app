@@ -38,6 +38,7 @@
         </table>
         <button type="submit"> Login </button>
         <button><a href="index.jsp"> Cancel</a> </button>
+        <p>if you want to login as Admin Click <a href="203_AdminLogin.jsp"> Here </a>
         </form>
         </div>
    </center>
