@@ -1,6 +1,7 @@
 package DAO;
 
 import java.util.*;
+import java.util.regex.Pattern;
 import com.mongodb.*;
 import com.mongodb.client.*;
 import static com.mongodb.client.model.Filters.and;
@@ -27,6 +28,7 @@ public class MongoDBManager
     {
         int ID = returnID(WeatherHistory, "weatherID");
         PostList.clear();
+
         PostList.add(new Document
         ("weatherID", ID).append("Date", Date).append("Time", Time).append("location ID",LocationId)
         .append("Temperature",Temperature).append("Humidity",Humidity).append("Wind speed",WindSpeed)
@@ -39,13 +41,14 @@ public class MongoDBManager
     public LinkedList<String> List_Location(String Search) 
     {
     LinkedList<String> list_data = new LinkedList<String>(); 
-    
-     for (Document doc : location.find()) 
+    Document SearchBSON = new Document("Region",Pattern.compile(Pattern.quote(Search)));//WHERE LIKE 'SEARCH%'
+     for (Document doc : location.find(SearchBSON).sort(new BasicDBObject("LocationId",1)))//from location + In ascending order (Change 1 to -1 for Desc order)
      {
         list_data.add((String) doc.get("LocationId"));
         list_data.add((String) doc.get("Country"));
         list_data.add((String) doc.get("State"));
         list_data.add((String) doc.get("Region"));
+        //SELECT ALL 
     }
     return list_data;
     }   

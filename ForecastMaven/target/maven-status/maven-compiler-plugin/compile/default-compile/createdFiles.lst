@@ -1,3 +1,5 @@
+Controller\WindSpeed_Servlet.class
+DAO\MongoDBManager.class
 API\API.class
 Model\Location.class
 DAO\DBConnector.class
@@ -7,6 +9,7 @@ API\weatherAPI.class
 Controller\Login_Servlet.class
 DAO\DBManager.class
 DAO\MongoDBConnector.class
+Controller\LocationMap_Servlet.class
 Controller\WeatherForecast_Servlet.class
 Controller\EditAccount.class
 DAO\DB.class
