@@ -48,7 +48,7 @@
             </table>
         </form><br>
         </div><br>
-                    <a href="main.jsp" >Main page</a> 
+                    <a href="main.jsp" >Main page</a> <a href="305_delete_account.jsp" >Delete Account</a> 
        </center> </div> 
         
     </body>

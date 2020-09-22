@@ -3,6 +3,7 @@ package DAO;
 import Model.Location;
 import Model.User;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -148,8 +149,43 @@ public class DBManager
 
 
 public void updateUser(int userId, int location, String password, String email, String firstname, String lastname) throws SQLException { 
-        st.executeUpdate("UPDATE USERS SET USERID="+userId+",LOCATIONID="+location+",PASSWORD='"+password+"',EMAIL='"+email+"',FIRSTNAME='"+firstname+"',LASTNAME='"+lastname+"' WHERE USERID="+userId);
+        st.executeUpdate("UPDATE ASD.USERS SET USERID="+userId+",LOCATIONID="+location+",PASSWORD='"+password+"',EMAIL='"+email+"',FIRSTNAME='"+firstname+"',LASTNAME='"+lastname+"' WHERE USERID="+userId);
    //code for update-operation   
 
     }   
+
+
+public ArrayList<User>  listUsers() throws SQLException
+    {
+        ArrayList<User> users = new ArrayList<>();
+        String sql ="SELECT * FROM USERS";
+        
+        st.executeQuery(sql);  //execute query
+        ResultSet rs = st.executeQuery(sql);//Query Result
+        
+        
+        while(rs.next())
+        {
+            //int userId, int locationId, String user_password, String email, String firstname, String lastname
+                int userId = rs.getInt(1);
+                int locationId = rs.getInt(2);
+                String user_password = rs.getString(3);
+                String email = rs.getString(4);
+                String firstname = rs.getString(5);
+                String lastname = rs.getString(6);
+                
+                User user = new User(userId, locationId, user_password, email, firstname, lastname);
+                users.add(user);
+       
+        }
+        
+        return users;
+    }
+
+public void deleteUser(String email) throws SQLException{ 
+        st.executeUpdate("DELETE FROM USERS WHERE EMAIL='"+email+"'");
+   //code for delete-operation   
+
+    }
+
 }
