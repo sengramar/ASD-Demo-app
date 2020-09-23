@@ -1,5 +1,6 @@
 package DAO;
 
+import Model.Administrator;
 import Model.Location;
 import Model.User;
 import java.sql.*;
@@ -153,12 +154,7 @@ public class DBManager
     public void storeAdminLogin(int adminId, String loginDateTime) throws SQLException {
         st.executeUpdate("INSERT INTO ACCESSLOG (accesslogID, adminId, loginTime)" + "VALUES (default, " + adminId + ", '" + loginDateTime + "')");
     }
-	
-
-    public void storeAdminLogin(int adminId, String loginDateTime) throws SQLException {
-        st.executeUpdate("INSERT INTO ACCESSLOG (accesslogID, adminId, loginTime)" + "VALUES (default, " + adminId + ", '" + loginDateTime + "')");
-    }
-    
+	    
     public void storeLogout(int accesslogId, String logoutDateTime) throws SQLException {
         st.executeUpdate("UPDATE ACCESSLOG SET logoutTime = '" + logoutDateTime + "'" + "WHERE accesslogId = " + accesslogId + "");
     }
