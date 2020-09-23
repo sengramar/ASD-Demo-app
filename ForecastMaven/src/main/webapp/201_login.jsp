@@ -23,7 +23,7 @@
     <center>     
         <h1 class="header">Sign Up</h1><span><%=(existErr != null ? existErr : "")%></span><br>
         <div class="regbox">
-        <form method="post" name="form" action="Login_Servlet">
+        <form method="post" name="form" action="LoginMongoServlet">
         <table>
             <tr>
             <td><p class="subtitle"><label for="Email">Email</label></p></td>
