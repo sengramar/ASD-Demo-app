@@ -1,5 +1,6 @@
 package DAO;
 
+import Model.Administrator;
 import Model.Location;
 import Model.User;
 import java.sql.*;
@@ -21,7 +22,7 @@ public class DBManager
     {   
     int ID = generateUserID();
     //generate ID
-    String query = "INSERT INTO \"USER\" (USERID, USER_PASSWORD, EMAIL, FIRSTNAME, LASTNAME, LOCATIONID) "
+    String query = "INSERT INTO USERS (USERID, USER_PASSWORD, EMAIL, FIRSTNAME, LASTNAME, LOCATIONID) "
             + "VALUES ("+ID+",'"+UserPassword+"','"+Email+"','"+Firstname+"','"+Lastname+"',"+LocationID+")";
     //Insert into USERDB using all the parameters  
     st.executeUpdate(query);  
@@ -49,7 +50,7 @@ public class DBManager
     public int generateUserID() throws SQLException
     {
     String query;
-        query = "SELECT MAX(USERID) as ID FROM \"USER\"";
+        query = "SELECT MAX(USERID) as ID FROM USERS";
    //execute this query using the statement field    
    ResultSet rs = st.executeQuery(query);
    //search the ResultSet for a user using the parameters
@@ -153,12 +154,7 @@ public class DBManager
     public void storeAdminLogin(int adminId, String loginDateTime) throws SQLException {
         st.executeUpdate("INSERT INTO ACCESSLOG (accesslogID, adminId, loginTime)" + "VALUES (default, " + adminId + ", '" + loginDateTime + "')");
     }
-	
-
-    public void storeAdminLogin(int adminId, String loginDateTime) throws SQLException {
-        st.executeUpdate("INSERT INTO ACCESSLOG (accesslogID, adminId, loginTime)" + "VALUES (default, " + adminId + ", '" + loginDateTime + "')");
-    }
-    
+	    
     public void storeLogout(int accesslogId, String logoutDateTime) throws SQLException {
         st.executeUpdate("UPDATE ACCESSLOG SET logoutTime = '" + logoutDateTime + "'" + "WHERE accesslogId = " + accesslogId + "");
     }

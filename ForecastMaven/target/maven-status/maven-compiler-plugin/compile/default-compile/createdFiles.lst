@@ -1,12 +1,16 @@
+Controller\WindSpeed_Servlet.class
+DAO\MongoDBManager.class
 API\API.class
 Model\Location.class
 DAO\DBConnector.class
 Controller\Registration_Admin_Servlet.class
 Controller\CheckAdminServlet.class
 API\weatherAPI.class
+Controller\AdminLogin_Servlet.class
 Controller\Login_Servlet.class
 DAO\DBManager.class
 DAO\MongoDBConnector.class
+Controller\LocationMap_Servlet.class
 Controller\WeatherForecast_Servlet.class
 Controller\EditAccount.class
 DAO\DB.class
@@ -15,6 +19,7 @@ Controller\ConnServlet.class
 Controller\IndexAdminRegister_Servlet.class
 Model\Administrator.class
 Controller\CurrentWeather_Servlet.class
+Controller\AdminLogoutServlet.class
 Model\User.class
 Controller\ListLocation_Search_Servlet.class
 Model\weatherHistory.class
@@ -24,3 +29,4 @@ Controller\SelectLocation_Servlet.class
 Controller\IndexRegister_Servlet.class
 Controller\Registration_Servlet.class
 DAO\MongoDB.class
+Controller\LoginMongoServlet.class

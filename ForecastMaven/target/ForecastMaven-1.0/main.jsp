@@ -43,7 +43,7 @@
             <button type="submit" class="button">Register</button>
         </form>
             
-        <form action="Login_Servlet" method="POST">
+        <form action="201_login.jsp" method="POST">
             <button type="submit" class="button">Login</button>
         </form>
 
