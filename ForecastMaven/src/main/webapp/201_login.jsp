@@ -23,7 +23,7 @@
     <center>     
         <h1 class="header">Sign Up</h1><span><%=(existErr != null ? existErr : "")%></span><br>
         <div class="regbox">
-        <form method="post" name="form" action="Login_Servlet">
+        <form method="post" name="form" action="LoginMongoServlet">
         <table>
             <tr>
             <td><p class="subtitle"><label for="Email">Email</label></p></td>
@@ -38,6 +38,7 @@
         </table>
         <button type="submit"> Login </button>
         <button><a href="index.jsp"> Cancel</a> </button>
+        <p>if you want to login as Admin Click <a href="203_AdminLogin.jsp"> Here </a>
         </form>
         </div>
    </center>

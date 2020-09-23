@@ -20,14 +20,14 @@
     </head>
 
     <Body>
-        <table style="width: 70%" class="fl-table">
+<table style="width: 70%" class="fl-table">
             
 <form action="ListLocation_Search_Servlet" method="POST" >
 <%-- 
 Search Servlet
 --%>
     
-<p>Search : <input type="search" name="search" value="">
+<p>Search : <input type="search" name="search" value=" ">
 <p><button type="submit" class ="btn"> Search </button></p></form>
         <tr>
             <th class="subtitle">LocationID</th>

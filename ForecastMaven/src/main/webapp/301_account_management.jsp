@@ -22,7 +22,7 @@
         %>
        <div class="sidenav">
             <br><br>
-            <a href="main.jsp">MAIN</a>
+            <a href="main.jsp">HOME</a>
             <form name="submitForm" method="POST" action="CurrentWeather_Servlet">
             <input type="hidden" name="param1" value="param1Value">
             <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
@@ -37,7 +37,7 @@
            <div class="regbox"><br><br>
         <form method="post" action="EditAccount">
             <table>
-                <tr><td>Confirm User ID</td><td><input type="text"  name="userId" required="true" value="${user.userId}"></td></tr><tr><td></td></tr><tr></tr>
+                <tr><td>User ID</td><td><input type="text"  name="userId" required="true" value="${user.userId}"></td></tr><tr><td></td></tr><tr></tr>
                 <tr><td>First Name:</td><td><input type="text"  name="firstname" required="true" value="${user.firstname}"></td></tr>
                 <tr><td>Last Name:</td><td><input type="text"  name="lastname" required="true" value="${user.lastname}"></td></tr>
                 <tr><td>Email:</td><td><input type="text"  name="email" required="true" value="${user.email}"></td></tr>
@@ -48,7 +48,7 @@
             </table>
         </form><br>
         </div><br>
-                    <a href="main.jsp" >Main page</a> <a href="305_delete_account.jsp" >Delete Account</a> 
+                    <a href="main.jsp" >Main page</a> 
        </center> </div> 
         
     </body>
