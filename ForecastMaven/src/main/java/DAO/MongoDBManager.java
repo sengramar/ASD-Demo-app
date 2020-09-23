@@ -19,6 +19,7 @@ public class MongoDBManager
     private List<Document> PostList = new ArrayList();
     //list all table name 
     MongoCollection<Document> users = db.getCollection("Users");
+    MongoCollection<Document> admins = db.getCollection("Administrator");
     MongoCollection<Document> location = db.getCollection("Location");
     MongoCollection<Document> WeatherHistory = db.getCollection("WeatherHistory");
       
@@ -53,26 +54,70 @@ public class MongoDBManager
     return list_data;
     }   
     
-    public User findUser(String Email, String User_Password) 
-    {
+//     public User findUser(String Email, String User_Password) 
+//     {
+//         int userId, locationId;
+//         String user_password, email, firstname,lastname;
+//         User newUser;
+//         Document WhereDocs = new Document("email", Email).append("user_password", User_Password);
+//         System.out.println(WhereDocs.toString());
+//         for (Document doc : users.find(WhereDocs))
+//         {
+//             userId = ((Integer) doc.get("userID"));
+//             locationId = ((Integer) doc.get("locationID"));
+//             user_password = ((String) doc.get("user_password"));
+//             email =((String) doc.get("email"));
+//             firstname =((String) doc.get("firstName"));
+//             lastname = ((String) doc.get("lastName"));
+//             //you need to get all the data
+//             newUser = new User(userId, locationId, user_password, email, firstname, lastname);
+//             return newUser;
+//         }
+//         return newUser = null;
+//     }
+    
+        public User findUser(String Email, String User_Password) {
+        String email, user_password, firstname, lastname;
         int userId, locationId;
-        String user_password, email, firstname,lastname;
-        User newUser;
-        Document WhereDocs = new Document("email", Email).append("user_password", User_Password);
-        System.out.println(WhereDocs.toString());
-        for (Document doc : users.find(WhereDocs))
-        {
-            userId = ((Integer) doc.get("userID"));
-            locationId = ((Integer) doc.get("locationID"));
-            user_password = ((String) doc.get("user_password"));
-            email =((String) doc.get("email"));
-            firstname =((String) doc.get("firstName"));
-            lastname = ((String) doc.get("lastName"));
-            //you need to get all the data
-            newUser = new User(userId, locationId, user_password, email, firstname, lastname);
-            return newUser;
+        Document user = new Document("email", Email).append("user_password", User_Password);
+ 
+        for (Document doc : users.find()) {
+            email = (String) doc.get("email");
+            user_password= (String) doc.get("user_password");
+            
+            Document checkUser = users.find(and(eq("email", Email), eq("user_password", User_Password))).first();
+            
+            if (user.equals(checkUser)){         //if (email.equals(Email) && user_password.equals(User_Password)) {
+                userId= (int) doc.get("userId");
+                locationId= (int) doc.get("locationId");
+                firstname= (String) doc.get("firstname");
+                lastname= (String) doc.get("lastname");
+
+                return new User((int) doc.get("userId"), (int) doc.get("locationId"), (String) doc.get("email"), (String) doc.get("user_password"), (String) doc.get("firstname"), (String) doc.get("lastname"));
+            }
         }
-        return newUser = null;
+        return null;
+    }
+        
+        public Administrator findAdmin(String Email, String AdminPassword) {
+        String email, adminpassword, firstname, lastname;
+        int adminId;
+        Document admin = new Document("email", Email).append("adminpassword", AdminPassword);
+        for (Document doc : admins.find()) {
+            email = (String) doc.get("email");
+            adminpassword= (String) doc.get("adminpassword");
+            
+            Document checkAdmin = admins.find(and(eq("email", Email), eq("adminpassword", AdminPassword))).first();
+            
+            if (admins.equals(checkAdmin)){         //if (email.equals(Email) && adminpassword.equals(adminpassword)) {
+                adminId= (int) doc.get("adminId");
+                firstname= (String) doc.get("firstname");
+                lastname= (String) doc.get("lastname");
+
+                return new Administrator((int) doc.get("adminId"), (String) doc.get("email"), (String) doc.get("adminpassword"), (String) doc.get("firstname"), (String) doc.get("lastname"));
+            }
+        }
+        return null;
     }
     public int returnID(MongoCollection<Document> CollectionName, String ParameterID)
     {
