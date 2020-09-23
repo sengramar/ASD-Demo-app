@@ -132,7 +132,7 @@ public class MongoDBManager
             firstname= (String) doc.get("firstname");
             lastname= (String) doc.get("lastname");
             
-            newAdmin = new Administrator(adminId, email, adminpassword,firstname,lastname);
+            newAdmin = new Administrator(adminId, adminpassword, email, firstname, lastname);
             return newAdmin;
 
             
