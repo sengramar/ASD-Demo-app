@@ -32,7 +32,7 @@
             margin: 4px 2px;
             opacity: 0.5px;
         }
-        </style>
+       </style>
         <title class="title">Location Map Page</title>
         
     </head>

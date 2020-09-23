@@ -21,11 +21,14 @@ public class LocationMap_Servlet extends HttpServlet
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         
+            int LocationID = Integer.parseInt(request.getParameter("LocationID"));
             String Country = request.getParameter("Country");
             String Region = request.getParameter("Region");
             
             String Location = Region + ","+ Country;
             session.setAttribute("Location", Location);
+            session.setAttribute("LocationID", LocationID);
+             
             
             RequestDispatcher rd = request.getRequestDispatcher("CurrentWeather_Servlet");
             rd.forward(request, response);
