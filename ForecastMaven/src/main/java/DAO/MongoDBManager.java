@@ -109,7 +109,7 @@ public class MongoDBManager
             
             Document checkAdmin = admins.find(and(eq("email", Email), eq("adminpassword", AdminPassword))).first();
             
-            if (admins.equals(checkAdmin)){         //if (email.equals(Email) && adminpassword.equals(adminpassword)) {
+            if (admin.equals(checkAdmin)){         //if (email.equals(Email) && adminpassword.equals(adminpassword)) {
                 adminId= (int) doc.get("adminId");
                 firstname= (String) doc.get("firstname");
                 lastname= (String) doc.get("lastname");
