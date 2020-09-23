@@ -47,14 +47,14 @@ public class Login_Servlet extends HttpServlet  {
             java.util.logging.Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
         String Email = (String) request.getParameter("Email");
-        String UserPassword = (String) request.getParameter("Password");
+        String User_Password = (String) request.getParameter("User_Password");
         System.out.println("test");
         //DBManager manager = (DBManager) session.getAttribute("manager");
         User user=null;
-        int userID;
+        int userId;
         
             try {
-                user = manager.FindUser(Email, UserPassword);
+                user = manager.FindUser(Email, User_Password);
             }
                  catch (SQLException | NullPointerException ex) {           
                 System.out.println(ex.getMessage() == null ? "User does not exist" : "welcome");
@@ -63,10 +63,9 @@ public class Login_Servlet extends HttpServlet  {
                 if (user != null) {
                    try {
                     session.setAttribute("user", user);
-                     response.sendRedirect("main.jsp");
-                    //request.getRequestDispatcher("index.jsp").include(request, response);
-                    userID = user.getUserId();
-                      manager.storeLogin(userID, loginDateTime);
+                    response.sendRedirect("main.jsp");
+                    userId = user.getUserId();
+                    manager.storeLogin(userId, loginDateTime);
             } catch (SQLException ex) {
                 Logger.getLogger(Login_Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
