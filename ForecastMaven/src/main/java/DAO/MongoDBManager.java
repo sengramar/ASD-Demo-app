@@ -187,4 +187,59 @@ public class MongoDBManager
     {
         users.deleteOne(Filters.eq("userID",id));
     }
+	
+	public void saveToUser(String Password, String Email, String Firstname, String Lastname, int LocationId) 
+    {
+        int ID = returnID(users, "userID");
+        PostList.clear();
+        PostList.add(new Document
+        ("userID", ID).append("userPassword", Password).append("Email", Email).append("Firstname",Firstname)
+        .append("Lastname",Lastname).append("LocationID", LocationId)
+        );
+        
+        WeatherHistory.insertMany(PostList);
+    } 
+    
+    public LinkedList<String> List_Users(String Search) 
+    {
+    LinkedList<String> list_data = new LinkedList<String>(); 
+    
+     for (Document doc : users.find()) 
+     {
+        list_data.add((String) doc.get("userID"));
+        list_data.add((String) doc.get("userPassword"));
+        list_data.add((String) doc.get("Email"));
+        list_data.add((String) doc.get("Firstname"));
+        list_data.add((String) doc.get("Lastname"));
+        list_data.add((String) doc.get("LocationID"));
+    }
+    return list_data;
+    }
+    
+    public void saveToAdmin(String Password, String Email, String Firstname, String Lastname) 
+    {
+        int ID = returnID(admins, "adminID");
+        PostList.clear();
+        PostList.add(new Document
+        ("adminID", ID).append("adminPassword", Password).append("Email", Email).append("Firstname",Firstname)
+        .append("Lastname",Lastname)
+        );
+        
+        WeatherHistory.insertMany(PostList);
+    } 
+    
+    public LinkedList<String> List_Admin(String Search) 
+    {
+    LinkedList<String> list_data = new LinkedList<String>(); 
+    
+     for (Document doc : admins.find()) 
+     {
+        list_data.add((String) doc.get("adminID"));
+        list_data.add((String) doc.get("adminPassword"));
+        list_data.add((String) doc.get("Email"));
+        list_data.add((String) doc.get("Firstname"));
+        list_data.add((String) doc.get("Lastname"));
+    }
+    return list_data;
+    } 
 }
