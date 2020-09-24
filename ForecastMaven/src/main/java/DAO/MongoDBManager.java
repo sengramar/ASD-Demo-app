@@ -17,12 +17,13 @@ public class MongoDBManager
     MongoDBConnector Mongo = new MongoDBConnector();
     private MongoDatabase db = Mongo.DBConnect();
     private List<Document> PostList = new ArrayList();
+    private List<Document> logList = new ArrayList();
     //list all table name 
     MongoCollection<Document> users = db.getCollection("Users");
     MongoCollection<Document> admins = db.getCollection("Administrator");
+    MongoCollection<Document> accesslog = db.getCollection("AccessLog");
     MongoCollection<Document> location = db.getCollection("Location");
     MongoCollection<Document> WeatherHistory = db.getCollection("WeatherHistory");
-      
     
 
     public void saveToWeatherHistory(String Date, String Time, int LocationId, String Temperature,String Humidity,String WindSpeed,String WindDegree, String Cloudy,String Description ) 
@@ -54,70 +55,80 @@ public class MongoDBManager
     return list_data;
     }   
     
-//     public User findUser(String Email, String User_Password) 
-//     {
-//         int userId, locationId;
-//         String user_password, email, firstname,lastname;
-//         User newUser;
-//         Document WhereDocs = new Document("email", Email).append("user_password", User_Password);
-//         System.out.println(WhereDocs.toString());
-//         for (Document doc : users.find(WhereDocs))
-//         {
-//             userId = ((Integer) doc.get("userID"));
-//             locationId = ((Integer) doc.get("locationID"));
-//             user_password = ((String) doc.get("user_password"));
-//             email =((String) doc.get("email"));
-//             firstname =((String) doc.get("firstName"));
-//             lastname = ((String) doc.get("lastName"));
-//             //you need to get all the data
-//             newUser = new User(userId, locationId, user_password, email, firstname, lastname);
-//             return newUser;
-//         }
-//         return newUser = null;
-//     }
-    
-        public User findUser(String Email, String User_Password) {
-        String email, user_password, firstname, lastname;
+    public User findUser(String Email, String User_Password) 
+    {
         int userId, locationId;
-        Document user = new Document("email", Email).append("user_password", User_Password);
- 
-        for (Document doc : users.find()) {
-            email = (String) doc.get("email");
-            user_password= (String) doc.get("user_password");
-            
-            Document checkUser = users.find(and(eq("email", Email), eq("user_password", User_Password))).first();
-            
-            if (user.equals(checkUser)){         //if (email.equals(Email) && user_password.equals(User_Password)) {
-                userId= (int) doc.get("userId");
-                locationId= (int) doc.get("locationId");
-                firstname= (String) doc.get("firstname");
-                lastname= (String) doc.get("lastname");
-
-                return new User((int) doc.get("userId"), (int) doc.get("locationId"), (String) doc.get("email"), (String) doc.get("user_password"), (String) doc.get("firstname"), (String) doc.get("lastname"));
-            }
+        String user_password, email, firstname,lastname;
+        User newUser;
+        Document WhereDocs = new Document("email", Email).append("user_password", User_Password);
+        System.out.println(WhereDocs.toString());
+        for (Document doc : users.find(WhereDocs))
+        {
+            userId = ((Integer) doc.get("userID"));
+            locationId = ((Integer) doc.get("locationID"));
+            user_password = ((String) doc.get("user_password"));
+            email =((String) doc.get("email"));
+            firstname =((String) doc.get("firstName"));
+            lastname = ((String) doc.get("lastName"));
+            //you need to get all the data
+            newUser = new User(userId, locationId, user_password, email, firstname, lastname);
+            return newUser;
         }
-        return null;
+        return newUser = null;
     }
-        
-        public Administrator findAdmin(String Email, String AdminPassword) {
+    
+    public Administrator findAdmin(String Email, String AdminPassword) {
         String email, adminpassword, firstname, lastname;
         int adminId;
+        Administrator newAdmin;
         Document admin = new Document("email", Email).append("adminpassword", AdminPassword);
+         System.out.println(admin.toString());
         for (Document doc : admins.find()) {
             email = (String) doc.get("email");
             adminpassword= (String) doc.get("adminpassword");
+            adminId= (int) doc.get("adminId");
+            firstname= (String) doc.get("firstname");
+            lastname= (String) doc.get("lastname");
             
-            Document checkAdmin = admins.find(and(eq("email", Email), eq("adminpassword", AdminPassword))).first();
-            
-            if (admin.equals(checkAdmin)){         //if (email.equals(Email) && adminpassword.equals(adminpassword)) {
-                adminId= (int) doc.get("adminId");
-                firstname= (String) doc.get("firstname");
-                lastname= (String) doc.get("lastname");
+            newAdmin = new Administrator(adminId, adminpassword, email, firstname, lastname);
+            return newAdmin;
 
-                return new Administrator((int) doc.get("adminId"), (String) doc.get("email"), (String) doc.get("adminpassword"), (String) doc.get("firstname"), (String) doc.get("lastname"));
-            }
+            
         }
         return null;
+    }
+     
+    public void storeLogin(int userId, String loginDateTime) {
+        int accesslogId = returnID(accesslog, "accesslogId");
+        logList.clear();
+        logList.add(new Document("accesslogId", accesslogId).append("userId", userId).append("loginTime", loginDateTime));
+        accesslog.insertMany(logList);
+    }
+    
+    public void storeLogout(int accesslogId, String logoutDateTime) {
+	Document loghistory = new Document("accesslogId", accesslogId);
+		for (Document doc : accesslog.find(loghistory)) {
+			logList.add(new Document("logoutTime", logoutDateTime));
+			accesslog.insertMany(logList);
+		}
+    
+    }
+
+    //public void storeLogout(int accesslogId, String logoutDateTime) throws SQLException {
+    //    st.executeUpdate("UPDATE ACCESSLOG SET logoutTime = '" + logoutDateTime + "'" + "WHERE accesslogId = " + accesslogId + "");
+    // }
+    
+    public int findAccessLogID(int userId) {
+        int id;
+        String logoutTime;
+        Document history =  new Document("userid", userId).append("logoutTime", null);
+        for (Document doc : accesslog.find(history)) {
+            userId = (int) doc.get("userid");
+            logoutTime= (String) doc.get("logoutTime");
+            id = (int) doc.get("accesslogID");
+            return id;
+        }
+        return 0;
     }
     public int returnID(MongoCollection<Document> CollectionName, String ParameterID)
     {
