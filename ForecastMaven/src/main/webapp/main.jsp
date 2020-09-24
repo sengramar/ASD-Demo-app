@@ -44,9 +44,9 @@
             <button type="submit" class="button">Register</button>
         </form>
             
-        <a href="LogoutServlet" >
+        <form action="LogoutServlet" method="GET">
             <button type="submit" class="button">Logout</button>
-        </a>
+        </form>
 
   <div class="w3-container w3-padding-32" id="projects">
       <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Pages</h3>
