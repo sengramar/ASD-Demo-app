@@ -40,10 +40,10 @@
             </center>
             
             <p align="center">Lulu lala I hope it wont be raining</p>
-        <form action="LoginMongoServlet" method="POST">
+        <form action="IndexRegister_Servlet" method="POST">
             <button type="submit" class="button">SIGN IN (USER)</button>
         </form>
-        <a href="102_check_admin.jsp">
+        <a action="IndexAdminRegister_Servlet" method="POST">
             <button type="submit" class="button">SIGN IN (ADMIN)</button>
         </a>
 
