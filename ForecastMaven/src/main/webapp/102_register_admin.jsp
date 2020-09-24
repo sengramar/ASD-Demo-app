@@ -1,5 +1,5 @@
 <%-- 
-    Document   : 101_register_admin
+    Document   : 102_register_admin
     Created on : 2020. 9. 7, 오전 7:38:24
     Author     : Nayoon
 --%>
@@ -48,7 +48,7 @@
         <td><p><input type="Lastname" name="Lastname" required="True" placeholder="<%=(Lastname != null ? Lastname : "Enter Last Name")%>"></p></td>
     </tr>
 </table>
-<p><button type="submit" formaction="Registration_Admin_Servlet" ><h2> Add <h2></button><p> </form>
+<p><button type="submit" formaction="IndexAdminRegister_Servlet" ><h2> Add <h2></button><p> </form>
 </div>
 
     <br><a>Go back to main menu </a>
