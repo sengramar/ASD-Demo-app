@@ -36,13 +36,10 @@ public class LoginMongoServlet extends HttpServlet  {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         loginDateTime = formatter.format(date);
         HttpSession session = request.getSession();
-       
-        
+   
         String Email = (String) request.getParameter("Email");
         String User_Password = (String) request.getParameter("Password");
         
-
-        //DBManager manager = (DBManager) session.getAttribute("manager");
         User user=null;
         user =  Mongo.findUser(Email, User_Password);
         if (user != null) 
@@ -51,16 +48,13 @@ public class LoginMongoServlet extends HttpServlet  {
             session.setAttribute("user", user);
             response.sendRedirect("main.jsp");
             int userId = user.getUserId();
-            //manager.storeLogin(userId, loginDateTime);
-            //Remember to User history log
+            Mongo.storeLogin(userId, loginDateTime);
+
         }
         else {
             session.setAttribute("existErr", " - Email or password incorrect");
             response.sendRedirect("201_login.jsp");
             
-             }
-            
-
-            
+        }
     }
 }

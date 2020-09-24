@@ -9,7 +9,6 @@ import DAO.DBConnector;
 import DAO.DBManager;
 import DAO.MongoDBManager;
 import Model.Administrator;
-import Model.User;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -40,30 +39,26 @@ public class AdminLogin_Servlet extends HttpServlet  {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         loginDateTime = formatter.format(date);
         HttpSession session = request.getSession();
-       
-        
+   
         String Email = (String) request.getParameter("Email");
-        String AdminPassword = (String) request.getParameter("Password");
+        String adminPassword = (String) request.getParameter("Password");
         
-
-        //DBManager manager = (DBManager) session.getAttribute("manager");
         Administrator admin=null;
-        admin =  Mongo.findAdmin(Email, AdminPassword);
+        admin =  Mongo.findAdmin(Email, adminPassword);
         if (admin != null) 
         {
             
             session.setAttribute("admin", admin);
-            response.sendRedirect("main.jsp");
+            response.sendRedirect("adminMain.jsp");
             int adminId = admin.getAdminId();
-            //manager.storeLogin(userId, loginDateTime);
-            //Remember to User history log
+            Mongo.storeLogin(adminId, loginDateTime);
+
         }
         else {
             session.setAttribute("existErr", " - Email or password incorrect");
-            response.sendRedirect("203_AdminLogin.jsp");
+            response.sendRedirect("201_login.jsp");
             
-             }
-            
+        }
 
             
     }

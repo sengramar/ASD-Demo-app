@@ -43,7 +43,7 @@
             <button type="submit" class="button">Register</button>
         </form>
             
-        <form action="LogoutServlet" method="GET">
+        <form action="AdminLogoutServlet" method="GET">
             <button type="submit" class="button">Logout</button>
         </form>
  

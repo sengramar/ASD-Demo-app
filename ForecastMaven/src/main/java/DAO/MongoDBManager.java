@@ -24,6 +24,7 @@ public class MongoDBManager
     MongoCollection<Document> accesslog = db.getCollection("AccessLog");
     MongoCollection<Document> location = db.getCollection("Location");
     MongoCollection<Document> WeatherHistory = db.getCollection("WeatherHistory");
+      
     
 
     public void saveToWeatherHistory(String Date, String Time, int LocationId, String Temperature,String Humidity,String WindSpeed,String WindDegree, String Cloudy,String Description ) 
@@ -76,8 +77,8 @@ public class MongoDBManager
         }
         return newUser = null;
     }
-    
-    public Administrator findAdmin(String Email, String AdminPassword) {
+
+     public Administrator findAdmin(String Email, String AdminPassword) {
         String email, adminpassword, firstname, lastname;
         int adminId;
         Administrator newAdmin;
@@ -91,9 +92,7 @@ public class MongoDBManager
             lastname= (String) doc.get("lastname");
             
             newAdmin = new Administrator(adminId, adminpassword, email, firstname, lastname);
-            return newAdmin;
-
-            
+            return newAdmin;   
         }
         return null;
     }
@@ -101,17 +100,21 @@ public class MongoDBManager
     public void storeLogin(int userId, String loginDateTime) {
         int accesslogId = returnID(accesslog, "accesslogId");
         logList.clear();
-        logList.add(new Document("accesslogId", accesslogId).append("userId", userId).append("loginTime", loginDateTime));
+        logList.add(new Document("accesslogId", accesslogId).append("userId", userId).append("loginTime", loginDateTime).append("logoutTime", null));
+        accesslog.insertMany(logList);
+    }
+    
+    public void storeAdminLogin(int adminId, String loginDateTime) {
+        int accesslogId = returnID(accesslog, "accesslogId");
+        logList.clear();
+        logList.add(new Document("accesslogId", accesslogId).append("adminId", adminId).append("loginTime", loginDateTime).append("logoutTime", null));
         accesslog.insertMany(logList);
     }
     
     public void storeLogout(int accesslogId, String logoutDateTime) {
 	Document loghistory = new Document("accesslogId", accesslogId);
-		for (Document doc : accesslog.find(loghistory)) {
-			logList.add(new Document("logoutTime", logoutDateTime));
-			accesslog.insertMany(logList);
-		}
-    
+        Document logouthistory = new Document("$set",new Document("logoutTime",logoutDateTime));
+        accesslog.updateOne(loghistory,logouthistory);
     }
 
     //public void storeLogout(int accesslogId, String logoutDateTime) throws SQLException {
@@ -121,15 +124,29 @@ public class MongoDBManager
     public int findAccessLogID(int userId) {
         int id;
         String logoutTime;
-        Document history =  new Document("userid", userId).append("logoutTime", null);
+        Document history =  new Document("userId", userId).append("logoutTime", null);
         for (Document doc : accesslog.find(history)) {
-            userId = (int) doc.get("userid");
+            userId = (int) doc.get("userId");
             logoutTime= (String) doc.get("logoutTime");
-            id = (int) doc.get("accesslogID");
+            id = (int) doc.get("accesslogId");
             return id;
         }
         return 0;
     }
+    
+    public int finAdmindAccessLogID(int adminId) {
+        int id;
+        String logoutTime;
+        Document history =  new Document("adminId", adminId).append("logoutTime", null);
+        for (Document doc : accesslog.find(history)) {
+            adminId = (int) doc.get("adminId");
+            logoutTime= (String) doc.get("logoutTime");
+            id = (int) doc.get("accesslogId");
+            return id;
+        }
+        return 0;
+    }
+    
     public int returnID(MongoCollection<Document> CollectionName, String ParameterID)
     {
         List currentId = new ArrayList();
