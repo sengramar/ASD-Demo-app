@@ -7,7 +7,9 @@ package Controller;
 
 import DAO.DBConnector;
 import DAO.DBManager;
+import DAO.MongoDBManager;
 import Model.Administrator;
+import Model.User;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -27,9 +29,9 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "AdminLogin_Servlet", urlPatterns = {"/AdminLogin_Servlet"})
 public class AdminLogin_Servlet extends HttpServlet  {    
-   // @Override
-        private DBConnector Connector;
-        private DBManager manager;
+  
+    private MongoDBManager Mongo = new MongoDBManager();;
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {               
@@ -38,45 +40,29 @@ public class AdminLogin_Servlet extends HttpServlet  {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         loginDateTime = formatter.format(date);
         HttpSession session = request.getSession();
-        try
-        {
-            Connector = new DBConnector();//open new connector
-            manager = new DBManager(Connector.openConnection()); //open connection 
-        }catch (ClassNotFoundException | SQLException ex)
-        {
-            java.util.logging.Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE,null,ex);
-        }
-        String Email = (String) request.getParameter("Email");
-        String AdminPassword = (String) request.getParameter("AdminPassword");
-        System.out.println("test");
-        //DBManager manager = (DBManager) session.getAttribute("manager");
-        Administrator admin =null;
-        int adminID;
+       
         
-            try {
-                admin = manager.FindAdmin(Email, AdminPassword);
-            }
-                 catch (SQLException | NullPointerException ex) {           
-                System.out.println(ex.getMessage() == null ? "Admin does not exist" : "welcome");
-                //response.sendRedirect("201_login.jsp");
-            }
-                if (admin != null) {
-                   try {
-                    session.setAttribute("admin", admin);
-                     response.sendRedirect("main.jsp");
-                    //request.getRequestDispatcher("index.jsp").include(request, response);
-                    adminID = admin.getAdminId();
-                    manager.storeAdminLogin(adminID, loginDateTime);
-					  
-            } catch (SQLException ex) {
-                Logger.getLogger(Login_Servlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                }
-                else {
-                    session.setAttribute("existErr", " - Email or password incorrect");
-                    response.sendRedirect("201_login.jsp");
-                    //request.getRequestDispatcher("201_login.jsp").include(request, response);
-                }
+        String Email = (String) request.getParameter("Email");
+        String AdminPassword = (String) request.getParameter("Password");
+        
+
+        //DBManager manager = (DBManager) session.getAttribute("manager");
+        Administrator admin=null;
+        admin =  Mongo.findAdmin(Email, AdminPassword);
+        if (admin != null) 
+        {
+            
+            session.setAttribute("admin", admin);
+            response.sendRedirect("main.jsp");
+            int adminId = admin.getAdminId();
+            //manager.storeLogin(userId, loginDateTime);
+            //Remember to User history log
+        }
+        else {
+            session.setAttribute("existErr", " - Email or password incorrect");
+            response.sendRedirect("203_AdminLogin.jsp");
+            
+             }
             
 
             

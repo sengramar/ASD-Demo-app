@@ -44,9 +44,19 @@
                 <tr><td>Password:</td><td><input type="password"  name="password" required="true" value="${user.user_password}"></td></tr>
                 <tr><td>Location:</td><td><input type="text"  name="location" required="true" value="${user.locationId}"></td></tr>
                 </td></tr>
-                <tr><td></td><td><input class="in_btn" type="submit" value="Update"></td></tr>
+                <tr><td></td><td><input class="in_btn" type="submit" value="Update"></td>
             </table>
         </form><br>
+        
+        
+        <td><form action="DeleteAccount_Servlet" method="POST">
+            <table>
+                <tr><td><input type="hidden"  name="userId" required="true" value="${user.userId}"></td></tr><tr><td></td></tr>
+                <tr><td><input type="hidden"  name="email" required="true" value="${user.email}"></td></tr>
+                <tr><td><input type="hidden"  name="password" required="true" value="${user.user_password}"></td></tr>
+                <tr><td><button type="submit" class="button">Delete Account</button></td></tr></table>
+            
+            </form></td></tr>  
         </div><br>
                     <a href="main.jsp" >Main page</a> 
        </center> </div> 
