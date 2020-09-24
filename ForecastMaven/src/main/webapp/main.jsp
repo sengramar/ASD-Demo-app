@@ -39,14 +39,18 @@
             </center>
             
             <p align="center">Lulu lala I hope it wont be raining</p>
+        
+        <form action="LoginMongoServlet" method="POST">
+            <button type="submit" class="button">SIGN IN (USER)</button>
+        </form>
+            
         <form action="IndexRegister_Servlet" method="POST">
             <button type="submit" class="button">Register</button>
         </form>
-            
         <form action="LogoutServlet" method="GET">
             <button type="submit" class="button">Logout</button>
         </form>
- 
+
 
   <div class="w3-container w3-padding-32" id="projects">
       <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Pages</h3>

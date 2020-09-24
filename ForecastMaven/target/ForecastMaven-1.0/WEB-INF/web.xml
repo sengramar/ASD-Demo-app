@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	 version="3.1">
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>MapLocation_Servlet</servlet-name>
+        <servlet-class>Controller.MapLocation_Servlet</servlet-class>
+    </servlet>
+     <servlet>
+        <servlet-name>EditAccount</servlet-name>
+        <servlet-class>Controller.EditAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccount_Servlet</servlet-name>
+        <servlet-class>Controller.DeleteAccount_Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MapLocation_Servlet</servlet-name>
+        <url-pattern>/MapLocation_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccount_Servlet</servlet-name>
+        <url-pattern>/DeleteAccount_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAccount</servlet-name>
+        <url-pattern>/EditAccount</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
