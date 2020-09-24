@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 import com.mongodb.*;
 import com.mongodb.client.*;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
@@ -156,5 +157,29 @@ public class MongoDBManager
             return ID;
         }
         
+    }
+    
+    public void updateUser(int id, String password, String email, String firstname, String lastname, int location) 
+    {
+
+        //int ID = returnID(users, "userID");
+        //int ID = user.getId();
+        PostList.clear();
+       
+        Document where = new Document("userID", id);
+        
+        //Document value = new Document("$set", new Document("user_password", password));
+        //Document value = new Document("userID", id).append("user_password", password).append("email", email).append("firstName",firstname)
+        //.append("lastName",lastname).append("locationID",location);
+        
+        Document value = new Document("$set", new Document("user_password", password).append("email", email).append("firstName",firstname)
+        .append("lastName",lastname).append("locationID",location));
+        users.updateOne(where, value);
+    }
+
+    
+    public void deleteUser(int id)
+    {
+        users.deleteOne(Filters.eq("userID",id));
     }
 }
