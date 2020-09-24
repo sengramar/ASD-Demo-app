@@ -5,8 +5,6 @@
  */
 package Controller;
 
-import DAO.DBConnector;
-import DAO.DBManager;
 import DAO.MongoDBManager;
 import Model.User;
 import java.io.IOException;
