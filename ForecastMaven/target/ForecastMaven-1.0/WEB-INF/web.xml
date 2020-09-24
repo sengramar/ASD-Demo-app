@@ -4,9 +4,25 @@
         <servlet-name>MapLocation_Servlet</servlet-name>
         <servlet-class>Controller.MapLocation_Servlet</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>EditAccount</servlet-name>
+        <servlet-class>Controller.EditAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccount_Servlet</servlet-name>
+        <servlet-class>Controller.DeleteAccount_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MapLocation_Servlet</servlet-name>
         <url-pattern>/MapLocation_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccount_Servlet</servlet-name>
+        <url-pattern>/DeleteAccount_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAccount</servlet-name>
+        <url-pattern>/EditAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
