@@ -38,10 +38,13 @@ public class LogoutServlet extends HttpServlet {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         logoutDateTime = formatter.format(date);
         HttpSession session = request.getSession();
-        //            int accesslogId = Query.findAccessLogID(userID);
-        //            Query.storeLogout(accesslogId, logoutDateTime);
         User user = (User) session.getAttribute("user");
         int userID = user.getUserId();
+        
+        int accesslogId = Mongo.findAccessLogID(userID);
+        System.out.println(accesslogId);
+        Mongo.storeLogout(accesslogId, logoutDateTime);
+        
         session.invalidate();
         response.sendRedirect("index.jsp");
         
