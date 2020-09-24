@@ -39,6 +39,7 @@
             </center>
             
             <p align="center">Lulu lala I hope it wont be raining</p>
+            
         <form action="IndexRegister_Servlet" method="POST">
             <button type="submit" class="button">Register</button>
         </form>

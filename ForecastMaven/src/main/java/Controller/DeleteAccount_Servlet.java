@@ -17,9 +17,9 @@ import javax.servlet.annotation.WebServlet;
 /**
  *
  */
-@WebServlet(name = "EditAccount", urlPatterns = {"/EditAccount"})
+@WebServlet(name = "DeleteAccount_Servlet", urlPatterns = {"/DeleteAccount_Servlet"})
    
-public class EditAccount extends HttpServlet {
+public class DeleteAccount_Servlet extends HttpServlet {
     
             //private DBConnector Connector;
             //private DBManager Query;
@@ -33,30 +33,27 @@ public class EditAccount extends HttpServlet {
              HttpSession session = request.getSession();
              
              int userId = Integer.parseInt(request.getParameter("userId"));
-             String firstname= request.getParameter("firstname");
-             String lastname = request.getParameter("lastname");
              String email= request.getParameter("email");
              String password= request.getParameter("password");
-             int location = Integer.parseInt(request.getParameter("location"));
              
              
-             User user = new User (userId, location, password, email, firstname, lastname);
+             User user=null;
+             user =  MongoManager.findUser(email, password);
             
         if(user != null)
         {
             session.setAttribute("user", user);
-            MongoManager.updateUser(userId, password, email, firstname, lastname,location);//run query
-            session.setAttribute("updated"," : Upadte was Successful");
-            request.getRequestDispatcher("301_account_management.jsp").include(request,response);
+            MongoManager.deleteUser(userId);//run query
+            session.setAttribute("updated"," : Delete was Successful");
+            request.getRequestDispatcher("304_delete_account.jsp").include(request,response);
         }
         else
         {
-            session.setAttribute("updated"," : Upadte was NOT Successful");
-            request.getRequestDispatcher("301_account_management.jsp").include(request,response);
+            session.setAttribute("updated"," : Delete was NOT Successful");
+            request.getRequestDispatcher("304_delete_account_failed.jsp").include(request,response);
                             
         }
                      
-        response.sendRedirect("301_account_management.jsp");
+        response.sendRedirect("304_delete_account.jsp");
      }
 }
-
