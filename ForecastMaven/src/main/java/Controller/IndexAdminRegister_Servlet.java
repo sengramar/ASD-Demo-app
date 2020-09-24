@@ -52,7 +52,7 @@ public class IndexAdminRegister_Servlet extends HttpServlet {
         session.setAttribute("List", list);
         session.setAttribute("Redirect", Redirect);
         
-        response.sendRedirect("103_register_admin.jsp");
+        response.sendRedirect("102_register_admin.jsp");
     }
 
 }
