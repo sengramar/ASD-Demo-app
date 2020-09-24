@@ -4,7 +4,7 @@
 
 <html>
 <head>
-
+    
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="css/style.css"/>
@@ -39,18 +39,14 @@
             </center>
             
             <p align="center">Lulu lala I hope it wont be raining</p>
-        
-        <form action="LoginMongoServlet" method="POST">
-            <button type="submit" class="button">SIGN IN (USER)</button>
-        </form>
-            
         <form action="IndexRegister_Servlet" method="POST">
             <button type="submit" class="button">Register</button>
         </form>
-        <form action="LogoutServlet" method="GET">
+            
+        <form action="AdminLogoutServlet" method="GET">
             <button type="submit" class="button">Logout</button>
         </form>
-
+ 
 
   <div class="w3-container w3-padding-32" id="projects">
       <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Pages</h3>

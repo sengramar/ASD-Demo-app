@@ -18,9 +18,11 @@ public class MongoDBManager
     MongoDBConnector Mongo = new MongoDBConnector();
     private MongoDatabase db = Mongo.DBConnect();
     private List<Document> PostList = new ArrayList();
+    private List<Document> logList = new ArrayList();
     //list all table name 
     MongoCollection<Document> users = db.getCollection("Users");
     MongoCollection<Document> admins = db.getCollection("Administrator");
+    MongoCollection<Document> accesslog = db.getCollection("AccessLog");
     MongoCollection<Document> location = db.getCollection("Location");
     MongoCollection<Document> WeatherHistory = db.getCollection("WeatherHistory");
       
@@ -76,7 +78,7 @@ public class MongoDBManager
         }
         return newUser = null;
     }
-    
+
      public Administrator findAdmin(String Email, String AdminPassword) {
         String email, adminpassword, firstname, lastname;
         int adminId;
@@ -91,9 +93,7 @@ public class MongoDBManager
             lastname= (String) doc.get("lastname");
             
             newAdmin = new Administrator(adminId, adminpassword, email, firstname, lastname);
-            return newAdmin;
-
-            
+            return newAdmin;  
         }
         return null;
     }
@@ -105,8 +105,16 @@ public class MongoDBManager
         accesslog.insertMany(logList);
     }
     
+
+    public void storeAdminLogin(int adminId, String loginDateTime) {
+        int accesslogId = returnID(accesslog, "accesslogId");
+        logList.clear();
+        logList.add(new Document("accesslogId", accesslogId).append("adminId", adminId).append("loginTime", loginDateTime).append("logoutTime", null));
+        accesslog.insertMany(logList);
+    }
+
     public void storeLogout(int accesslogId, String logoutDateTime) {
-	Document loghistory = new Document("accesslogId", accesslogId);
+	      Document loghistory = new Document("accesslogId", accesslogId);
         Document logouthistory = new Document("$set",new Document("logoutTime",logoutDateTime));
         accesslog.updateOne(loghistory,logouthistory);
     }
@@ -123,7 +131,20 @@ public class MongoDBManager
         }
         return 0;
     }
-    
+
+    public int finAdmindAccessLogID(int adminId) {
+        int id;
+        String logoutTime;
+        Document history =  new Document("adminId", adminId).append("logoutTime", null);
+        for (Document doc : accesslog.find(history)) {
+            adminId = (int) doc.get("adminId");
+            logoutTime= (String) doc.get("logoutTime");
+            id = (int) doc.get("accesslogId");
+            return id;
+        }
+        return 0;
+    }
+
     public int returnID(MongoCollection<Document> CollectionName, String ParameterID)
     {
         List currentId = new ArrayList();

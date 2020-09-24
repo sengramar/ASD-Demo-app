@@ -38,14 +38,14 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         int userID = user.getUserId();
-        
+
         int accesslogId = Mongo.findAccessLogID(userID);
         System.out.println(accesslogId);
         Mongo.storeLogout(accesslogId, logoutDateTime);
         
         session.invalidate();
         response.sendRedirect("index.jsp");
-        
-    }
-
+        }
 }
+
+
