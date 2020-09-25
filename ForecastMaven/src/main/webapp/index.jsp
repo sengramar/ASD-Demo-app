@@ -47,7 +47,7 @@
             <button type="submit" class="button">SIGN UP (ADMIN)</button>
         </a>
 
-        <form action="201_login.jsp" method="POST">
+        <form action="IndexLoginServlet" method="POST">
             <button type="submit" class="button">SIGN IN</button>
         </form>
 
