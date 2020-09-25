@@ -41,10 +41,10 @@ public class IndexAdminRegister_Servlet extends HttpServlet {
         
         String Empty="";
 
-            session.setAttribute("Email", Email);
-            session.setAttribute("Password", Password);
-            session.setAttribute("Firstname", Firstname);
-            session.setAttribute("Lastname", Lastname);
+        session.setAttribute("Email", Empty);
+        session.setAttribute("Password", Empty);
+        session.setAttribute("Firstname", Empty);
+        session.setAttribute("Lastname", Empty);
             Mongo.saveToAdmin(Password, Email, Firstname, Lastname);
             Query = new MongoDBManager();
             list = Query.List_Admin("");
