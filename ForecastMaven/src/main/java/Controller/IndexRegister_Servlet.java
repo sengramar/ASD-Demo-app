@@ -44,19 +44,12 @@ public class IndexRegister_Servlet extends HttpServlet
         int LocationID = (Integer) Integer.parseInt(request.getParameter("LocationID"));
         
         String Empty="";
-        User user = null;
-        user = Mongo.findUser(Email, Password);
-        if (user == null)
-        {
-            session.setAttribute("Email", Email);
-            session.setAttribute("Password", Password);
-            session.setAttribute("Firstname", Firstname);
-            session.setAttribute("Lastname", Lastname);
-            session.setAttribute("LocationID", LocationID);
+            session.setAttribute("Email", Empty);
+            session.setAttribute("Password", Empty);
+            session.setAttribute("Firstname", Empty);
+            session.setAttribute("Lastname", Empty);
+            session.setAttribute("LocationID", 0);
             Mongo.saveToUser(Password, Email, Firstname, Lastname, LocationID);
-            Query = new MongoDBManager();
-            list = Query.List_Users("");
-        }
         
         session.setAttribute("List", list);
         session.setAttribute("Redirect", Redirect);
