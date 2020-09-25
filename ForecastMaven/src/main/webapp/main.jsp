@@ -40,7 +40,7 @@
             
             <p align="center">Lulu lala I hope it wont be raining</p>
         
-        <form action="201_login.jsp" method="POST">
+        <form action="IndexLoginServlet" method="POST">
             <button type="submit" class="button">SIGN IN</button>
         </form>
             
