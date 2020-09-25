@@ -88,29 +88,29 @@
                     <input type="submit" name="Region" readonly="True" value="Sunshine Coast" style="position: absolute; bottom:435px; right:100px;">
                    
                     <input type="hidden" name="LocationID" value=304>
-                    <input type="hidden" name="State" value="VIC ">
+                    <input type="hidden" name="State" value="QLD">
                     <input type="hidden" name="Country" value="AU">
                     <input type="submit" name="Region" readonly="True" value="Townsville" style="position: absolute; top:200px; right:210px;">
                    
                     <input type="hidden" name="LocationID" value=305>
-                    <input type="hidden" name="State" value="VIC ">
+                    <input type="hidden" name="State" value="QLD">
                     <input type="hidden" name="Country" value="AU">
                     <input type="submit" name="Region" readonly="True" value="Cairns" style="position: absolute; top:150px; right:235px;">
                    
                     <input type="hidden" name="LocationID" value=306>
-                    <input type="hidden" name="State" value="VIC ">
+                    <input type="hidden" name="State" value="QLD">
                     <input type="hidden" name="Country" value="AU">
                     <input type="submit" name="Region" readonly="True" value="Cooktown" style="position: absolute; top:125px; right:250px;">
                    
                     <input type="hidden" name="LocationID" value=307>
-                    <input type="hidden" name="State" value="VIC ">
+                    <input type="hidden" name="State" value="QLD">
                     <input type="hidden" name="Country" value="AU">
                     <input type="submit" name="Region" readonly="True" value="Mackay" style="position: absolute; top:240px; right:160px;">
                    
                     <input type="hidden" name="LocationID" value=308>
-                    <input type="hidden" name="State" value="VIC ">
+                    <input type="hidden" name="State" value="QLD">
                     <input type="hidden" name="Country" value="AU">
-                    <input type="submit" name="Region" readonly="True" value="Rockhamton" style="position: absolute; top:280px; right:130px;">
+                    <input type="submit" name="Region" readonly="True" value="Rockhampton" style="position: absolute; top:280px; right:130px;">
                    
                     
                     <%-- VIC --%>
