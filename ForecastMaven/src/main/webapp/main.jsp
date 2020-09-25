@@ -43,13 +43,7 @@
         <form action="IndexLoginServlet" method="POST">
             <button type="submit" class="button">SIGN IN</button>
         </form>
-            
-        <form action="Registration_Servlet" method="POST">
-            <button type="submit" class="button">SIGN UP(USER)</button>
-        </form>
-        <form action="RegistrationAdmin_Servlet" method="POST">
-            <button type="submit" class="button">SIGN UP(ADMIN)</button>
-        </form>
+
         <form action="LogoutServlet" method="GET">
             <button type="submit" class="button">Logout</button>
         </form>
