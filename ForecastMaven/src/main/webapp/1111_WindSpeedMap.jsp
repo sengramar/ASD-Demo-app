@@ -28,11 +28,12 @@
             <div class="header">
                 <h1>Wind Speed Map</h1>
             </div>
+            <div style="border: 0px none; overflow: hidden; margin: 20px auto; max-width: 1200px;">
+<iframe scrolling="no" src="https://openweathermap.org/weathermap?basemap=map&cities=true&layer=windspeed&lat=-25&lon=140&zoom=5" style="border: 0px none; margin-right: -200px; height: 1000px; margin-top: -200px; width: 1200px;">
+</iframe>
+</div>
             
-            <h2> Currently in <%=City %>, <%=Country%> </h2>
-            <h2> <%=Description %> </h2>
-            <h2> Temperature <%=Celcius %> </h2>
-            <h2> Wind Speed <%=WindSpeed %> </h2>
+   
           
             <div class="sidenav">
                 <br><br>
