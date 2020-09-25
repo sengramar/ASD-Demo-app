@@ -40,8 +40,8 @@
             
             <p align="center">Lulu lala I hope it wont be raining</p>
         
-        <form action="LoginMongoServlet" method="POST">
-            <button type="submit" class="button">SIGN IN (USER)</button>
+        <form action="201_login.jsp" method="POST">
+            <button type="submit" class="button">SIGN IN</button>
         </form>
             
         <form action="Registration_Servlet" method="POST">
