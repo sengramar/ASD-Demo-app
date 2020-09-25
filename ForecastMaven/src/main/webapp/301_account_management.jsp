@@ -22,7 +22,7 @@
         %>
        <div class="sidenav">
             <br><br>
-            <a href="main.jsp">HOME</a>
+            <a href="/Prototype">HOME</a>
             <form name="submitForm" method="POST" action="CurrentWeather_Servlet">
             <input type="hidden" name="param1" value="param1Value">
             <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
@@ -37,7 +37,7 @@
            <div class="regbox"><br><br>
         <form method="post" action="EditAccount">
             <table>
-                <input type="hidden"  name="userId" required="true" value="${user.userId}">
+                <tr><td>User ID</td><td><input type="text"  name="userId" required="true" value="${user.userId}"></td></tr><tr><td></td></tr><tr></tr>
                 <tr><td>First Name:</td><td><input type="text"  name="firstname" required="true" value="${user.firstname}"></td></tr>
                 <tr><td>Last Name:</td><td><input type="text"  name="lastname" required="true" value="${user.lastname}"></td></tr>
                 <tr><td>Email:</td><td><input type="text"  name="email" required="true" value="${user.email}"></td></tr>
@@ -47,15 +47,6 @@
                 <tr><td></td><td><input class="in_btn" type="submit" value="Update"></td></tr>
             </table>
         </form><br>
-        <td><form action="DeleteAccount_Servlet" method="POST">
-            <table>
-                <tr><td><input type="hidden"  name="userId" required="true" value="${user.userId}"></td></tr><tr><td></td></tr>
-                <tr><td><input type="hidden"  name="email" required="true" value="${user.email}"></td></tr>
-                <tr><td><input type="hidden"  name="password" required="true" value="${user.user_password}"></td></tr>
-                <tr><td><button type="submit" class="button">Delete Account</button></td></tr></table>
-            
-            </form></td></tr>  
-           
         </div><br>
                     <a href="main.jsp" >Main page</a> 
        </center> </div> 
