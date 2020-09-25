@@ -4,7 +4,6 @@ import java.util.*;
 import java.util.regex.Pattern;
 import com.mongodb.*;
 import com.mongodb.client.*;
-import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
@@ -93,11 +92,11 @@ public class MongoDBManager
             lastname= (String) doc.get("lastname");
             
             newAdmin = new Administrator(adminId, adminpassword, email, firstname, lastname);
-            return newAdmin;  
+            return newAdmin;   
         }
         return null;
     }
-    
+     
     public void storeLogin(int userId, String loginDateTime) {
         int accesslogId = returnID(accesslog, "accesslogId");
         logList.clear();
@@ -105,19 +104,36 @@ public class MongoDBManager
         accesslog.insertMany(logList);
     }
     
-
     public void storeAdminLogin(int adminId, String loginDateTime) {
         int accesslogId = returnID(accesslog, "accesslogId");
         logList.clear();
         logList.add(new Document("accesslogId", accesslogId).append("adminId", adminId).append("loginTime", loginDateTime).append("logoutTime", null));
         accesslog.insertMany(logList);
     }
-
+    
+//    public void storeLogin(int userId, String loginDateTime) {
+//        int accesslogId = returnID(accesslog, "accesslogId");
+//        logList.clear();
+//        logList.add(new Document("accesslogId", accesslogId).append("userId", userId).append("adminId", null).append("loginTime", loginDateTime).append("logoutTime", null));
+//        accesslog.insertMany(logList);
+//    }
+//	
+//    public void storeAdminLogin(int adminId, String loginDateTime) {
+//        int accesslogId = returnID(accesslog, "accesslogId");
+//        logList.clear();
+//        logList.add(new Document("accesslogId", accesslogId).append("userId", null).append("adminId", adminId).append("loginTime", loginDateTime).append("logoutTime", null));
+//        accesslog.insertMany(logList);
+//    }
+            
     public void storeLogout(int accesslogId, String logoutDateTime) {
-	      Document loghistory = new Document("accesslogId", accesslogId);
+	Document loghistory = new Document("accesslogId", accesslogId);
         Document logouthistory = new Document("$set",new Document("logoutTime",logoutDateTime));
         accesslog.updateOne(loghistory,logouthistory);
     }
+
+    //public void storeLogout(int accesslogId, String logoutDateTime) throws SQLException {
+    //    st.executeUpdate("UPDATE ACCESSLOG SET logoutTime = '" + logoutDateTime + "'" + "WHERE accesslogId = " + accesslogId + "");
+    // }
     
     public int findAccessLogID(int userId) {
         int id;
@@ -131,7 +147,7 @@ public class MongoDBManager
         }
         return 0;
     }
-
+    
     public int finAdmindAccessLogID(int adminId) {
         int id;
         String logoutTime;
@@ -144,7 +160,7 @@ public class MongoDBManager
         }
         return 0;
     }
-
+    
     public int returnID(MongoCollection<Document> CollectionName, String ParameterID)
     {
         List currentId = new ArrayList();
@@ -163,7 +179,7 @@ public class MongoDBManager
         }
         
     }
-    
+
     public void updateUser(int id, String password, String email, String firstname, String lastname, int location) 
     {
 
@@ -242,4 +258,5 @@ public class MongoDBManager
     }
     return list_data;
     } 
+
 }

@@ -20,7 +20,7 @@
 
         <div class="sidenav">
             <br><br>
-            <a href="main.jsp">HOME</a>
+            <a href="/Prototype">HOME</a>
             <form name="submitForm" method="POST" action="CurrentWeather_Servlet">
             <input type="hidden" name="param1" value="param1Value">
             <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
@@ -40,6 +40,13 @@
             </center>
             
             <p align="center">Lulu lala I hope it wont be raining</p>
+
+        <form action="IndexRegister_Servlet" method="POST">
+            <button type="submit" class="button">SIGN UP (USER)</button>
+        </form>
+        <a href="102_check_admin.jsp">
+            <button type="submit" class="button">SIGN UP (ADMIN)</button>
+        </a>
         <form action="Registration_Servlet" method="POST">
             <button type="submit" class="button">SIGN UP (USER)</button>
         </form>
