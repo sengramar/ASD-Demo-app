@@ -31,24 +31,24 @@
 <tr>
 <td><p class="subtitle"><label for="Email">Email </label></p></td>
     <td><p>&nbsp;</p></td>
-    <td><p><input type="Email" name="Email"required="True" placeholder="<%=(Email != null ? Email : "Enter Email")%>"></p></td>
+    <td><p><input type="Email" name="Email"required="True" value="<%=(Email != null ? Email : "Enter Email")%>"></p></td>
 </tr>
 <tr>
 <tr>
 <td><p class="subtitle"><label for="Password">Password </label></p></td>
     <td><p>&nbsp;</p></td>
-    <td><p><input type="Password" name="Password"required="True" placeholder="<%=(Password != null ? Password : "Enter Password")%>"></p></td>
+    <td><p><input type="Password" name="Password"required="True" value="<%=(Password != null ? Password : "Enter Password")%>"></p></td>
 </tr>
 <tr>
 <tr>
 <td><p class="subtitle"><label for="Firstname">First Name </label></p></td>
     <td><p>&nbsp;</p></td>
-    <td><p><input type="Firstname" name="Firstname"required="True" placeholder="<%=(Firstname != null ? Firstname : "Enter First Name")%>"></p></td>
+    <td><p><input type="Firstname" name="Firstname"required="True" value="<%=(Firstname != null ? Firstname : "Enter First Name")%>"></p></td>
 </tr>
 <tr>
 	<td><p class="subtitle"><label for="Lastname">Last Name </label></p></td>
     <td>&nbsp;</td>
-    <td><p><input type="Lastname" name="Lastname"required="True" placeholder="<%=(Lastname != null ? Lastname : "Enter Last Name")%>"></p></td>
+    <td><p><input type="Lastname" name="Lastname"required="True" value="<%=(Lastname != null ? Lastname : "Enter Last Name")%>"></p></td>
 </tr>
 <tr>
 <td><p hidden><input type="LocationID" name="LocationID" Required ="True" value=<%= LocationID%>></p></td>
