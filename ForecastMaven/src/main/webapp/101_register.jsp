@@ -1,7 +1,7 @@
 <%-- 
     Document   : 101_register
-    Created on : Jul 2, 2020, 2:27:41 PM
-    Author     : ASUS
+    Created on : Sep 2, 2020, 2:27:41 PM
+    Author     : Nayoon
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
