@@ -51,7 +51,7 @@ public class AdminLogin_Servlet extends HttpServlet  {
             session.setAttribute("admin", admin);
             response.sendRedirect("adminMain.jsp");
             int adminId = admin.getAdminId();
-            Mongo.storeLogin(adminId, loginDateTime);
+            Mongo.storeAdminLogin(adminId, loginDateTime);
 
         }
         else {
