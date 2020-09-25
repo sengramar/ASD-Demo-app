@@ -85,7 +85,7 @@ public class MongoDBManager
         Administrator newAdmin;
         Document admin = new Document("email", Email).append("adminpassword", AdminPassword);
          System.out.println(admin.toString());
-        for (Document doc : admins.find()) {
+        for (Document doc : admins.find(admin)) {
             email = (String) doc.get("email");
             adminpassword= (String) doc.get("adminpassword");
             adminId= (int) doc.get("adminId");
