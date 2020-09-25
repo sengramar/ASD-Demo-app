@@ -22,22 +22,12 @@ import Model.Administrator;
  */
 @WebServlet(name = "IndexAdminRegister_Servlet", urlPatterns = {"/IndexAdminRegister_Servlet"})
 public class IndexAdminRegister_Servlet extends HttpServlet {
-
-    private MongoDBManager Query;
-    private LinkedList list;
-    private MongoDBManager Mongo = new MongoDBManager();
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String Redirect = (String) request.getParameter("Redirect");
-        
-        String Email = (String) request.getParameter("Email");
-        String Password = (String) request.getParameter("Password");
-        String Firstname = (String) request.getParameter("Firstname");
-        String Lastname = (String) request.getParameter("Lastname");
         
         String Empty="";
 
@@ -45,12 +35,6 @@ public class IndexAdminRegister_Servlet extends HttpServlet {
         session.setAttribute("Password", Empty);
         session.setAttribute("Firstname", Empty);
         session.setAttribute("Lastname", Empty);
-            Mongo.saveToAdmin(Password, Email, Firstname, Lastname);
-            Query = new MongoDBManager();
-            list = Query.List_Admin("");
-
-        session.setAttribute("List", list);
-        session.setAttribute("Redirect", Redirect);
         
         response.sendRedirect("102_register_admin.jsp");
     }
