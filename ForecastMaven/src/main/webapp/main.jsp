@@ -17,7 +17,6 @@
             String userId = request.getParameter("userId");
             String email = request.getParameter("Email");
             String password = request.getParameter("Password");
-//            Boolean isLogin = user.getUserId().equals(userId);
     %>
 
         <div class="sidenav">
@@ -41,11 +40,10 @@
             </center>
             
             <p align="center">Lulu lala I hope it wont be raining</p>
-        <% // if (isLogin) {%>
+
         <form action="LogoutServlet" method="GET">
             <button type="submit" class="button">Logout</button>
         </form>
-        <% // }else { %>
         
         <form action="IndexRegister_Servlet" method="POST">
             <button type="submit" class="button">Register</button>
@@ -53,8 +51,13 @@
             
         <form action="IndexLoginServlet" method="POST">
             <button type="submit" class="button">SIGN IN</button>
+
+
+        <form action="LogoutServlet" method="GET">
+            <button type="submit" class="button">Logout</button>
+
         </form>
-        <% // } %>
+       
  
 
   <div class="w3-container w3-padding-32" id="projects">
