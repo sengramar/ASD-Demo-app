@@ -49,7 +49,7 @@
         <td><p><input type="Lastname" name="Lastname" required="True" value="<%=(Lastname != null ? Lastname : "Enter Last Name")%>"></p></td>
     </tr>
 </table>
-<p><button type="submit" formaction="RegistrationAdminMongo_Servlet" ><h2> Add <h2></button><p> </form>
+<p><button type="submit" formaction="RegistrationAdminMongo_Servlet" ><h2> Add </h2></button></p></form>
 </div>
 
     <br><a>Go back to main menu </a>
