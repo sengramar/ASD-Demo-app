@@ -1,4 +1,4 @@
-<%@page import="DAO.DBManager"%>
+<%@page import="DAO.MongoDBManager"%>
 <%@page import="Model.User"%>
 <!DOCTYPE html>
 
@@ -13,7 +13,8 @@
 <body>
     <%
             User user = (User)session.getAttribute("user");
-            DBManager manager = (DBManager)session.getAttribute("manager"); 
+            MongoDBManager manager = (MongoDBManager)session.getAttribute("manager"); 
+            String userId = request.getParameter("userId");
             String email = request.getParameter("Email");
             String password = request.getParameter("Password");
     %>
@@ -39,13 +40,25 @@
             </center>
             
             <p align="center">Lulu lala I hope it wont be raining</p>
+
+        <form action="LogoutServlet" method="GET">
+            <button type="submit" class="button">Logout</button>
+        </form>
+        
         <form action="IndexRegister_Servlet" method="POST">
             <button type="submit" class="button">Register</button>
         </form>
             
-        <a href="LogoutServlet" >
+        <form action="IndexLoginServlet" method="POST">
+            <button type="submit" class="button">SIGN IN</button>
+
+
+        <form action="LogoutServlet" method="GET">
             <button type="submit" class="button">Logout</button>
-        </a>
+
+        </form>
+       
+ 
 
   <div class="w3-container w3-padding-32" id="projects">
       <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Pages</h3>

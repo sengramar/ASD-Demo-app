@@ -1,6 +1,5 @@
 package API;
 
-
 public class weatherAPI
 {
     private double Celcius, Fahrenheit;
@@ -16,6 +15,7 @@ public class weatherAPI
 
         return APIResult;
     }
+    
     public int getKelvin(String APIResult)
     {
         return (int)Math.round(Double.parseDouble(getTemp(APIResult)));
@@ -81,4 +81,9 @@ public class weatherAPI
     {
         return find(APIResult,"description",14);
     }
+    
+     public String getDate(String APIResult){
+        return find(APIResult, "forecast.time.day", 2);
+    }
+
 }
