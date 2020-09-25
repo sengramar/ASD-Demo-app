@@ -5,8 +5,8 @@
  */
 package Controller;
 
+import DAO.MongoDBManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,20 +20,21 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "IndexAdminRegister_Servlet", urlPatterns = {"/IndexAdminRegister_Servlet"})
 public class IndexAdminRegister_Servlet extends HttpServlet {
-
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         
         String Empty="";
+
         session.setAttribute("Email", Empty);
         session.setAttribute("Password", Empty);
         session.setAttribute("Firstname", Empty);
         session.setAttribute("Lastname", Empty);
-
-        response.sendRedirect("101_register_admin.jsp");
+        
+        response.sendRedirect("102_register_admin.jsp");
     }
 
 }

@@ -28,16 +28,25 @@ public class WeatherForecast_Servlet {
         HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         String Email, Location;
-        if(session.getAttribute("Location") == null){
+        int LocationId = 0;
+        if(session.getAttribute("Location") == null)
+        {
             Location = "Sydney, AU";
-        } else{
-            Location = (String) session.getAttribute("Location");
-        } if(session.getAttribute("Email") == null){
-            Email = "";
-        } else {
-            Email = (String) session.getAttribute("Email");
+            LocationId = 1;
         }
-        
+        else
+        {
+            Location = (String) session.getAttribute("Location");
+            LocationId = (int) session.getAttribute("LocationID");
+        }
+        if(session.getAttribute("Email") == null)
+        {
+            Email = "";
+        }
+        else
+        {
+            Email = (String) session.getAttribute("Email");
+
         System.out.println(Location);
         String APIResult = API.request(Location);
         String City = "" + API.getCity(APIResult);
@@ -69,5 +78,6 @@ public class WeatherForecast_Servlet {
         session.setAttribute("Description", Description);
 
         response.sendRedirect("401_current_weather.jsp");//redirect to index.html page
+    }
     }
 }
