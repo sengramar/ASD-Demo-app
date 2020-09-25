@@ -40,10 +40,10 @@
             </center>
             
             <p align="center">Lulu lala I hope it wont be raining</p>
-        <form action="IndexRegister_Servlet" method="POST">
+        <form action="Registration_Servlet" method="POST">
             <button type="submit" class="button">SIGN UP (USER)</button>
         </form>
-        <a action="IndexAdminRegister_Servlet" method="POST">
+        <a action="RegistrationAdmin_Servlet" method="POST">
             <button type="submit" class="button">SIGN UP (ADMIN)</button>
         </a>
 
