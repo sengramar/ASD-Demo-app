@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 import com.mongodb.*;
 import com.mongodb.client.*;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
@@ -78,23 +79,23 @@ public class MongoDBManager
         return newUser = null;
     }
 
-     public Administrator findAdmin(String Email, String AdminPassword) {
-        String email, adminpassword, firstname, lastname;
+    public Administrator findAdmin(String Email, String AdminPassword) {
+        String email, adminPassword, firstname, lastname;
         int adminId;
         Administrator newAdmin;
         Document admin = new Document("email", Email).append("adminpassword", AdminPassword);
          System.out.println(admin.toString());
         for (Document doc : admins.find(admin)) {
             email = (String) doc.get("email");
-            adminpassword= (String) doc.get("adminpassword");
-            adminId= (int) doc.get("adminId");
+            adminPassword= (String) doc.get("adminpassword");
+            adminId= (Integer) doc.get("adminId");
             firstname= (String) doc.get("firstname");
             lastname= (String) doc.get("lastname");
             
-            newAdmin = new Administrator(adminId, adminpassword, email, firstname, lastname);
+            newAdmin = new Administrator(adminId, adminPassword, email, firstname, lastname);
             return newAdmin;   
         }
-        return null;
+        return newAdmin=null;
     }
      
     public void storeLogin(int userId, String loginDateTime) {
