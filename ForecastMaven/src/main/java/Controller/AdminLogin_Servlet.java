@@ -29,7 +29,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "AdminLogin_Servlet", urlPatterns = {"/AdminLogin_Servlet"})
 public class AdminLogin_Servlet extends HttpServlet  {    
   
-    private MongoDBManager Mongo = new MongoDBManager();;
+    private MongoDBManager Mongo = new MongoDBManager();
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
@@ -56,7 +56,7 @@ public class AdminLogin_Servlet extends HttpServlet  {
         }
         else {
             session.setAttribute("existErr", " - Email or password incorrect");
-            response.sendRedirect("201_login.jsp");
+            response.sendRedirect("203_AdminLogin.jsp");
             
         }
 
