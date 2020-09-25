@@ -39,12 +39,15 @@ public class AdminLogoutServlet extends HttpServlet {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         logoutDateTime = formatter.format(date);
         HttpSession session = request.getSession();
-        //            int accesslogId = Query.findAccessLogID(userID);
-        //            Query.storeLogout(accesslogId, logoutDateTime);
         Administrator admin = (Administrator) session.getAttribute("admin");
-        int adminId = admin.getAdminId();
+        int adminID = admin.getAdminId();
+        
+        int accesslogId = Mongo.finAdmindAccessLogID(adminID);
+        Mongo.storeLogout(accesslogId, logoutDateTime);
+        
         session.invalidate();
         response.sendRedirect("index.jsp");
+        
         
     }
 

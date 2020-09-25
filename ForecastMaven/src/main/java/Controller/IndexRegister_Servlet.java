@@ -5,7 +5,7 @@
  */
 /**
  *
- * @author Michael
+ * @author Michael, Nayoon
  */
 
 package Controller;
@@ -27,17 +27,15 @@ public class IndexRegister_Servlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         
         String Empty="";
-        session.setAttribute("Email", Empty);
-        session.setAttribute("Password", Empty);
-        session.setAttribute("Firstname", Empty);
-        session.setAttribute("Lastname", Empty);
-
-        session.setAttribute("State", Empty);
-        session.setAttribute("LocationID", 0);
+            session.setAttribute("Email", Empty);
+            session.setAttribute("Password", Empty);
+            session.setAttribute("Firstname", Empty);
+            session.setAttribute("Lastname", Empty);
+            session.setAttribute("LocationID", 0);
 
         response.sendRedirect("101_register.jsp");//redirect to index.html page
     }

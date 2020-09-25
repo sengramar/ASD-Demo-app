@@ -1,10 +1,6 @@
+<%@page import="DAO.DBManager"%>
+<%@page import="Model.User"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
 
 <html>
 <head>
@@ -12,12 +8,16 @@ and open the template in the editor.
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="css/style.css"/>
-<meta http-equiv="refresh" Content="0; URL=main.jsp"/>
 
 </head>
 <body>
-    
-    
+    <%
+            User user = (User)session.getAttribute("user");
+            DBManager manager = (DBManager)session.getAttribute("manager"); 
+            String email = request.getParameter("Email");
+            String password = request.getParameter("Password");
+    %>
+
         <div class="sidenav">
             <br><br>
             <a href="/Prototype">HOME</a>
@@ -28,7 +28,6 @@ and open the template in the editor.
             <a href="601_weather_history.jsp">WEATHER HISTORY</a>
             <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
             <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
-            <a href="801_Map_Loacation.jsp">LOCATION MAP</a>
         </div>
 
         <div class="content">
@@ -40,12 +39,10 @@ and open the template in the editor.
             </center>
             
             <p align="center">Lulu lala I hope it wont be raining</p>
-        <form action="IndexRegister_Servlet" method="POST">
-            <button type="submit" class="button">Register</button>
+        <form action="AdminLogoutServlet" method="GET">
+            <button type="submit" class="button">Logout</button>
         </form>
-        <form action="IndexLoginServlet" method="POST">
-            <button type="submit" class="button">SIGN IN</button>
-        </form>
+ 
 
   <div class="w3-container w3-padding-32" id="projects">
       <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Pages</h3>
@@ -106,4 +103,8 @@ and open the template in the editor.
   </div>
 </div>
     </body>
+
+    
+    <jsp:include page="/ConnServlet" flush="true" />
 </html>
+
