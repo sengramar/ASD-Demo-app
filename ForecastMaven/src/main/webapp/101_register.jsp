@@ -60,7 +60,7 @@
     <td><button type="submit" formaction="ListLocation_Servlet"> Select </td>               
 </tr>
 </table
-<p><button type="submit" formaction="RegistrationMongo_Servlet" ><h2> Add <h2></button><p> </form>
+<p><button type="submit" formaction="RegistrationMongo_Servlet" ><h2> Add </h2></button></p></form>
 </div>
    
                    
