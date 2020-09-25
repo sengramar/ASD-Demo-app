@@ -52,7 +52,7 @@ public class MongoDBManager
         list_data.add((String) doc.get("Region"));
         //SELECT ALL 
     }
-    return list_data;
+        return list_data;
     }   
     
     public User findUser(String Email, String User_Password) 
@@ -126,6 +126,7 @@ public class MongoDBManager
         Administrator newAdmin;
         Document admin = new Document("email", Email).append("adminpassword", AdminPassword);
          System.out.println(admin.toString());
+         
         for (Document doc : admins.find()) {
             email = (String) doc.get("email");
             adminpassword= (String) doc.get("adminpassword");
