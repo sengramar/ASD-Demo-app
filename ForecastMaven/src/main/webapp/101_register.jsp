@@ -55,9 +55,7 @@
 <td><p hidden><input type="text" name="Redirect" value= "101_register.jsp"></p></td>
 </tr>
 <tr>
-    <td><p class="subtitle"><label for="State">State </label></p></td>
-    <td>&nbsp;</td> 
-    <td><p><input type="State" name="State" ReadOnly ="True" value=<%= State.trim()%>></p></td>
+    <td><p class="subtitle">Location</p></td>
     <td>&nbsp;</td> 
     <td><button type="submit" formaction="ListLocation_Servlet"> Select </td>               
 </tr>
