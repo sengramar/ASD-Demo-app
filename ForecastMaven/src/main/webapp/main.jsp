@@ -44,10 +44,10 @@
             <button type="submit" class="button">SIGN IN (USER)</button>
         </form>
             
-        <form action="IndexRegister_Servlet" method="POST">
+        <form action="Registration_Servlet" method="POST">
             <button type="submit" class="button">SIGN UP(USER)</button>
         </form>
-        <form action="IndexAdminRegister_Servlet" method="POST">
+        <form action="RegistrationAdmin_Servlet" method="POST">
             <button type="submit" class="button">SIGN UP(ADMIN)</button>
         </form>
         <form action="LogoutServlet" method="GET">
