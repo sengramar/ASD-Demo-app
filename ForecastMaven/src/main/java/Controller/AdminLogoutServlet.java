@@ -42,7 +42,7 @@ public class AdminLogoutServlet extends HttpServlet {
         Administrator admin = (Administrator) session.getAttribute("admin");
         int adminID = admin.getAdminId();
         
-        int accesslogId = Mongo.findAccessLogID(adminID);
+        int accesslogId = Mongo.finAdmindAccessLogID(adminID);
         Mongo.storeLogout(accesslogId, logoutDateTime);
         
         session.invalidate();
