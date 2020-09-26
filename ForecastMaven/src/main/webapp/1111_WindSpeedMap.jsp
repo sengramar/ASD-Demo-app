@@ -29,13 +29,9 @@
                 <h1>Wind Speed Map</h1>
             </div>
             <div style="border: 0px none; overflow: hidden; margin: 50px; max-width: 1200px;">
-<iframe scrolling="no" src="https://openweathermap.org/weathermap?basemap=map&cities=true&layer=windspeed&lat=-25&lon=140&zoom=5&appid={cf4da61b118dd75ceb61cd54e90b8930}" style="border: 0px none; height: 1000px; margin-top: -200px; width: 1200px;">
-</iframe>
-                
-</div>
-            
-   
-          
+<iframe scrolling="no" src="https://openweathermap.org/weathermap?basemap=map&cities=true&layer=windspeed&lat=-25&lon=140&zoom=5&appid={cf4da61b118dd75ceb61cd54e90b8930}" style="border: 0px none; height: 1100px; margin-top: -250px; width: 1200px;">
+</iframe>              
+</div>     
             <div class="sidenav">
                 <br><br>
                 <a href="index.html">HOME</a>
