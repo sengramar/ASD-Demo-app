@@ -21,7 +21,7 @@
 
         <div class="sidenav">
             <br><br>
-            <a href="/Prototype">HOME</a>
+            <a href="adminMain.jsp">HOME</a>
             <form name="submitForm" method="POST" action="CurrentWeather_Servlet">
             <input type="hidden" name="param1" value="param1Value">
             <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
