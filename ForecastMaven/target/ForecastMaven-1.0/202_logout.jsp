@@ -14,7 +14,7 @@
     </head>
     <body>
         <h3>
-            You have logged out click <a href="index.jsp">here</a> to go to the home page.
+            You have logged out click <a href="main.jsp">here</a> to go to the home page.
         </h3>
             <% 
                 session.invalidate();

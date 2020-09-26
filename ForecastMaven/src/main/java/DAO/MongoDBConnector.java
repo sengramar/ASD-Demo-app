@@ -9,6 +9,15 @@ public class MongoDBConnector extends MongoDB{
     private MongoClient client;
     private MongoDatabase db;
     
+    public MongoDBConnector() 
+    {
+        
+    } 
+    
+    public MongoDBConnector(String name, String password) 
+    {
+        
+    }
     public MongoDatabase DBConnect() {
        MongoClientURI uri = new MongoClientURI("mongodb://" + dbuser + ":" + dbpass+ URL);
              

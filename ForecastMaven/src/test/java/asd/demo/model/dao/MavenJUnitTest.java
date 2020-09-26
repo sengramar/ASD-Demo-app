@@ -8,7 +8,41 @@ package asd.demo.model.dao;
 /**
  *
  * @author yujiwon
+ 
+ * 
  */
-public class MavenJUnitTest {
+
+import DAO.MongoDBConnector;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+
+public class MavenJUnitTest 
+{
+    private static MongoDBConnector mdb;
     
+    public MavenJUnitTest()
+    {
+
+    }
+    /*
+    @BeforeClass
+    public static void setUpClass() throws UnknownHostExcpetion
+    {
+        System.out.println("\n<- Starting test-->");
+        String name ="dbuser";
+        String password="helloworld99";
+        mdb = new MongoDBConnector(name,password);
+    }
+    
+    @Test
+    public void testMongoDBConnect() throws UnknownHostException
+    {
+        Assert.assertNotNull("Cannot establish connect to MDB", mdb.getMongoDB());
+        System.out.println("\n-Connection to MongoDB ");
+    
+    }*/
 }
