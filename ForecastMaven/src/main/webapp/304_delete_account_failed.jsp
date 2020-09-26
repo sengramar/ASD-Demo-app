@@ -15,7 +15,7 @@
     </head>
     <body>
          <h1 class="header">Failed Deleting the Account</h1>
-         <div class="regbox"><a href="main.jsp" >Main page</a> </div>
+         <div class="content"><a href="main.jsp" >Main page</a> </div>
             
         <p><a href="301_account_management.jsp" >Account Management page</a> </p>
         <div class="sidenav">
