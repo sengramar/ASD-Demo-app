@@ -82,8 +82,4 @@ public class weatherAPI
         return find(APIResult,"description",14);
     }
     
-     public String getDate(String APIResult){
-        return find(APIResult, "forecast.time.day", 2);
-    }
-
 }

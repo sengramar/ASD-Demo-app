@@ -1,1 +1,1 @@
-heroku war:deploy ForecastMaven/target/ForecastMaven-1.0.war --app asd-group3
+java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT ForecastMaven/target/*.war
