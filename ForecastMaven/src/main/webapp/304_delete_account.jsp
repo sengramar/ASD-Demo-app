@@ -15,7 +15,7 @@
     </head>
     <body>
          <h1 class="header">Account Deleted</h1>
-         <div class="regbox"><a href = "202_logout.jsp">Logout</a></div>
+         <div class="content"><a href = "202_logout.jsp">Logout</a></div>
     </body>
     
    <div class="sidenav">
