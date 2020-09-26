@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DAO.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
 import Model.Administrator;
 
 /**
@@ -22,7 +24,8 @@ import Model.Administrator;
 @WebServlet(name = "RegistrationAdminMongo_Servlet", urlPatterns = {"/RegistrationAdminMongo_Servlet"})
 public class RegistrationAdminMongo_Servlet extends HttpServlet {
 
-    private MongoDBManager Mongo = new MongoDBManager();
+    private MongoDBConnector Connector;
+    private MongoDBManager Query;
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
@@ -36,14 +39,16 @@ public class RegistrationAdminMongo_Servlet extends HttpServlet {
         String Lastname = (String) request.getParameter("Lastname");
         
         Administrator admin = null;
-        admin = Mongo.findAdmin(Email, Password);
+        admin = Query.findAdmin(Email, Password);
         if (admin != null)
         {
             session.setAttribute("existErr", "You are already registered");
-            response.sendRedirect("102_admin_register.jsp");
+            response.sendRedirect("102_register.jsp");
         }
         else {
-            Mongo.saveToAdmin(Password, Email, Firstname, Lastname);
+            Connector = new MongoDBConnector();
+            Query = new MongoDBManager();
+            Query.saveToAdmin(Password, Email, Firstname, Lastname);
             response.sendRedirect("index.jsp");
         }
     }

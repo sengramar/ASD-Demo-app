@@ -21,10 +21,9 @@
         String Lastname = (String) session.getAttribute("Lastname");
         String State = (String) session.getAttribute("State");
         int LocationID = (Integer) session.getAttribute("LocationID");
-        String existErr = (String) session.getAttribute("existErr");
 %>
       <center>     
-          <h1 class="header">Register</h1><span><%=(existErr != null ? existErr : "")%></span><br>
+          <h1 class="header">Register</h1><br>
 <div class="regbox">
         <form method="POST">
 <table>
@@ -62,7 +61,7 @@
     <td><button type="submit" formaction="ListLocation_Servlet"> Select </td>               
 </tr>
 </table
-<p><button type="submit" formaction="RegistrationMongo_Servlet" ><h2> Add <h2></button><p> </form>
+<p><button type="submit" formaction="Registration_Servlet" ><h2> Add <h2></button><p> </form>
 </div>
    
                    

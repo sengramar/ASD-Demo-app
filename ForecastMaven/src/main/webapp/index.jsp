@@ -42,12 +42,17 @@
             <p align="center">Lulu lala I hope it wont be raining</p>
 
         <form action="IndexRegister_Servlet" method="POST">
-            <button type="submit" class="button">Register (USER)</button>
+            <button type="submit" class="button">SIGN UP (USER)</button>
         </form>
-        <form action="IndexAdminRegister_Servlet" method="POST">
-            <button type="submit" class="button">Register (ADMIN)</button>
+        <a href="102_check_admin.jsp">
+            <button type="submit" class="button">SIGN UP (ADMIN)</button>
+        </a>
+        <form action="Registration_Servlet" method="POST">
+            <button type="submit" class="button">SIGN UP (USER)</button>
         </form>
-
+        <a action="RegistrationAdmin_Servlet" method="POST">
+            <button type="submit" class="button">SIGN UP (ADMIN)</button>
+        </a>
 
         <form action="IndexLoginServlet" method="POST">
             <button type="submit" class="button">SIGN IN (USER)</button>
