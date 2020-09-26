@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DAO.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
 import Model.User;
 
 /**
@@ -22,7 +24,8 @@ import Model.User;
 @WebServlet(name = "RegistrationMongo_Servlet", urlPatterns = {"/RegistrationMongo_Servlet"})
 public class RegistrationMongo_Servlet extends HttpServlet {
     
-    private MongoDBManager Mongo = new MongoDBManager();
+    private MongoDBConnector Connector;
+    private MongoDBManager Query;
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
@@ -37,15 +40,16 @@ public class RegistrationMongo_Servlet extends HttpServlet {
         int LocationID = (Integer) Integer.parseInt(request.getParameter("LocationID"));
         
         User user = null;
-        user = Mongo.findUser(Email, Password);
+        user = Query.findUser(Email, Password);
         if (user != null)
         {
             session.setAttribute("existErr", "You are already registered");
             response.sendRedirect("101_register.jsp");
         }
         else {
-
-            Mongo.saveToUser(Password, Email, Firstname, Lastname, LocationID);
+            Connector = new MongoDBConnector();
+            Query = new MongoDBManager();
+            Query.saveToUser(Password, Email, Firstname, Lastname, LocationID);
             response.sendRedirect("index.jsp");
         }
     }

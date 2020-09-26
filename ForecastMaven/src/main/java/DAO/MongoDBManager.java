@@ -207,16 +207,16 @@ public class MongoDBManager
         users.deleteOne(Filters.eq("userID",id));
     }
 	
-    public void saveToUser(String Password, String Email, String Firstname, String Lastname, int LocationId) 
+	public void saveToUser(String Password, String Email, String Firstname, String Lastname, int LocationId) 
     {
         int ID = returnID(users, "userID");
         PostList.clear();
         PostList.add(new Document
-        ("userID", ID).append("user_password", Password).append("email", Email).append("firstName",Firstname)
-        .append("lastName",Lastname).append("locationID", LocationId)
+        ("userID", ID).append("userPassword", Password).append("Email", Email).append("Firstname",Firstname)
+        .append("Lastname",Lastname).append("LocationID", LocationId)
         );
         
-        users.insertMany(PostList);
+        WeatherHistory.insertMany(PostList);
     } 
     
     public LinkedList<String> List_Users(String Search) 
@@ -226,25 +226,25 @@ public class MongoDBManager
      for (Document doc : users.find()) 
      {
         list_data.add((String) doc.get("userID"));
-        list_data.add((String) doc.get("user_password"));
-        list_data.add((String) doc.get("email"));
-        list_data.add((String) doc.get("firstName"));
-        list_data.add((String) doc.get("lastName"));
-        list_data.add((String) doc.get("locationID"));
+        list_data.add((String) doc.get("userPassword"));
+        list_data.add((String) doc.get("Email"));
+        list_data.add((String) doc.get("Firstname"));
+        list_data.add((String) doc.get("Lastname"));
+        list_data.add((String) doc.get("LocationID"));
     }
     return list_data;
     }
     
     public void saveToAdmin(String Password, String Email, String Firstname, String Lastname) 
     {
-        int ID = returnID(admins, "adminId");
+        int ID = returnID(admins, "adminID");
         PostList.clear();
         PostList.add(new Document
-        ("adminId", ID).append("adminpassword", Password).append("email", Email).append("firstname",Firstname)
-        .append("lastname",Lastname)
+        ("adminID", ID).append("adminPassword", Password).append("Email", Email).append("Firstname",Firstname)
+        .append("Lastname",Lastname)
         );
         
-        admins.insertMany(PostList);
+        WeatherHistory.insertMany(PostList);
     } 
     
     public LinkedList<String> List_Admin(String Search) 
@@ -253,11 +253,11 @@ public class MongoDBManager
     
      for (Document doc : admins.find()) 
      {
-        list_data.add((String) doc.get("adminId"));
-        list_data.add((String) doc.get("adminpassword"));
-        list_data.add((String) doc.get("email"));
-        list_data.add((String) doc.get("firstname"));
-        list_data.add((String) doc.get("lastname"));
+        list_data.add((String) doc.get("adminID"));
+        list_data.add((String) doc.get("adminPassword"));
+        list_data.add((String) doc.get("Email"));
+        list_data.add((String) doc.get("Firstname"));
+        list_data.add((String) doc.get("Lastname"));
     }
     return list_data;
     } 
