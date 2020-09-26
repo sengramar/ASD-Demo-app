@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Account Deleted</h1>
-        <a href = "main.jsp">Main Page</a>
+        <a href = "202_logout.jsp">Logout</a>
     </body>
 </html>

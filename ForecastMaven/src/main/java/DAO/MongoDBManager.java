@@ -86,7 +86,8 @@ public class MongoDBManager
         Document admin = new Document("email", Email).append("adminpassword", AdminPassword);
          System.out.println(admin.toString());
 
-        for (Document doc : admins.find(admin)) {
+        for (Document doc : admins.find(admin)) 
+        {
 
             email = (String) doc.get("email");
             adminPassword= (String) doc.get("adminpassword");
@@ -218,6 +219,32 @@ public class MongoDBManager
         
         WeatherHistory.insertMany(PostList);
     } 
+        
+        
+         public void updateAdmin(int id, String password, String email, String firstname, String lastname) 
+    {
+
+        //int ID = returnID(users, "userID");
+        //int ID = user.getId();
+        PostList.clear();
+       
+        Document where = new Document("adminId", id);
+        
+        //Document value = new Document("$set", new Document("user_password", password));
+        //Document value = new Document("userID", id).append("user_password", password).append("email", email).append("firstName",firstname)
+        //.append("lastName",lastname).append("locationID",location);
+        
+        Document value = new Document("$set", new Document
+        ("adminpassword", password).append("email", email).append("firstname",firstname)
+        .append("lastname",lastname));
+        admins.updateOne(where, value);
+    }
+    
+    public void deleteAdmin(int id)
+    {
+        admins.deleteOne(Filters.eq("adminId",id));
+    }
+
     
     public LinkedList<String> List_Users(String Search) 
     {
