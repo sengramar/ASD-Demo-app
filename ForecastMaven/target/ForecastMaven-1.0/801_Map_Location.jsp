@@ -3,6 +3,7 @@
     Created on : 08/09/2020, 1:53:01 PM
     Author     : yujiwon
 --%>
+<%@page import="Model.User"%>
 <%@page import="java.lang.ProcessBuilder.Redirect"%>
 <%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,6 +38,9 @@
         
     </head>
     <body>
+        <%       
+        User user = (User)session.getAttribute("user");
+        %>
         <div class="content">
              <div class="map" style="background-image: url(img/AussieMap.JPG); background-repeat:no-repeat; background-size: contain; position:relative;">
                  
@@ -214,15 +218,28 @@
        
         </div>       
         <div class="sidenav">
-            <br><br>
-            <a href="index.html">HOME</a>
+             <br><br>
+            <% if(user == null)
+            {
+            %>
+            <a href="index.jsp">HOME</a>
+            <%
+            }
+            else{
+            %>
+            <a href="main.jsp">HOME</a>
+            <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
+            <%}
+            %>
             <form name="submitForm" method="POST" action="CurrentWeather_Servlet">
             <input type="hidden" name="param1" value="param1Value">
-            <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a>
-            </form>
+            <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
+            <!--
             <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
             <a href="601_weather_history.jsp">WEATHER HISTORY</a>
             <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
+            -->
+            <a href="1111_WindSpeedMap.jsp">WIND SPEED MAP</a>
         </div>
 
     </body>

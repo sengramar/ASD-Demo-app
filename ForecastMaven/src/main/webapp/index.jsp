@@ -20,15 +20,16 @@
 
         <div class="sidenav">
             <br><br>
-            <a href="/Prototype">HOME</a>
+            <a href="index.jsp">HOME</a>
             <form name="submitForm" method="POST" action="CurrentWeather_Servlet">
             <input type="hidden" name="param1" value="param1Value">
             <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
+            <%--
             <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
             <a href="601_weather_history.jsp">WEATHER HISTORY</a>
             <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
-            <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
-            <a href="801_Map_Location.jsp">LOCATION MAP</a>
+            --%>
+            <a href="1111_WindSpeedMap.jsp">WIND SPEED MAP</a>
         </div>
 
         <div class="content">
@@ -42,17 +43,11 @@
             <p align="center">Lulu lala I hope it wont be raining</p>
 
         <form action="IndexRegister_Servlet" method="POST">
-            <button type="submit" class="button">SIGN UP (USER)</button>
+            <button type="submit" class="button">Register (USER)</button>
         </form>
-        <a href="102_check_admin.jsp">
-            <button type="submit" class="button">SIGN UP (ADMIN)</button>
-        </a>
-        <form action="Registration_Servlet" method="POST">
-            <button type="submit" class="button">SIGN UP (USER)</button>
+        <form action="IndexAdminRegister_Servlet" method="POST">
+            <button type="submit" class="button">Register (ADMIN)</button>
         </form>
-        <a action="RegistrationAdmin_Servlet" method="POST">
-            <button type="submit" class="button">SIGN UP (ADMIN)</button>
-        </a>
 
         <form action="IndexLoginServlet" method="POST">
             <button type="submit" class="button">SIGN IN (USER)</button>
