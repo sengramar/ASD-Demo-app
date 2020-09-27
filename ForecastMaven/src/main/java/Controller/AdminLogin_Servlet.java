@@ -46,11 +46,11 @@ public class AdminLogin_Servlet extends HttpServlet  {
        Validator.clear(session);
         if (!Validator.validateEmail(Email)) {
             session.setAttribute("emailErr", "Error: Email format incorrect");
-            request.getRequestDispatcher("203_AdminLogin.jsp").include(request, response);
+            response.sendRedirect("203_AdminLogin.jsp");
         }
         else if (!Validator.validatePassword(adminPassword)) {
             session.setAttribute("passErr", "Error: Password format incorrect");
-            request.getRequestDispatcher("203_AdminLogin.jsp").include(request, response);
+           response.sendRedirect("203_AdminLogin.jsp");
         }
         else{
         Administrator admin=null;
