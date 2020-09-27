@@ -30,21 +30,51 @@ public class EditAccount extends HttpServlet {
      protected void doPost(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {       
              //1- retrieve the current session
              HttpSession session = request.getSession();
+             Validator validator = new Validator();
+             User user = null;
              
              int userId = Integer.parseInt(request.getParameter("userId"));
              String firstname= request.getParameter("firstname");
              String lastname = request.getParameter("lastname");
              String email= request.getParameter("email");
              String password= request.getParameter("password");
-             int location = Integer.parseInt(request.getParameter("location"));
+             String location = request.getParameter("location");
+             int locationID = Integer.parseInt(location);
+             
+             if(!validator.validateEmail(email))
+             {
+                 session.setAttribute("errorMsg"," EMAIL format is wrong");
+                request.getRequestDispatcher("301_account_management.jsp").include(request,response);
+                
+             }
+             else if(!validator.validatePassword(password))
+             {
+                 session.setAttribute("errorMsg"," PASSWORD format is wrong, should be 4 letters + numbers");
+                request.getRequestDispatcher("301_account_management.jsp").include(request,response);
+             }
+             else if(!validator.validateName(firstname))
+             {
+                 session.setAttribute("errorMsg"," : FIRST NAME format is wrong");
+                request.getRequestDispatcher("301_account_management.jsp").include(request,response);
+             }
+             else if(!validator.validateName(lastname))
+             {
+                 session.setAttribute("errorMsg"," : LAST NAME format is wrong");
+                request.getRequestDispatcher("301_account_management.jsp").include(request,response);
+             }
+             
+             else
+             {
+                 user = new User (userId, locationID, password, email, firstname, lastname);
+             }
              
              
-             User user = new User (userId, location, password, email, firstname, lastname);
             
         if(user != null)
         {
             session.setAttribute("user", user);
-            MongoManager.updateUser(userId, password, email, firstname, lastname,location);//run query
+            MongoManager.updateUser(userId, password, email, firstname, lastname,locationID);//run query
+            validator.clearErrorMsg(session);
             session.setAttribute("updated"," : Upadte was Successful");
             request.getRequestDispatcher("301_account_management.jsp").include(request,response);
         }
@@ -54,7 +84,7 @@ public class EditAccount extends HttpServlet {
             request.getRequestDispatcher("301_account_management.jsp").include(request,response);
                             
         }
-                     
+         
         response.sendRedirect("301_account_management.jsp");
      }
 }
