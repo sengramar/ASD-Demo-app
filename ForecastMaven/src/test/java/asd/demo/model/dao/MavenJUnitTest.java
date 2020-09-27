@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package asd.demo.model.dao;
+/*package asd.demo.model.dao;
 
 /**
  *
@@ -12,7 +12,7 @@ package asd.demo.model.dao;
  * 
  */
 
-import API.weatherAPI;
+/*import API.weatherAPI;
 import DAO.MongoDBConnector;
 import DAO.MongoDBManager;
 import com.mongodb.client.MongoDatabase;
@@ -302,4 +302,4 @@ public class MavenJUnitTest
     
     
     
-}
+}*/
