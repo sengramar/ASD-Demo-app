@@ -41,8 +41,13 @@ public class LoginMongoServlet extends HttpServlet  {
         Validator.clear(session);
         if (!Validator.validateEmail(Email)) {
             session.setAttribute("emailErr", "Error: Email format incorrect");
-            request.getRequestDispatcher("203_AdminLogin.jsp").include(request, response);
-        }else {
+            request.getRequestDispatcher("201_login.jsp").include(request, response);
+        }
+        else if (!Validator.validatePassword(User_Password)) {
+            session.setAttribute("passErr", "Error: Password format incorrect");
+            request.getRequestDispatcher("201_login.jsp").include(request, response);
+        }
+        else {
         User user=null;
         user =  Mongo.findUser(Email, User_Password);
             if (user != null) 
