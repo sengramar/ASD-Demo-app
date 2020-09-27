@@ -37,11 +37,9 @@ public class LogoutServlet extends HttpServlet {
         logoutDateTime = formatter.format(date);
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        int userID = user.getUserId();
         int AccessLogId = (Integer) session.getAttribute("AccessLogId");   
-        int accesslogId = Mongo.findAccessLogID(userID);
-        System.out.println(accesslogId);
-        Mongo.storeLogout(accesslogId, logoutDateTime);
+        System.out.println(AccessLogId);
+        Mongo.storeLogout(AccessLogId, logoutDateTime);
 
         session.invalidate();
         response.sendRedirect("index.jsp");
