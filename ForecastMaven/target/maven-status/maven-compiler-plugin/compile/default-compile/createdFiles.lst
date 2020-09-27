@@ -9,7 +9,6 @@ DAO\DBConnector.class
 Controller\DeleteAccount_Servlet.class
 API\weatherAPI.class
 Controller\AdminLogin_Servlet.class
-Controller\Login_Servlet.class
 DAO\DBManager.class
 DAO\MongoDBConnector.class
 Controller\IndexAdminLoginServlet.class

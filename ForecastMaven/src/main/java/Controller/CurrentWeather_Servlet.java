@@ -43,9 +43,16 @@ public class CurrentWeather_Servlet extends HttpServlet
         HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         String Email, Location;
-        int LocationId = 101;
-        Location = "Sydney, AU";
-        
+        int LocationId = 0;
+        if(session.getAttribute("Location") == null)
+        {
+            Location = "Sydney, AU";
+        }
+        else
+        {
+            Location = (String) session.getAttribute("Location");
+            LocationId = (int) session.getAttribute("LocationID");
+        }
         if(session.getAttribute("Email") == null)
         {
             Email = "";

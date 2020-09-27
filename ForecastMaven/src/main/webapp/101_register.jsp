@@ -1,9 +1,5 @@
-<%-- 
-    Document   : 101_register
-    Created on : 2020. 9. 02, 오후 2:16:39
-    Author     : Nayoon
---%>
-
+<%@page import="java.util.regex.Matcher"%>
+<%@page import="java.util.regex.Pattern"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,9 +18,11 @@
         int LocationID = (Integer) session.getAttribute("LocationID");
         String existErr = (String) session.getAttribute("existErr");
         String Region = (String) session.getAttribute("Region");
+        String error = (String) session.getAttribute("error");
 %>
       <center>     
-          <h1 class="header">Register</h1><span><%=(existErr != null ? existErr : "")%><br>
+          <h1 class="header">Register</h1><span><%=(existErr != null ? existErr : "")%>
+          <h3><%=(error != null ? error : "")%></h3></span><br>
 <div class="regbox">
         <form method="POST">
 <table>
@@ -37,9 +35,8 @@
 <tr>
 <td><p class="subtitle"><label for="Password">Password </label></p></td>
     <td><p>&nbsp;</p></td>
-    <td><p><input type="Password" name="Password"required="True" value="<%=(Password != null ? Password : "Enter Password")%>"></p></td>
+    <td><p><input type="Password" name="Password"required="True" minlength="8" value="<%=(Password != null ? Password : "Enter Password")%>"></p></td>
 </tr>
-<tr>
 <tr>
 <td><p class="subtitle"><label for="Firstname">First Name </label></p></td>
     <td><p>&nbsp;</p></td>
@@ -55,7 +52,7 @@
 <td><p hidden><input type="text" name="Redirect" value= "101_register.jsp"></p></td>
 </tr>
 <tr>
-    <td><p class="subtitle"><label for="State">State </label></p></td>
+    <td><p class="subtitle">Location</p></td>
     <td>&nbsp;</td> 
     <td><p><input type="Region" name="Region" Required ="True" readonly="True" value=<%=(Region != null ? Region : "Select Location")%>></p></td>
     <td><p hidden><input type="text" name="Redirect" value="101_register.jsp"></p></td>
@@ -66,8 +63,8 @@
 <p><button type="submit" formaction="RegistrationMongo_Servlet" ><h2> Add </h2></button></p> </form>
 </div>
    
-                   
-                    
+    
+                             
     <br><a>Go back to main menu </a>
 <a href="index.jsp"> click here!</a> 
     </center>

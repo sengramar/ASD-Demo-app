@@ -1,9 +1,3 @@
-<%-- 
-    Document   : 102_register_admin
-    Created on : 2020. 9. 7, 오전 7:38:24
-    Author     : Nayoon
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,11 +12,13 @@
         String Firstname = (String) session.getAttribute("Firstname");
         String Lastname = (String) session.getAttribute("Lastname");
         String existErr = (String) session.getAttribute("existErr");
+        String error = (String) session.getAttribute("error");
         %>
     </head>
     <body>
         <center>     
-          <h1 class="header">Administrator Register</h1><span><%=(existErr != null ? existErr : "")%></span><br>
+            <h1 class="header">Administrator Register</h1><span><%=(existErr != null ? existErr : "")%><br>
+            <h3><%=(error != null ? error : "")%></h3></span><br>
 <div class="regbox">
         <form method="POST">
 <table>
@@ -35,7 +31,7 @@
 <tr>
 <td><p class="subtitle"><label for="Password">Password </label></p></td>
     <td><p>&nbsp;</p></td>
-    <td><p><input type="Password" name="Password"required="True" value="<%=(Password != null ? Password : "Enter Password")%>"></p></td>
+    <td><p><input type="Password" name="Password"required="True" minlength="8" value="<%=(Password != null ? Password : "Enter Password")%>"></p></td>
 </tr>
 <tr>
     <tr>

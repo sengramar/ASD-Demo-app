@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DAO.*;
 import Model.User;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -29,6 +31,7 @@ public class RegistrationMongo_Servlet extends HttpServlet {
     {               
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        Validator validator = new Validator();
         
         String Email = (String) request.getParameter("Email");
         String Password = (String) request.getParameter("Password");
@@ -41,10 +44,27 @@ public class RegistrationMongo_Servlet extends HttpServlet {
         if (user != null)
         {
             session.setAttribute("existErr", "You are already registered");
-            response.sendRedirect("101_register.jsp");
+            request.getRequestDispatcher("101_register.jsp").include(request,response);
+        }
+        else if (!validator.validateEmail(Email))
+        {
+            session.setAttribute("error", "Email format is wrong");
+            request.getRequestDispatcher("101_register.jsp").include(request,response);
+        }
+        else if (!validator.validatePassword(Password)) {
+            session.setAttribute("error", "Your password must include special character, number");
+            request.getRequestDispatcher("101_register.jsp").include(request,response);
+        }
+        else if (!validator.validateName(Firstname)) {
+            session.setAttribute("error", "First Name format is wrong");
+            request.getRequestDispatcher("101_register.jsp").include(request,response);
+        }
+        else if (!validator.validateName(Lastname)) {
+            session.setAttribute("error", "Last Name format is wrong");
+            request.getRequestDispatcher("101_register.jsp").include(request,response);
         }
         else {
-            Mongo.saveToUser(Password, Email, Firstname, Lastname, LocationID);
+            Mongo.saveToUser(Password, Email, Firstname, Lastname,LocationID);
             response.sendRedirect("index.jsp");
         }
     }

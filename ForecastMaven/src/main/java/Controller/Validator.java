@@ -16,10 +16,10 @@ import javax.servlet.http.HttpSession;
  */
 public class Validator implements Serializable {
     private static String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";
-    private static String namePattern = "([A-Z][a-z]+)";//+[A-Z][a-z]*";
-    private static String passwordPattern = "([a-z]{4,})([0-9]*)";
-    private static String integerPattern = "[0-9]+";
-    private static String adminKeyPattern="^[a-zA-Z]*$";
+    private static String namePattern = "([A-Z][a-z]+)";
+//     private static String passwordPattern = "([a-z]{4,})([0-9]*)";
+    private static String passwordPattern = "([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~,-])";
+    private static String integerPattern = "[0-9]*";
     
     public Validator() {}
     
@@ -45,10 +45,6 @@ public class Validator implements Serializable {
         return validate(integerPattern, integer);
     }
     
-    public static boolean validateAdminKey (String adminKey) {
-        return validate(adminKeyPattern, adminKey);
-    }
-    
     public static void clearErrorMsg(HttpSession session){
         session.setAttribute("errorMsg", null);
     }
@@ -63,7 +59,6 @@ public class Validator implements Serializable {
         session.setAttribute("existErr", "");
         session.setAttribute("nameErr", "Enter Name");
         session.setAttribute("intErr", null);
-        session.setAttribute("adminKeyErr", "Enter Admin Key");
     }
     
 }

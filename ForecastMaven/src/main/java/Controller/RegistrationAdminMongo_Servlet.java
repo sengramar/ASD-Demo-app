@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DAO.*;
 import Model.Administrator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -29,6 +31,7 @@ public class RegistrationAdminMongo_Servlet extends HttpServlet {
     {               
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        Validator validator = new Validator();
         
         String Email = (String) request.getParameter("Email");
         String Password = (String) request.getParameter("Password");
@@ -40,6 +43,23 @@ public class RegistrationAdminMongo_Servlet extends HttpServlet {
         if (admin != null)
         {
             session.setAttribute("existErr", "You are already registered");
+            response.sendRedirect("102_admin_register.jsp");
+        }
+        else if (!validator.validateEmail(Email))
+        {
+            session.setAttribute("error", "Email format is wrong");
+            response.sendRedirect("102_admin_register.jsp");
+        }
+        else if (!validator.validatePassword(Password)) {
+            session.setAttribute("error", "Your password must include special character, number");
+            response.sendRedirect("102_admin_register.jsp");
+        }
+        else if (!validator.validateName(Firstname)) {
+            session.setAttribute("error", "First Name format is wrong");
+            response.sendRedirect("102_admin_register.jsp");
+        }
+        else if (!validator.validateName(Lastname)) {
+            session.setAttribute("error", "Last Name format is wrong");
             response.sendRedirect("102_admin_register.jsp");
         }
         else {

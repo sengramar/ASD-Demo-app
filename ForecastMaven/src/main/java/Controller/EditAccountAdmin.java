@@ -48,7 +48,7 @@ public class EditAccountAdmin extends HttpServlet {
              }
              else if(!validator.validatePassword(password))
              {
-                 session.setAttribute("errorMsg"," PASSWORD format is wrong, should be 4 letters + numbers");
+                 session.setAttribute("errorMsg"," PASSWORD format is wrong");
                 request.getRequestDispatcher("308_account_management_admin.jsp").include(request,response);
              }
              else if(!validator.validateName(firstname))

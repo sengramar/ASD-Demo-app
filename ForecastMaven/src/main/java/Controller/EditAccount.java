@@ -49,7 +49,7 @@ public class EditAccount extends HttpServlet {
              }
              else if(!validator.validatePassword(password))
              {
-                 session.setAttribute("errorMsg"," PASSWORD format is wrong, should be 4 letters + numbers");
+                 session.setAttribute("errorMsg"," PASSWORD format is wrong");
                 request.getRequestDispatcher("301_account_management.jsp").include(request,response);
              }
              else if(!validator.validateName(firstname))

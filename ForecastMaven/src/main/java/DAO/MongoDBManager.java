@@ -101,15 +101,15 @@ public class MongoDBManager
         return newAdmin=null;
     }
      
-    public void storeLogin(int userId, String loginDateTime) {
-        int accesslogId = returnID(accesslog, "accesslogId");
+    public void storeLogin(int AccessId, int userId, String loginDateTime) {
+        int accesslogId = AccessId;
         logList.clear();
         logList.add(new Document("accesslogId", accesslogId).append("userId", userId).append("loginTime", loginDateTime).append("logoutTime", null));
         accesslog.insertMany(logList);
     }
     
-    public void storeAdminLogin(int adminId, String loginDateTime) {
-        int accesslogId = returnID(accesslog, "accesslogId");
+    public void storeAdminLogin(int AccessId, int adminId, String loginDateTime) {
+        int accesslogId = AccessId;
         logList.clear();
         logList.add(new Document("accesslogId", accesslogId).append("adminId", adminId).append("loginTime", loginDateTime).append("logoutTime", null));
         accesslog.insertMany(logList);
