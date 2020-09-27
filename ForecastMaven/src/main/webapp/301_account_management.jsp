@@ -19,7 +19,7 @@
             User user = (User)session.getAttribute("user");
             String updated = (String)session.getAttribute("updated");
             DBManager manager = (DBManager) session.getAttribute("manager");
-        %>
+        %> 
        <div class="sidenav">
             <br><br>
             <a href="main.jsp">HOME</a>

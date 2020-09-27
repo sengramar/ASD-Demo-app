@@ -23,8 +23,7 @@ public class EditAccount extends HttpServlet {
     
             //private DBConnector Connector;
             //private DBManager Query;
-    
-    
+ 
     MongoDBManager MongoManager = new MongoDBManager();
     
      @Override   

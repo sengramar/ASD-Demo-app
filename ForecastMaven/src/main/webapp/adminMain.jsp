@@ -1,3 +1,4 @@
+<%@page import="Model.Administrator"%>
 <%@page import="DAO.DBManager"%>
 <%@page import="Model.User"%>
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
 </head>
 <body>
     <%
-            User user = (User)session.getAttribute("user");
+            Administrator admin = (Administrator)session.getAttribute("admin");
             DBManager manager = (DBManager)session.getAttribute("manager"); 
             String email = request.getParameter("Email");
             String password = request.getParameter("Password");
@@ -20,14 +21,14 @@
 
         <div class="sidenav">
             <br><br>
-            <a href="/Prototype">HOME</a>
+            <a href="adminMain.jsp">HOME</a>
             <form name="submitForm" method="POST" action="CurrentWeather_Servlet">
             <input type="hidden" name="param1" value="param1Value">
             <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
             <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
             <a href="601_weather_history.jsp">WEATHER HISTORY</a>
             <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
-            <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
+            <a href="308_account_management_admin.jsp">ACCOUNT MANAGEMENT</a>
         </div>
 
         <div class="content">
