@@ -43,6 +43,16 @@ public class AdminLogin_Servlet extends HttpServlet  {
         String Email = (String) request.getParameter("Email");
         String adminPassword = (String) request.getParameter("Password");
         
+       Validator.clear(session);
+        if (!Validator.validateEmail(Email)) {
+            session.setAttribute("emailErr", "Error: Email format incorrect");
+            response.sendRedirect("203_AdminLogin.jsp");
+        }
+        else if (!Validator.validatePassword(adminPassword)) {
+            session.setAttribute("passErr", "Error: Password format incorrect");
+           response.sendRedirect("203_AdminLogin.jsp");
+        }
+        else{
         Administrator admin=null;
         admin =  Mongo.findAdmin(Email, adminPassword);
         if (admin != null) 
@@ -60,6 +70,6 @@ public class AdminLogin_Servlet extends HttpServlet  {
             
         }
 
-            
+      }
     }
 }
