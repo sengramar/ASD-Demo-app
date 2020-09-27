@@ -16,10 +16,9 @@ import javax.servlet.http.HttpSession;
  */
 public class Validator implements Serializable {
     private static String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";
-    private static String namePattern = "([A-Z][a-z]+[\\s])+[A-Z][a-z]*";
-//     private static String passwordPattern = "([a-z]{4,})([0-9]*)";
-    private static String passwordPattern = "([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~,-])";
-    private static String integerPattern = "[0-9]*";
+    private static String namePattern = "([A-Z][a-z]+)";//+[A-Z][a-z]*";
+    private static String passwordPattern = "([a-z]{4,})([0-9]*)";
+    private static String integerPattern = "[0-9]+";
     private static String adminKeyPattern="^[a-zA-Z]*$";
     
     public Validator() {}
@@ -50,6 +49,13 @@ public class Validator implements Serializable {
         return validate(adminKeyPattern, adminKey);
     }
     
+    public static void clearErrorMsg(HttpSession session){
+        session.setAttribute("errorMsg", null);
+    }
+    
+    public static void clearUpdated(HttpSession session){
+        session.setAttribute("updated", null);
+    }
     
     public static void clear(HttpSession session) {
         session.setAttribute("emailErr", "Enter Email");
