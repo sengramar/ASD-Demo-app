@@ -115,11 +115,12 @@ public class MongoDBManager
         accesslog.insertMany(logList);
     }
     
-      public void storeLogout(int accesslogId, String logoutDateTime) {
+      public void storeLogout(int accesslogId, String logoutDateTime) 
+      {
 	Document loghistory = new Document("accesslogId", accesslogId);
         Document logouthistory = new Document("$set",new Document("logoutTime",logoutDateTime));
         accesslog.updateOne(loghistory,logouthistory);
-    }
+      }
     
     public int findAccessLogID(int userId) {
         int id;
@@ -270,5 +271,6 @@ public class MongoDBManager
     }
     return list_data;
     } 
+    
 
 }
