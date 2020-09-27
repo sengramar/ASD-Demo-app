@@ -55,7 +55,7 @@
 <td><p hidden><input type="text" name="Redirect" value= "101_register.jsp"></p></td>
 </tr>
 <tr>
-    <td><p class="subtitle"><label for="State">State </label></p></td>
+    <td><p class="subtitle">Location</p></td>
     <td>&nbsp;</td> 
     <td><p><input type="Region" name="Region" Required ="True" readonly="True" value=<%=(Region != null ? Region : "Select Location")%>></p></td>
     <td><p hidden><input type="text" name="Redirect" value="101_register.jsp"></p></td>
