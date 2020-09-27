@@ -37,7 +37,7 @@
 <tr>
 <td><p class="subtitle"><label for="Password">Password </label></p></td>
     <td><p>&nbsp;</p></td>
-    <td><p><input type="Password" name="Password"required="True" value="<%=(Password != null ? Password : "Enter Password")%>"></p></td>
+    <td><p><input type="Password" name="Password"required="True" minlength="8" value="<%=(Password != null ? Password : "Enter Password")%>"></p></td>
 </tr>
 <tr>
 <tr>
