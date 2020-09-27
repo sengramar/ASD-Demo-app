@@ -281,7 +281,7 @@ public class MavenJUnitTest
         System.out.println("test deleteAdmin");
         System.out.println("Input AdminId:");
         int userId = sc.nextInt();
-        mongo.deleteUser(userId);
+        mongo.deleteAdmin(userId);
     
     }
     
