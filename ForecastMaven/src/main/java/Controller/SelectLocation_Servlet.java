@@ -27,10 +27,12 @@ public class SelectLocation_Servlet extends HttpServlet
         {        
         int LocationID = Integer.parseInt(request.getParameter("ID"));
         String State = request.getParameter("State");
+        String Region = request.getParameter("Region");
         //this value will be only passed if it is redirect to 101_register.jsp
         //this code can be re-used
         session.setAttribute("State", State);
         session.setAttribute("LocationID", LocationID);
+        session.setAttribute("Region", Region);
         
         response.sendRedirect(Redirect);//redirect to index.html page
         }
