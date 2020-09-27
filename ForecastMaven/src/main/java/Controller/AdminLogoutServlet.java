@@ -46,8 +46,7 @@ public class AdminLogoutServlet extends HttpServlet {
         Mongo.storeLogout(accesslogId, logoutDateTime);
         
         session.invalidate();
-        response.sendRedirect("index.jsp");
-        
+        response.sendRedirect("index.jsp");  
         
     }
 
