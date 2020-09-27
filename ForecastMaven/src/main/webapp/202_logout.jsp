@@ -18,22 +18,10 @@
             You have logged out
         </h1>
     <center>
-        <h2> click <a href="main.jsp">here</a> to go to the home page.</h2>
+        <h2> click <a href="index.jsp">here</a> to go to the home page.</h2>
     </center>
             <% 
                 session.invalidate();
             %>
-            
-            <div class="sidenav">
-            <br><br>
-            <a href="main.jsp">HOME</a>
-            <form name="submitForm" method="POST" action="CurrentWeather_Servlet">
-            <input type="hidden" name="param1" value="param1Value">
-            <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
-            <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
-            <a href="601_weather_history.jsp">WEATHER HISTORY</a>
-            <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
-            <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
-        </div>
-    </body>
+            </body>
 </html>
