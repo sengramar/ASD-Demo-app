@@ -31,6 +31,8 @@ public class EditAccountAdmin extends HttpServlet {
      protected void doPost(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {       
              //1- retrieve the current session
              HttpSession session = request.getSession();
+             Validator validator = new Validator();
+             Administrator admin = null;
              
              int userId = Integer.parseInt(request.getParameter("userId"));
              String firstname= request.getParameter("firstname");
@@ -38,13 +40,39 @@ public class EditAccountAdmin extends HttpServlet {
              String email= request.getParameter("email");
              String password= request.getParameter("password");
              
+             if(!validator.validateEmail(email))
+             {
+                 session.setAttribute("errorMsg"," EMAIL format is wrong");
+                request.getRequestDispatcher("308_account_management_admin.jsp").include(request,response);
+                
+             }
+             else if(!validator.validatePassword(password))
+             {
+                 session.setAttribute("errorMsg"," PASSWORD format is wrong, should be 4 letters + numbers");
+                request.getRequestDispatcher("308_account_management_admin.jsp").include(request,response);
+             }
+             else if(!validator.validateName(firstname))
+             {
+                 session.setAttribute("errorMsg"," : FIRST NAME format is wrong");
+                request.getRequestDispatcher("308_account_management_admin.jsp").include(request,response);
+             }
+             else if(!validator.validateName(lastname))
+             {
+                 session.setAttribute("errorMsg"," : LAST NAME format is wrong");
+                request.getRequestDispatcher("308_account_management_admin.jsp").include(request,response);
+             }
              
-             Administrator admin = new Administrator (userId, password, email, firstname, lastname);
-            
+             else
+             {
+                 admin = new Administrator (userId, password, email, firstname, lastname);
+             }
+             
+             
         if(admin != null)
         {
             session.setAttribute("admin", admin);
             MongoManager.updateAdmin(userId, password, email, firstname, lastname);//run query
+            validator.clearErrorMsg(session);
             session.setAttribute("updated"," : Upadte was Successful");
             request.getRequestDispatcher("308_account_management_admin.jsp").include(request,response);
         }
