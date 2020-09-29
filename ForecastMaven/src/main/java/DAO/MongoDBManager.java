@@ -45,7 +45,7 @@ public class MongoDBManager
     public LinkedList<String> List_Location(String Search) 
     {
     LinkedList<String> list_data = new LinkedList<String>(); 
-    Document SearchBSON = new Document("Region",Pattern.compile(Pattern.quote(Search)));//WHERE LIKE 'SEARCH%'
+    Document SearchBSON = new Document("Region", Pattern.compile(".*"+Search.trim()+".*"));//WHERE LIKE 'SEARCH%'
      for (Document doc : location.find(SearchBSON).sort(new BasicDBObject("LocationId",1)))//from location + In ascending order (Change 1 to -1 for Desc order)
      {
         list_data.add((String) doc.get("LocationId"));
@@ -56,6 +56,20 @@ public class MongoDBManager
     }
         return list_data;
     }   
+    public Location findLoc(int LocationId) 
+    {               
+        Document SearchBSON = new Document("LocationId", Integer.toString(LocationId));//WHERE LIKE 'SEARCH%'
+        for (Document doc : location.find(SearchBSON))
+        {
+            String Country =(String) doc.get("Country");
+            String Region = (String) doc.get("Region");
+            String State = (String) doc.get("State");
+            //you need to get all the data
+            Location currentLocation = new Location(LocationId, Country, State, Region);
+            return currentLocation;
+        }
+        return null;
+    }
     
     public User findUser(String Email, String User_Password) 
     {
@@ -63,7 +77,6 @@ public class MongoDBManager
         String user_password, email, firstname,lastname;
         User newUser;
         Document WhereDocs = new Document("email", Email).append("user_password", User_Password);
-        System.out.println(WhereDocs.toString());
         for (Document doc : users.find(WhereDocs))
         {
             userId = ((Integer) doc.get("userID"));
