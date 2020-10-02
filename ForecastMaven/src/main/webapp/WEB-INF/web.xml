@@ -16,6 +16,14 @@
         <servlet-name>DeleteAccountAdmin</servlet-name>
         <servlet-class>Controller.DeleteAccountAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WeatherHistory_Servlet</servlet-name>
+        <servlet-class>Controller.WeatherHistory_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FirstWeatherHistory_Servlet</servlet-name>
+        <servlet-class>Controller.FirstWeatherHistory_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MapLocation_Servlet</servlet-name>
         <url-pattern>/MapLocation_Servlet</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>DeleteAccountAdmin</servlet-name>
         <url-pattern>/DeleteAccountAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeatherHistory_Servlet</servlet-name>
+        <url-pattern>/WeatherHistory_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FirstWeatherHistory_Servlet</servlet-name>
+        <url-pattern>/FirstWeatherHistory_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

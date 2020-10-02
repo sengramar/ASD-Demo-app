@@ -24,22 +24,23 @@ public class MongoDBManager
     MongoCollection<Document> admins = db.getCollection("Administrator");
     MongoCollection<Document> accesslog = db.getCollection("AccessLog");
     MongoCollection<Document> location = db.getCollection("Location");
-    MongoCollection<Document> WeatherHistory = db.getCollection("WeatherHistory");
+    //MongoCollection<Document> WeatherHistory = db.getCollection("WeatherHistory");
+    MongoCollection<Document> History = db.getCollection("History");
       
     
 
     public void saveToWeatherHistory(String Date, String Time, int LocationId, String Temperature,String Humidity,String WindSpeed,String WindDegree, String Cloudy,String Description ) 
     {
-        int ID = returnID(WeatherHistory, "weatherID");
+        int ID = returnID(History, "weatherID");
         PostList.clear();
 
         PostList.add(new Document
-        ("weatherID", ID).append("Date", Date).append("Time", Time).append("location ID",LocationId)
+        ("weatherID", ID).append("Date", Date).append("Time", Time).append("location ID",Integer.toString(LocationId))
         .append("Temperature",Temperature).append("Humidity",Humidity).append("Wind speed",WindSpeed)
         .append("Wind direction",WindDegree).append("Cloudy",Cloudy).append("danger level",Description)
         );
         
-        WeatherHistory.insertMany(PostList);
+        History.insertMany(PostList);
     }   
 
     public LinkedList<String> List_Location(String Search) 
@@ -241,22 +242,73 @@ public class MongoDBManager
         admins.deleteOne(Filters.eq("adminId",id));
     }
 
-    
-    public LinkedList<String> List_Users(String Search) 
+   /*
+    public LinkedList<String> search_history(int locationID) 
     {
-    LinkedList<String> list_data = new LinkedList<String>(); 
-    
-     for (Document doc : users.find()) 
+    LinkedList<String> historyList = new LinkedList<String>(); 
+    //Document historyDocs = new Document("Location ID", locationID);//WHERE LIKE 'SEARCH%'
+     for (Document doc : WeatherHistory.sort(new BasicDBObject("Location ID",1)))
      {
-        list_data.add((String) doc.get("userID"));
-        list_data.add((String) doc.get("user_password"));
-        list_data.add((String) doc.get("email"));
-        list_data.add((String) doc.get("firstName"));
-        list_data.add((String) doc.get("lastName"));
-        list_data.add((String) doc.get("locationID"));
+        historyList.add((String) doc.get("Date"));
+        historyList.add((String) doc.get("Time"));
+        historyList.add((String) doc.get("Temperature"));
+        historyList.add((String) doc.get("Humidity"));
+        historyList.add((String) doc.get("Wind speed"));
+        historyList.add((String) doc.get("Wind direction"));
+        historyList.add((String) doc.get("Cloudy"));
+        historyList.add((String) doc.get("danger level"));
+        //SELECT ALL 
     }
-    return list_data;
+        return historyList;
+    }   */
+    
+    
+    
+    public LinkedList<String> weather_history(String location, String date) 
+    {
+        LinkedList<String> historyList = new LinkedList<String>();
+        //int locationID = Integer.parseInt(location);
+        Document historyDocs = 
+                new Document("location ID", Pattern.compile(".*"+location.trim()+".*")).append("Date", Pattern.compile(".*"+date.trim()+".*"));
+                
+                
+        
+        System.out.println(historyDocs);
+        
+        for (Document doc : History.find(historyDocs)) 
+        {
+            Location current = findLoc(Integer.parseInt((String) doc.get("location ID")));
+            historyList.add(current.getRegion());
+            historyList.add((String) doc.get("Date"));
+            historyList.add((String) doc.get("Time"));
+            historyList.add((String) doc.get("Temperature"));
+            historyList.add((String) doc.get("Humidity"));
+            historyList.add((String) doc.get("Wind speed"));
+            historyList.add((String) doc.get("Wind direction"));
+            historyList.add((String) doc.get("Cloudy"));
+            historyList.add((String) doc.get("danger level"));
+        
+        }
+        return historyList;
+    }   
+    
+  
+    public Location findLocationId(String region) 
+    {               
+        Document SearchBSON = new Document("Region", region.trim());//WHERE LIKE 'SEARCH%'
+        for (Document doc : location.find(SearchBSON))
+        {
+            String Country =(String) doc.get("Country");
+            int locationId = Integer.parseInt((String) doc.get("LocationId"));
+            String State = (String) doc.get("State");
+            //you need to get all the data
+            Location currentLocation = new Location(locationId, Country, State, region);
+            return currentLocation;
+        }
+        return null;
     }
+    
+    
     
     public void saveToAdmin(String Password, String Email, String Firstname, String Lastname) 
     {
