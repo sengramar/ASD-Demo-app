@@ -23,9 +23,11 @@
             <br><br>
             <a href="main.jsp">HOME</a>
             <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
-            <form name="submitForm" method="POST" action="FirstCurrentWeather_Servlet">
-            <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
-            <!--
+            <form name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
+            <a HREF="javascript:document.CurrentWeather.submit()">CURRENT WEATHER</a></form>
+            <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
+            <a HREF="javascript:document.WeatherHistory.submit()">WEATHER HISTORY</a></form>
+            
             <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
             <a href="601_weather_history.jsp">WEATHER HISTORY</a>
             <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>

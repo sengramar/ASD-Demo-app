@@ -21,8 +21,11 @@
         <div class="sidenav">
             <br><br>
             <a href="index.jsp">HOME</a>
-            <form name="submitForm" method="POST" action="FirstCurrentWeather_Servlet">
-            <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
+            <form name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
+            <a HREF="javascript:document.CurrentWeather.submit()">CURRENT WEATHER</a></form>
+            <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
+            <a HREF="javascript:document.WeatherHistory.submit()">WEATHER HISTORY</a></form>
+            
             <%--
             <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
             <a href="601_weather_history.jsp">WEATHER HISTORY</a>

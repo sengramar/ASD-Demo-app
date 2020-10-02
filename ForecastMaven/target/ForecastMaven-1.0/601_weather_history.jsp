@@ -4,30 +4,96 @@
     Author     : soyoung
 --%>
 
+<%@page import="java.util.LinkedList"%>
+<%@page import="DAO.DBManager"%>
+<%@page import="Model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="css/style.css"/>
-        <title>Weather History Page</title>
+
+
+<title class="title">Weather History</title>
+
     </head>
-    <body>
-        <div class="content">
-            <br><br>
-            <div class="header"> <h1>Weather History</h1></div>
+
+    <Body>
+<table style="width: 70%" class="fl-table">
             
-        <div class="sidenav">
-            <br><br>
-            <a href="index.html">HOME</a>
-            <form name="submitForm" method="POST" action="FirstCurrentWeather_Servlet">
-            <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
-            <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
-            <a href="601_weather_history.jsp">WEATHER HISTORY</a>
-            <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
-        </div>
-            
-        </div>
+<form action="WeatherHistory_Servlet" method="POST" >
+<%-- 
+Search Servlet
+--%>
+    
+<p>Date : <input type="text" name="Date" value="">
+<p>Region : <input type="text" name="Region" value="">
+    
+   
+<p><button type="submit" class ="btn"> Search </button></p></form>
+        <tr>
+            <th class="subtitle">Region</th>
+            <th class="subtitle">Date</th>
+            <th class="subtitle">Time</th>
+            <th class="subtitle">Temperature</th>
+            <th class="subtitle">Humidity</th>
+            <th class="subtitle">Wind Speed</th>
+            <th class="subtitle">Wind Direction</th>
+            <th class="subtitle">Cloudyness</th>
+            <th class="subtitle">Description</th>
+        </tr> 
+        
+        <%       
+            User user = (User)session.getAttribute("user");
+        LinkedList List  = (LinkedList) session.getAttribute("List");
+        for(int i =0; i < List.size(); i = i + 9)
+        {
+        %> 
+          <tr>
+          <form action="WeatherHistory_Servlet" method="POST">
+<%-- 
+List Servlet
+--%>
+              <td>
+                  <input class="subtitle" readonly="True" type="text" name="Region" value ="<%= List.get(i).toString().trim()  %>">
+              </td>
+              <td>
+                  <input class="subtitle" readonly="True" type="text" name="Date" value ="<%= List.get(i+1).toString().trim()  %>">
+              </td>
+              <td>
+                  <input class="subtitle" readonly="True" type="text" name="Time" value ="<%= List.get(i+2).toString().trim()  %>">
+              </td>
+              <td>
+                  <input class="subtitle" readonly="True" type="text" name="Temperature" value ="<%= List.get(i+3).toString().trim()  %>">
+              </td>
+              <td>
+                  <input class="subtitle" readonly="True" type="text" name="Humidity" value ="<%= List.get(i+4).toString().trim()  %>">
+              </td>  
+              <td>
+                  <input class="subtitle" readonly="True" type="text" name="Wind speed" value ="<%= List.get(i+5).toString().trim()  %>">
+              </td>
+              <td>
+                  <input class="subtitle" readonly="True" type="text" name="Wind direction" value ="<%= List.get(i+6).toString().trim()  %>">
+              </td>
+              <td>
+                  <input class="subtitle" readonly="True" type="text" name="Cloudy" value ="<%= List.get(i+7).toString().trim()  %> %">
+              </td>
+              <td>
+                  <input class="subtitle" readonly="True" type="text" name="danger level" value ="<%= List.get(i+8).toString().trim()  %>">
+              </td>  
+             
+        <%         
+           }
+        %> 
+          </tr>
+      </table>
+          
+<form action="FirstWeatherHistory_Servlet" method="POST">
+<p><button type="submit" class ="btn"> Back </button><p>
+</form>
+   
+    
     </body>
 </html>
