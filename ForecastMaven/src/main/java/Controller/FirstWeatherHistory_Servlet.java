@@ -33,8 +33,8 @@ public class FirstWeatherHistory_Servlet extends HttpServlet
         
         
         //list = Query.search_history(searchLocation);//run query*/
-        list = Query.weather_history("", "");
-        session.setAttribute("List", list);//set attribute to be redirected
+        list = Query.weather_history("");
+        session.setAttribute("ListHistory", list);//set attribute to be redirected
         
         response.sendRedirect("601_weather_history.jsp");//redirect to index.html page
     }

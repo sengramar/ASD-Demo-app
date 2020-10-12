@@ -29,15 +29,13 @@ public class ListLocation_Search_Servlet extends HttpServlet
         HttpSession session = request.getSession();
         if(request.getParameter("search").equals(""))
         {
-            Search_txt_box = "";
+            Search_txt_box = " ";
         }
         else
         {
             Search_txt_box = (String) request.getParameter("search");
         }
-       
-        String Search = Search_txt_box.substring(0, 1).toUpperCase() + Search_txt_box.substring(1);   
-
+        String Search = Search_txt_box.substring(0, 1).toUpperCase() + Search_txt_box.substring(1); 
         list = Query.List_Location(Search);//run query
         
         session.setAttribute("List", list);//set attribute to be redirected

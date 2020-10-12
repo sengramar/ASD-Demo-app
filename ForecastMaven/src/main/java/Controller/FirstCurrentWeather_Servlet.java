@@ -1,4 +1,5 @@
 package Controller;
+import API.Mail;
 import DAO.MongoDBManager;
 import Model.User;
 import Model.Location;
@@ -18,6 +19,7 @@ public class FirstCurrentWeather_Servlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        //Mail.SendMail("sengramar@gmail.com");
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");

@@ -264,12 +264,12 @@ public class MongoDBManager
     
     
     
-    public LinkedList<String> weather_history(String location, String date) 
+    public LinkedList<String> weather_history(String location) 
     {
         LinkedList<String> historyList = new LinkedList<String>();
         //int locationID = Integer.parseInt(location);
         Document historyDocs = 
-                new Document("location ID", Pattern.compile(".*"+location.trim()+".*")).append("Date", Pattern.compile(".*"+date.trim()+".*"));
+                new Document("location ID", Pattern.compile(".*"+location.trim()+".*"));
                 
                 
         

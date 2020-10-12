@@ -23,16 +23,30 @@
     <Body>
 <table style="width: 70%" class="fl-table">
             
-<form action="WeatherHistory_Servlet" method="POST" >
+
 <%-- 
 Search Servlet
 --%>
-    
-<p>Date : <input type="text" name="Date" value="">
-<p>Region : <input type="text" name="Region" value="">
-    
+<%       
+        String Region = (String) session.getAttribute("Region");
+%>
+<form method="POST" >    
+<p class="subtitle">Region</p>
+<p hidden><input type="text" name="Redirect" value="601_weather_history.jsp"></p>
+<p><input type="text" id="Region" name="Region" Required ="True" readonly="True" value=<%=(Region != null ? Region : "Select")%>>
+<button type="submit" formaction="ListLocation_Servlet"> Select  </button>
+<p hidden><input type="text" name="Redirect" value="601_weather_history.jsp"></p>
+<p>&nbsp;</p>
+<button onclick="clear()">Clear Text</button></form>
+<p></p>
+<form id="SubmitFormAll" method ="POST" action="FirstWeatherHistory_Servlet">
    
-<p><button type="submit" class ="btn"> Search </button></p></form>
+</form>
+<form id="SubmitForm" method ="POST" action="WeatherHistory_Servlet">
+<p hidden><input type="text" id="Region" name="Region" value=<%=(Region != null ? Region : "Select Your Location")%>><P>
+</form>
+<input type="button" onclick="SubmitSearch()" value="Search">
+
         <tr>
             <th class="subtitle">Region</th>
             <th class="subtitle">Date</th>
@@ -41,18 +55,17 @@ Search Servlet
             <th class="subtitle">Humidity</th>
             <th class="subtitle">Wind Speed</th>
             <th class="subtitle">Wind Direction</th>
-            <th class="subtitle">Cloudyness</th>
+            <th class="subtitle">Cloudiness</th>
             <th class="subtitle">Description</th>
         </tr> 
         
         <%       
-            User user = (User)session.getAttribute("user");
-        LinkedList List  = (LinkedList) session.getAttribute("List");
+        User user = (User)session.getAttribute("user");
+        LinkedList List  = (LinkedList) session.getAttribute("ListHistory");
         for(int i =0; i < List.size(); i = i + 9)
         {
         %> 
           <tr>
-          <form action="WeatherHistory_Servlet" method="POST">
 <%-- 
 List Servlet
 --%>
@@ -90,10 +103,39 @@ List Servlet
           </tr>
       </table>
           
-<form action="FirstWeatherHistory_Servlet" method="POST">
+<% if(user == null)
+{%>
+<form action="index.jsp" method="POST">
+<%}
+else{%>
+<form action="main.jsp" method="POST">
+<%}
+%>
 <p><button type="submit" class ="btn"> Back </button><p>
 </form>
    
     
     </body>
+<script>
+function clear() {
+  <%       
+        session.setAttribute("Region", "ALL");
+  %>
+}
+function SubmitSearch() {
+      if (document.getElementById("Region").value === "Select") 
+      {
+           alert("Select a location please");
+      }
+      else if (document.getElementById("Region").value === "ALL") 
+      {
+          document.getElementById("SubmitFormAll").submit();
+      }
+      else
+      {
+          document.getElementById("SubmitForm").submit();
+      }
+          
+}
+</script>    
 </html>

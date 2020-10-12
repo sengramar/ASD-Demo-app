@@ -44,6 +44,12 @@ public class SelectLocation_Servlet extends HttpServlet
             RequestDispatcher rd = request.getRequestDispatcher("CurrentWeather_Servlet");
             rd.forward(request, response);
         }
+        else if (Redirect.equals("601_weather_history.jsp"))
+        {
+            String Region = request.getParameter("Region");
+            session.setAttribute("Region", Region);
+            response.sendRedirect(Redirect);//redirect to index.html page
+        }
        
         
         

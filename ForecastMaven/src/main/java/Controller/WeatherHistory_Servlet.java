@@ -25,16 +25,24 @@ public class WeatherHistory_Servlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        String searchRegion = "" + request.getParameter("Region");
+        if(request.getParameter("Region").equals(""))
+        {
+            searchRegion = " ";
+        }
+        else
+        {
+            searchRegion = (String) request.getParameter("Region");
+        }
+        String SearchRegion = searchRegion.substring(0, 1).toUpperCase() + searchRegion.substring(1); 
         
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String searchRegion = request.getParameter("Region");
-        String searchDate = request.getParameter("Date");    
-        Location current = Query.findLocationId(searchRegion);
-        
+        System.out.println("REGION NAME"+  searchRegion);
+        Location current = Query.findLocationId(SearchRegion);
         //list = Query.search_history(searchLocation);//run query*/
-        list = Query.weather_history(Integer.toString(current.getLocationID()), searchDate);
-        session.setAttribute("List", list);//set attribute to be redirected
+        list = Query.weather_history(Integer.toString(current.getLocationID()));
+        session.setAttribute("ListHistory", list);//set attribute to be redirected
         
         response.sendRedirect("601_weather_history.jsp");//redirect to index.html page
     }
