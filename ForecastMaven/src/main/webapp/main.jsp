@@ -8,9 +8,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="css/style.css"/>
-
+<script type="text/javascript">
+        function getCookie(name) { var cookie = document.cookie; 
+            if (document.cookie != "") { 
+                var cookie_array = cookie.split("; "); 
+                for ( var index in cookie_array) { 
+                    var cookie_name = cookie_array[index].split("="); 
+                    if (cookie_name[0] == "popupYN") { 
+                        return cookie_name[1]; 
+                    } 
+                } 
+            } 
+            return; 
+        }
+        
+        function popup() {
+            var cookieCheck = getCookie("popupYN");
+            var popUrl = "alert.jsp";
+            var popOption = "width=379, height=360, resizable=no, scrollbars=no, status=no;";
+            if (cookieCheck != 'N') {
+                window.open(popUrl, "WeatherAlert", popOption);
+            }
+            document.write("<form name="+"PopForm"+" target="+"WeatherAlert"+" method="+"post"+" action="+"WeatherAlert_Servlet"+">");
+            document.write("<input type="+"hidden"+" name="+"param1"+" value="+"param1Value"+">");
+            document.PopForm.submit();
+            document.write("</form>");
+        }
+    </script>
 </head>
-<body onload="popupOpen();">
+<body onload="popup();">
     <%
             User user = (User)session.getAttribute("user");
             MongoDBManager manager = (MongoDBManager)session.getAttribute("manager"); 
@@ -50,7 +76,6 @@
 
         <form action="LogoutServlet" method="GET">
             <button type="submit" class="button">Logout</button>
-
         </form>
 
   <div class="w3-container w3-padding-32" id="projects">
@@ -112,14 +137,7 @@
   </div>
 </div>
     </body>
-    
-    <script type="text/javascript">
-        function popupOpen() {
-            var popUrl = "alert.jsp";
-            var popOption = "width=379, height=360, resizable=no, scrollbars=no, status=no;";
-            window.open(popUrl, "", popOption);
-        }
-    </script>
+
     
     <jsp:include page="/ConnServlet" flush="true" />
 </html>
