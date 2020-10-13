@@ -36,7 +36,7 @@
         }
     </script>
 </head>
-<body onload="popup();">
+<body onclick="popup();">
     <%
             User user = (User)session.getAttribute("user");
             MongoDBManager manager = (MongoDBManager)session.getAttribute("manager"); 
