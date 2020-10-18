@@ -35,11 +35,11 @@
            
             <div>
                 <h3><%= forecast.get(i).getDate() %></h3>
-                    <li>TEMPERATURE <%= forecast.get(i).getTemp() %></li>
-                    <li>HUMIDITY <%= forecast.get(i).getHumidity() %></li>
-                    <li>CLOUDINEDD<%= forecast.get(i).getCloudy() %> </li>
-                    <li>WIND SPEED <%= forecast.get(i).getWindSpeed() %> </li>
-                    <li>WIND DEGREE <%= forecast.get(i).getWindDegree() %> </li>
+                <li><B>TEMPERATURE</B> <%= forecast.get(i).getTemp() %></li>
+                    <li><B>HUMIDITY</B> <%= forecast.get(i).getHumidity() %>%</li>
+                    <li><B>CLOUDINESS</B> <%= forecast.get(i).getCloudy() %>% </li>
+                    <li><B>WIND SPEED</B> <%= forecast.get(i).getWindSpeed() %>m/s </li>
+                    <li><B>WIND DEGREE</B> <%= forecast.get(i).getWindDegree() %> </li>
                     <li><%= forecast.get(i).getDescription() %> </li>
             </div>
         <%}%>
