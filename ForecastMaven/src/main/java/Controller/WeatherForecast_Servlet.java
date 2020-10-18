@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import API.dailyWeatherAPI;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import API.weatherAPI;
+import DAO.*;
+import Model.WeatherForecast;
+import java.util.LinkedList;
+
 
 /**
  *
@@ -20,64 +24,48 @@ import API.weatherAPI;
  */
 
 @WebServlet(name = "WeatherForecast_Servlet", urlPatterns = {"/WeatherForecast_Servlet"})
-public class WeatherForecast_Servlet {
+public class WeatherForecast_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        weatherAPI API = new weatherAPI();
-        
+        dailyWeatherAPI forecastAPI = new dailyWeatherAPI();
         HttpSession session = request.getSession();
+        
         response.setContentType("text/html;charset=UTF-8");
-        String Email, Location;
-        int LocationId = 0;
-        if(session.getAttribute("Location") == null)
-        {
-            Location = "Sydney, AU";
-            LocationId = 1;
-        }
-        else
-        {
-            Location = (String) session.getAttribute("Location");
-            LocationId = (int) session.getAttribute("LocationID");
-        }
-        if(session.getAttribute("Email") == null)
-        {
-            Email = "";
-        }
-        else
-        {
-            Email = (String) session.getAttribute("Email");
+        String Location;
+        
+        Location = (String) session.getAttribute("Location");
+        int LocationId = (int) session.getAttribute("LocationID");
+        
+        LinkedList<WeatherForecast> forecast = new LinkedList<WeatherForecast>();
+        System.out.println("test1");
+        
+        String Response= forecastAPI.request(Location);
+        String[] Result = forecastAPI.Split(Response);
 
-        System.out.println(Location);
-        String APIResult = API.request(Location);
-        String City = "" + API.getCity(APIResult);
-        String Country = "" + API.getCountry(APIResult);
-        String Celcius = Integer.toString(API.getCelcius(APIResult));
-        String Fahrenheit = Integer.toString(API.getFahrenheit(APIResult));
-        String Kelvin = Integer.toString(API.getKelvin(APIResult));
+        String City = "" + forecastAPI.getCity(Response);
+        String Country = "" + forecastAPI.getCountry(Response);
         
-        
-        String Cloudy = "" + API.getCloudy(APIResult);
-        String Humidity = "" + API.getHumidity(APIResult);
-        String WindDegree = API.getWindDeg(APIResult);
-        String WindSpeed = API.getWindSpeed(APIResult);
-        String Description = "" + API.getDescription(APIResult);
-        
-        session.setAttribute("Location", Location);
-        session.setAttribute("Celcius", Celcius);
-        session.setAttribute("Fahrenheit", Fahrenheit);
-        session.setAttribute("Kelvin", Kelvin);
-        
+        for (int i = 1; i< Result.length; i++)
+        {
+            WeatherForecast current = new WeatherForecast
+            (forecastAPI.getDate(Result[i]),
+            forecastAPI.getTemp(Result[i]),
+            forecastAPI.getCloudy(Result[i]),
+            forecastAPI.getHumidity(Result[i]),
+            forecastAPI.getWindSpeed(Result[i]),
+            forecastAPI.getWindDeg(Result[i]),        
+            forecastAPI.getDescription(Result[i]));
+            forecast.add(current);
+            
+            System.out.println(forecastAPI.getTemp(Result[i]));
+            System.out.println("test2");
+        }
+        System.out.println("test3");
+        session.setAttribute("forecast", forecast);
         session.setAttribute("City", City);
         session.setAttribute("Country", Country);
-        
-        session.setAttribute("Cloudy", Cloudy);
-        session.setAttribute("Humidity", Humidity);
-        session.setAttribute("WindDegree", WindDegree);
-        
-        session.setAttribute("WindSpeed", WindSpeed);
-        session.setAttribute("Description", Description);
 
-        response.sendRedirect("401_current_weather.jsp");//redirect to index.html page
-    }
+         System.out.println("test4");
+        response.sendRedirect("501_weather_forecast.jsp");
     }
 }

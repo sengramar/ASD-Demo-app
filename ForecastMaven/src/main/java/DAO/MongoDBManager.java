@@ -114,6 +114,61 @@ public class MongoDBManager
         }
         return newAdmin=null;
     }
+    
+    public User checkUser(String Email) 
+    {
+        int userId, locationId;
+        String user_password, email, firstname,lastname;
+        User newUser;
+        Document WhereDocs = new Document("email", Email);
+        System.out.println(WhereDocs.toString());
+        for (Document doc : users.find(WhereDocs))
+        {
+            userId = ((Integer) doc.get("userID"));
+            locationId = ((Integer) doc.get("locationID"));
+            user_password = ((String) doc.get("user_password"));
+            email =((String) doc.get("email"));
+            firstname =((String) doc.get("firstName"));
+            lastname = ((String) doc.get("lastName"));
+
+            newUser = new User(userId, locationId, user_password, email, firstname, lastname);
+            return newUser;
+        }
+        return newUser = null;
+    }
+    
+     public Administrator checkAdmin(String Email) 
+    {
+        int adminId;
+        String adminpassword, email, firstname,lastname;
+        Administrator newAdmin;
+        Document WhereDocs = new Document("email", Email);
+        System.out.println(WhereDocs.toString());
+        for (Document doc : users.find(WhereDocs))
+        {
+            adminId = ((Integer) doc.get("adminId"));
+            adminpassword = ((String) doc.get("adminpassword"));
+            email =((String) doc.get("email"));
+            firstname =((String) doc.get("firstName"));
+            lastname = ((String) doc.get("lastName"));
+
+            newAdmin = new Administrator(adminId, adminpassword, email, firstname, lastname);
+            return newAdmin;
+        }
+        return newAdmin = null;
+    }
+     
+    public int finduserID(String Email) {
+        int id;
+        String email;
+        Document history =  new Document("email", Email);
+        for (Document doc : users.find(history)) {
+            email = (String) doc.get("email");
+            id = (int) doc.get("userID");
+            return id;
+        }
+        return 0;
+    }
      
     public void storeLogin(int AccessId, int userId, String loginDateTime) {
         int accesslogId = AccessId;
@@ -179,6 +234,13 @@ public class MongoDBManager
             return ID;
         }
         
+    }
+    
+     public void updatePass(int id, String password) 
+    {
+        Document where = new Document("userID", id);        
+        Document value = new Document("$set", new Document("user_password", password));
+        users.updateOne(where, value);
     }
 
     public void updateUser(int id, String password, String email, String firstname, String lastname, int location) 

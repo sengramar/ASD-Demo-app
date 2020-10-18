@@ -3,7 +3,8 @@
     Created on : 2020. 8. 25, 오전 11:18:18
     Author     : soyoung
 --%>
-
+<%@page import="Model.*"%>
+<%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,30 +14,56 @@
         <link rel="stylesheet" href="css/style.css"/>
         <title>Weather Forecast Page</title>
     </head>
+
     <body>
-        <%       
-        String Location = (String) session.getAttribute("Location");
-        String CurrentTempt = (String) session.getAttribute("CurrentTempt");
-        String City = (String) session.getAttribute("City");
-        String Country = (String) session.getAttribute("Country");
-        String WindSpeed = (String) session.getAttribute("WindSpeed");
-        String Description = (String) session.getAttribute("Description");
-        %>
         <div class="content">
             <br><br>
             <div class="header">
                 <h1>Weather Forecast</h1>
             </div>
-            
-            <h2> Currently in <%=City %>, <%=Country%> </h2>
-            <h2> <%=Description %> </h2>
-            <h2> Temperature <%=CurrentTempt %> </h2>
-            <h2> Wind Speed <%=WindSpeed %> </h2>
-          
+        <%
+            User user = (User)session.getAttribute("user");
+            String City = (String) session.getAttribute("City");
+            String Country = (String) session.getAttribute("Country");
+        %>
+             <h2><%=City %>, <%=Country%></h2>
+        <%      
+            LinkedList<WeatherForecast> forecast  = (LinkedList) session.getAttribute("forecast");
+            for(int i =0; i<forecast.size(); i++){
+        %> 
+<!--            <form action="WeatherForecast_Servlet" method="POST">-->
+           
+            <div>
+                <h3><%= forecast.get(i).getDate() %></h3>
+                    <li>TEMPERATURE <%= forecast.get(i).getTemp() %></li>
+                    <li>HUMIDITY <%= forecast.get(i).getHumidity() %></li>
+                    <li>CLOUDINEDD<%= forecast.get(i).getCloudy() %> </li>
+                    <li>WIND SPEED <%= forecast.get(i).getWindSpeed() %> </li>
+                    <li>WIND DEGREE <%= forecast.get(i).getWindDegree() %> </li>
+                    <li><%= forecast.get(i).getDescription() %> </li>
+            </div>
+        <%}%>
+        <form action="ListLocation_Servlet" method="POST">
+        <td><p hidden><input type="text" name="Redirect" value= "WeatherForecast_Servlet"></p></td>     
+        <input type="submit" value="Change Location (LIST)" ></form>
+                <br></br>
+        <button onclick="location.href = '801_Map_Location.jsp';" >Change Location (MAP)</button> 
             <div class="sidenav">
-                <br><br>
-                <a href="index.html">HOME</a>
-                <form name="submitForm" method="POST" action="FirstCurrentWeather_Servlet">
+            <br><br>
+            <% if(user == null)
+            {
+            %>
+            <a href="index.jsp">HOME</a>
+            <%
+            }
+            else{
+            %>
+            <a href="main.jsp">HOME</a>
+            <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
+            <%}
+            %>
+                <form name="submitForm" method="POST" action="CurrentWeather_Servlet">
+                <input type="hidden" name="param1" value="param1Value">
                 <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
                 <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
                 <a href="601_weather_history.jsp">WEATHER HISTORY</a>

@@ -10,21 +10,47 @@
 <link rel="stylesheet" href="css/style.css"/>
 
 </head>
+
 <body>
     <%
             User user = (User)session.getAttribute("user");
-            MongoDBManager manager = (MongoDBManager)session.getAttribute("manager"); 
-            String userId = request.getParameter("userId");
-            String email = request.getParameter("Email");
-            String password = request.getParameter("Password");
     %>
+    <script language="javascript">
+        var LogoutTimer = function() {
+        var session = {
+            timer : null, limit : 1000 * 20 * 1,
+            fnc   : function() {},
+            start : function() {
+                    session.timer = window.setTimeout(session.fnc, session.limit);
+                    },
+            reset : function() {
+                    window.clearTimeout(session.timer);
+                    session.start();
+                    }
+            };   
+	document.onmousemove = function() { session.reset(); };
+        return session;
+      }();
 
+      LogoutTimer.limit = 1000 * 20 * 1;
+ 
+      LogoutTimer.fnc = function() {
+        alert("Your session is invalid.");
+        window.location = "LogoutServlet";
+      }
+ 
+      LogoutTimer.start();
+      
+    </script>
+    
         <div class="sidenav">
             <br><br>
             <a href="main.jsp">HOME</a>
             <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
             <form name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
             <a HREF="javascript:document.CurrentWeather.submit()">CURRENT WEATHER</a></form>
+            <form name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
+            <a HREF="javascript:document.WeatherForecast.submit()">WEATHER FORECAST</a></form>
             <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
             <a HREF="javascript:document.WeatherHistory.submit()">WEATHER HISTORY</a></form>
             
