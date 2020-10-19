@@ -76,6 +76,7 @@ public class dailyWeatherAPI {
     {
         return find(APIResult,"speed",7);
     }
+
     public String getTemp(String APIResult)
     {
         double Kelvin = Double.parseDouble(find(APIResult,"temp",6));

@@ -22,6 +22,8 @@
             <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
             <form name="submitForm" method="POST" action="FirstCurrentWeather_Servlet">
             <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
+            <form name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
+            <a HREF="javascript:document.WeatherForecast.submit()">WEATHER FORECAST</a></form>
             <a href="1111_WindSpeedMap.jsp">WIND SPEED MAP</a>
             <%--
             <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>

@@ -13,6 +13,10 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="css/style.css"/>
         <title>Weather Forecast Page</title>
+        <style>
+            ul {float:left;}
+            ul li {list-style-type: none;}
+        </style>
     </head>
 
     <body>
@@ -32,22 +36,28 @@
             for(int i =0; i<forecast.size(); i++){
         %> 
 <!--            <form action="WeatherForecast_Servlet" method="POST">-->
-           
+           <div class="nav">
             <div>
+                <ul>
                 <h3><%= forecast.get(i).getDate() %></h3>
                 <li><B>TEMPERATURE</B> <%= forecast.get(i).getTemp() %></li>
-                    <li><B>HUMIDITY</B> <%= forecast.get(i).getHumidity() %>%</li>
-                    <li><B>CLOUDINESS</B> <%= forecast.get(i).getCloudy() %>% </li>
-                    <li><B>WIND SPEED</B> <%= forecast.get(i).getWindSpeed() %>m/s </li>
-                    <li><B>WIND DEGREE</B> <%= forecast.get(i).getWindDegree() %> </li>
-                    <li><%= forecast.get(i).getDescription() %> </li>
+                <li><B>HUMIDITY</B> <%= forecast.get(i).getHumidity() %>%</li>
+                <li><B>CLOUDINESS</B> <%= forecast.get(i).getCloudy() %>% </li>
+                <li><B>WIND SPEED</B> <%= forecast.get(i).getWindSpeed() %>m/s </li>
+                <li><B>WIND DEGREE</B> <%= forecast.get(i).getWindDegree() %> </li>
+                <li><%= forecast.get(i).getDescription() %> </li>
+                </ul>
             </div>
+           </div>
         <%}%>
         <form action="ListLocation_Servlet" method="POST">
         <td><p hidden><input type="text" name="Redirect" value= "WeatherForecast_Servlet"></p></td>     
         <input type="submit" value="Change Location (LIST)" ></form>
-                <br></br>
-        <button onclick="location.href = '801_Map_Location.jsp';" >Change Location (MAP)</button> 
+                <br>            
+        <form action="LocationMap_Servlet" method="POST">
+        <td><p hidden><input type="text" name="Redirect" value= "WeatherForecast_Servlet"></p></td>     
+        <input type="submit" value="Change Location (MAP)" ></form>
+
             <div class="sidenav">
             <br><br>
             <% if(user == null)

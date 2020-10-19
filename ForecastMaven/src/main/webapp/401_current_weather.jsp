@@ -61,8 +61,11 @@
         <form action="ListLocation_Servlet" method="POST">
         <td><p hidden><input type="text" name="Redirect" value= "CurrentWeather_Servlet"></p></td>     
         <input type="submit" value="Change Location (LIST)" ></form>
-                <br></br>
-        <button onclick="location.href = '801_Map_Location.jsp';" >Change Location (MAP)</button>  
+                <br>
+        <form action="LocationMap_Servlet" method="POST">
+        <td><p hidden><input type="text" name="Redirect" value= "CurrentWeather_Servlet"></p></td>     
+        <input type="submit" value="Change Location (MAP)" ></form>        
+               
         <div class="sidenav">
              <br><br>
             <% if(user == null)
@@ -79,6 +82,8 @@
             %>
             <form name="submitForm" method="POST" action="FirstCurrentWeather_Servlet">
             <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
+            <form name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
+            <a HREF="javascript:document.WeatherForecast.submit()">WEATHER FORECAST</a></form>
             <!--
             <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
             <a href="601_weather_history.jsp">WEATHER HISTORY</a>

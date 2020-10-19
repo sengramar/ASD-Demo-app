@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import DAO.*;
 import Model.WeatherForecast;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 
 
@@ -30,6 +33,25 @@ public class WeatherForecast_Servlet extends HttpServlet {
         dailyWeatherAPI forecastAPI = new dailyWeatherAPI();
         HttpSession session = request.getSession();
         
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd");   
+        LocalDate localDate = LocalDate.now();
+        LocalDate localDate1 = localDate.plusDays(1);
+        LocalDate localDate2 = localDate.plusDays(2);
+        LocalDate localDate3 = localDate.plusDays(3);
+        LocalDate localDate4 = localDate.plusDays(4);
+        LocalDate localDate5 = localDate.plusDays(5);
+        LocalDate localDate6 = localDate.plusDays(6);
+        
+        
+        LinkedList<LocalDate> localDatelist = new LinkedList<LocalDate>();
+            localDatelist.add(localDate);
+            localDatelist.add(localDate1);
+            localDatelist.add(localDate2);
+            localDatelist.add(localDate3);
+            localDatelist.add(localDate4);
+            localDatelist.add(localDate5);
+            localDatelist.add(localDate6);
+        
         response.setContentType("text/html;charset=UTF-8");
         String Location;
         
@@ -37,7 +59,6 @@ public class WeatherForecast_Servlet extends HttpServlet {
         int LocationId = (int) session.getAttribute("LocationID");
         
         LinkedList<WeatherForecast> forecast = new LinkedList<WeatherForecast>();
-        System.out.println("test1");
         
         String Response= forecastAPI.request(Location);
         String[] Result = forecastAPI.Split(Response);
@@ -56,16 +77,11 @@ public class WeatherForecast_Servlet extends HttpServlet {
             forecastAPI.getWindDeg(Result[i]),        
             forecastAPI.getDescription(Result[i]));
             forecast.add(current);
-            
-            System.out.println(forecastAPI.getTemp(Result[i]));
-            System.out.println("test2");
         }
-        System.out.println("test3");
         session.setAttribute("forecast", forecast);
         session.setAttribute("City", City);
         session.setAttribute("Country", Country);
 
-         System.out.println("test4");
         response.sendRedirect("501_weather_forecast.jsp");
     }
 }

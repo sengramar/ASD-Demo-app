@@ -45,13 +45,11 @@ public class FindPasswordServlet extends HttpServlet  {
     {     
         HttpSession session = request.getSession();
         String Email = (String) request.getParameter("Email");
-//        int userId = (Integer) session.getAttribute("userId"); 
+
         Validator.clear(session);
-        
-        if (!Validator.validateEmail(Email)) 
-        {
+        if (!Validator.validateEmail(Email)) {
             session.setAttribute("emailErr", "Error: Email format incorrect");
-            response.sendRedirect("204_FindPassword.jsp");
+            response.sendRedirect("203_AdminLogin.jsp");
         }
         else {
             User checkuser = null;

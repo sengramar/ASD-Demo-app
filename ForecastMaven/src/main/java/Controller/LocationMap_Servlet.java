@@ -2,12 +2,12 @@ package Controller;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import DAO.*;
 
 
 
@@ -20,18 +20,10 @@ public class LocationMap_Servlet extends HttpServlet
     {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-
-            int LocationID = Integer.parseInt(request.getParameter("LocationID"));
-            String Country = request.getParameter("Country");
-            String Region = request.getParameter("Region");
-            
-            String Location = Region + ","+ Country;
-            session.setAttribute("Location", Location);
-            session.setAttribute("LocationID", LocationID);
-            
-            RequestDispatcher rd = request.getRequestDispatcher("CurrentWeather_Servlet");
-            rd.forward(request, response);
-            
+        String Redirect = (String) request.getParameter("Redirect");
+        
+        session.setAttribute("Redirect", Redirect);
+        response.sendRedirect("801_Map_Location.jsp");
       
     }
 }

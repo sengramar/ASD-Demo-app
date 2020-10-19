@@ -32,7 +32,6 @@ public class API {
     public static String getAPIWeatherForecastResult(String Location) {
         try {
             URL google = new URL(DomainForecast + Location + APIKey);
-//            URL google = new URL(DomainForecast + Location + date + APIKey);
             BufferedReader in = new BufferedReader(new InputStreamReader(google.openStream()));
             while ((inputLine = in.readLine()) != null) {
                 // Process each line.

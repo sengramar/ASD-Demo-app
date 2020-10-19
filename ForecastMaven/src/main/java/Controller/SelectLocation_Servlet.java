@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 @WebServlet(name = "SelectLocation_Servlet", urlPatterns = {"/SelectLocation_Servlet"})
 public class SelectLocation_Servlet extends HttpServlet 
 {
@@ -39,7 +40,7 @@ public class SelectLocation_Servlet extends HttpServlet
             
             String Location = Region + ","+ Country;
             session.setAttribute("Location", Location);
-             session.setAttribute("LocationID", LocationID);
+            session.setAttribute("LocationID", LocationID);
              
             RequestDispatcher rd = request.getRequestDispatcher("CurrentWeather_Servlet");
             rd.forward(request, response);
@@ -52,7 +53,7 @@ public class SelectLocation_Servlet extends HttpServlet
             
             String Location = Region + ","+ Country;
             session.setAttribute("Location", Location);
-             session.setAttribute("LocationID", LocationID);
+            session.setAttribute("LocationID", LocationID);
              
             RequestDispatcher rd = request.getRequestDispatcher("WeatherForecast_Servlet");
             rd.forward(request, response);
