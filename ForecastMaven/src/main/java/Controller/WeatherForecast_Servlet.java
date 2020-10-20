@@ -33,25 +33,6 @@ public class WeatherForecast_Servlet extends HttpServlet {
         dailyWeatherAPI forecastAPI = new dailyWeatherAPI();
         HttpSession session = request.getSession();
         
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd");   
-        LocalDate localDate = LocalDate.now();
-        LocalDate localDate1 = localDate.plusDays(1);
-        LocalDate localDate2 = localDate.plusDays(2);
-        LocalDate localDate3 = localDate.plusDays(3);
-        LocalDate localDate4 = localDate.plusDays(4);
-        LocalDate localDate5 = localDate.plusDays(5);
-        LocalDate localDate6 = localDate.plusDays(6);
-        
-        
-        LinkedList<LocalDate> localDatelist = new LinkedList<LocalDate>();
-            localDatelist.add(localDate);
-            localDatelist.add(localDate1);
-            localDatelist.add(localDate2);
-            localDatelist.add(localDate3);
-            localDatelist.add(localDate4);
-            localDatelist.add(localDate5);
-            localDatelist.add(localDate6);
-        
         response.setContentType("text/html;charset=UTF-8");
         String Location;
         
@@ -59,15 +40,18 @@ public class WeatherForecast_Servlet extends HttpServlet {
         int LocationId = (int) session.getAttribute("LocationID");
         
         LinkedList<WeatherForecast> forecast = new LinkedList<WeatherForecast>();
+        LinkedList<String> dateList = new LinkedList<String>();
+         LinkedList<WeatherForecast> dailyForecast = new LinkedList<WeatherForecast>();
         
         String Response= forecastAPI.request(Location);
         String[] Result = forecastAPI.Split(Response);
 
         String City = "" + forecastAPI.getCity(Response);
         String Country = "" + forecastAPI.getCountry(Response);
-        
+
         for (int i = 1; i< Result.length; i++)
         {
+            if(forecastAPI.getDate(Result[i]).contains("00:00:00")){
             WeatherForecast current = new WeatherForecast
             (forecastAPI.getDate(Result[i]),
             forecastAPI.getTemp(Result[i]),
@@ -77,7 +61,10 @@ public class WeatherForecast_Servlet extends HttpServlet {
             forecastAPI.getWindDeg(Result[i]),        
             forecastAPI.getDescription(Result[i]));
             forecast.add(current);
+            }
         }
+        
+        
         session.setAttribute("forecast", forecast);
         session.setAttribute("City", City);
         session.setAttribute("Country", Country);

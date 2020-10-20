@@ -85,7 +85,6 @@
             <form name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
             <a HREF="javascript:document.WeatherForecast.submit()">WEATHER FORECAST</a></form>
             <!--
-            <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
             <a href="601_weather_history.jsp">WEATHER HISTORY</a>
             <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
             -->

@@ -14,9 +14,9 @@ import java.util.LinkedList;
 public class WeatherForecast {
     private LinkedList<WeatherForecast> forecast = null;
     
-    String Date, City, Country,Cloudy, temp, humidity, windSpeed, windDegree, cloudiness, Description;
+    String Date, City, Country, Cloudy, temp, humidity, windSpeed, windDegree, Description;
 
-    public WeatherForecast(String Date, String temp,  String Cloudy, String humidity, String windSpeed, String windDegree, String Description) {
+    public WeatherForecast(String Date, String temp, String Cloudy, String humidity, String windSpeed, String windDegree, String Description) {
         this.Date = Date;
         this.Cloudy = Cloudy;
         this.temp = temp;

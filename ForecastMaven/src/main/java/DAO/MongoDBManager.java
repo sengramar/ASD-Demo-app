@@ -140,31 +140,47 @@ public class MongoDBManager
      public Administrator checkAdmin(String Email) 
     {
         int adminId;
-        String adminpassword, email, firstname,lastname;
+        String adminPassword, email, firstname,lastname;
         Administrator newAdmin;
         Document WhereDocs = new Document("email", Email);
         System.out.println(WhereDocs.toString());
-        for (Document doc : users.find(WhereDocs))
+        for (Document doc : admins.find(WhereDocs))
         {
             adminId = ((Integer) doc.get("adminId"));
-            adminpassword = ((String) doc.get("adminpassword"));
+            adminPassword = ((String) doc.get("adminpassword"));
             email =((String) doc.get("email"));
-            firstname =((String) doc.get("firstName"));
-            lastname = ((String) doc.get("lastName"));
+            firstname =((String) doc.get("firstname"));
+            lastname = ((String) doc.get("lastname"));
 
-            newAdmin = new Administrator(adminId, adminpassword, email, firstname, lastname);
+            newAdmin = new Administrator(adminId, adminPassword, email, firstname, lastname);
             return newAdmin;
         }
         return newAdmin = null;
     }
      
-    public int finduserID(String Email) {
+    public int finduserID(String Email, String Firstname, String Lastname) {
         int id;
-        String email;
-        Document history =  new Document("email", Email);
+        String email, firstname, lastname;
+        Document history =  new Document("email", Email).append("firstName",Firstname).append("lastName",Lastname);
         for (Document doc : users.find(history)) {
             email = (String) doc.get("email");
+            firstname = (String) doc.get("firstName");
+            lastname = (String) doc.get("lastName");
             id = (int) doc.get("userID");
+            return id;
+        }
+        return 0;
+    }
+    
+    public int findAdminID(String Email, String Firstname, String Lastname) {
+        int id;
+        String email, firstname, lastname;
+        Document history =  new Document("email", Email).append("firstname",Firstname).append("lastname",Lastname);
+        for (Document doc : admins.find(history)) {
+            email = (String) doc.get("email");
+            firstname = (String) doc.get("firstname");
+            lastname = (String) doc.get("lastname");
+            id = (int) doc.get("adminId");
             return id;
         }
         return 0;
@@ -241,6 +257,12 @@ public class MongoDBManager
         Document where = new Document("userID", id);        
         Document value = new Document("$set", new Document("user_password", password));
         users.updateOne(where, value);
+    }
+     public void updateAdminPass(int id, String password) 
+    {
+        Document where = new Document("adminId", id);        
+        Document value = new Document("$set", new Document("adminpassword", password));
+        admins.updateOne(where, value);
     }
 
     public void updateUser(int id, String password, String email, String firstname, String lastname, int location) 

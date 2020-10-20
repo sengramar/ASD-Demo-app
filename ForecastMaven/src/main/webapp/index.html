@@ -6,7 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="css/style.css"/>
-
+        <style>
+            .menustyle {height: 100%; width: 100; position: fixed; right: 20px;}
+            .menustyle > div {float:right; padding: 5px;}
+        </style>
 </head>
 <body>
         <div class="sidenav">
@@ -18,14 +21,9 @@
             <a HREF="javascript:document.WeatherForecast.submit()">WEATHER FORECAST</a></form>
             <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
             <a HREF="javascript:document.WeatherHistory.submit()">WEATHER HISTORY</a></form>
-            
-            <!--
-            <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
-            <a href="601_weather_history.jsp">WEATHER HISTORY</a>
-            <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
-            -->
+           
             <a href="1111_WindSpeedMap.jsp">WIND SPEED MAP</a>
-        </div>
+        </div>   
 
         <div class="content">
             <br><br>
@@ -36,21 +34,25 @@
             </center>
             
             <p align="center">Lulu lala I hope it wont be raining</p>
-
-        <form action="IndexRegister_Servlet" method="POST">
-            <button type="submit" class="button">Register (USER)</button>
-        </form>
-        <form action="IndexAdminRegister_Servlet" method="POST">
-            <button type="submit" class="button">Register (ADMIN)</button>
-        </form>
-
-        <form action="IndexLoginServlet" method="POST">
-            <button type="submit" class="button">SIGN IN (USER)</button>
-        </form>   
-        <form action="IndexAdminLoginServlet" method="POST">
-            <button type="submit" class="button">SIGN IN (ADMIN) </button>
-        </form> 
-
+        <div class="menustyle">
+            <div>
+            <form action="IndexRegister_Servlet" method="POST">
+                <button type="submit" class="button">Register (USER)</button>
+            </form>
+            </div><div>
+            <form action="IndexAdminRegister_Servlet" method="POST">
+                <button type="submit" class="button">Register (ADMIN)</button>
+            </form>
+            </div><div>
+            <form action="IndexLoginServlet" method="POST">
+                <button type="submit" class="button">SIGN IN (USER)</button>
+            </form>   
+            </div><div>
+            <form action="IndexAdminLoginServlet" method="POST">
+                <button type="submit" class="button">SIGN IN (ADMIN) </button>
+            </form> 
+            </div>
+        </div>
   <div class="w3-container w3-padding-32" id="projects">
       <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Pages</h3>
   </div>

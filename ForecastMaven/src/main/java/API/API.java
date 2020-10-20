@@ -9,6 +9,9 @@ public class API {
     static String DomainForecast = "http://api.openweathermap.org/data/2.5/forecast?q=";
     static String inputLine; 
     static String date = "&cnt=7";
+    //One call API
+    static String OneCallDomain = "https://api.openweathermap.org/data/2.5/onecall?";
+    static String latlon = "lat=-33.8679&lon=151.2073&exclude=minutely,hourly,alerts";
     
     public static String getAPIResult(String Location) {
         try {

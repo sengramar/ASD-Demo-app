@@ -1,6 +1,6 @@
 <%-- 
-    Document   : 204_FindPassword
-    Created on : 2020. 10. 2, 오후 6:53:00
+    Document   : 205_AdminFindPassword
+    Created on : 2020. 10. 20, 오전 10:36:09
     Author     : yses9
 --%>
 
@@ -26,7 +26,7 @@
     <center>     
         <h1 class="header">Find Password</h1><span><%=(existErr != null ? existErr : "")%></span><br>
         <div class="regbox">
-        <form method="post" name="form" action="FindPasswordServlet">
+        <form method="post" name="form" action="AdminFindPasswordServlet">
             <p><span><%=(SentEmail != null? SentEmail : "")%></span></p>
         <table>
             <tr>

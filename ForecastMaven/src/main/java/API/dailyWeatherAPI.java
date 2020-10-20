@@ -11,7 +11,6 @@ package API;
  */
 
 public class dailyWeatherAPI {
-    private double MaxCelcius, MinCelcius ;
     static final double kelvinConst = 273.15;
     
     public dailyWeatherAPI(){
@@ -48,6 +47,7 @@ public class dailyWeatherAPI {
         }
         return find;
     }
+
     public String getDate(String APIResult)
     {
         return find(APIResult,"dt_txt",9);

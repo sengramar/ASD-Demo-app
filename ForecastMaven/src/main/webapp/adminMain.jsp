@@ -14,10 +14,34 @@
 <body>
     <%
             Administrator admin = (Administrator)session.getAttribute("admin");
-            DBManager manager = (DBManager)session.getAttribute("manager"); 
-            String email = request.getParameter("Email");
-            String password = request.getParameter("Password");
     %>
+    <script language="javascript">
+        var LogoutTimer = function() {
+        var session = {
+            timer : null, limit : 1000 * 60 * 1,
+            fnc   : function() {},
+            start : function() {
+                    session.timer = window.setTimeout(session.fnc, session.limit);
+                    },
+            reset : function() {
+                    window.clearTimeout(session.timer);
+                    session.start();
+                    }
+            };   
+	document.onmousemove = function() { session.reset(); };
+        return session;
+      }();
+
+      LogoutTimer.limit = 1000 * 60 * 1;
+ 
+      LogoutTimer.fnc = function() {
+        alert("Your session is invalid.");
+        window.location = "LogoutServlet";
+      }
+ 
+      LogoutTimer.start();
+      
+    </script>
 
         <div class="sidenav">
             <br><br>

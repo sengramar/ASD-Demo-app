@@ -13,6 +13,11 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="css/style.css"/>
         <title>Login</title>
+        <style>
+            .mainnav { height: 100%; width: 250px; position: fixed; top: -50px; left: 20px; font-family: Trebuchet MS; font-size: 30px; }
+            .mainnav a { color: black; text-decoration: none; display: block;}
+            .subnav >p {display: inline-block;};
+        </style>
     </head>
     <body>
     <%
@@ -38,11 +43,20 @@
         </table>
         <button type="submit"> Login </button>
         <button><a href="index.jsp"> Cancel</a> </button>
-        <p>if you forget your password Click <a href="204_FindPassword.jsp"> Here </a>
-        <p>if you want to login as Admin Click <a href="203_AdminLogin.jsp"> Here </a>
+         
+        <br>
+        <div class="subnav">
+            <p><a href="204_FindPassword.jsp">Forgot your password?</a>
+                &nbsp; &nbsp; &nbsp;
+            <p><a href="101_register.jsp"> Sign Up </a>
+        </div>
+            <p>if you want to login as Admin Click <a href="203_AdminLogin.jsp"> Here </a>
         </form>
         </div>
-   </center>
-
+  </center>
+            <div class="mainnav">
+            <br><br>
+            <a href="index.jsp">HOME</a>
+            </div> 
     </body>
 </html>

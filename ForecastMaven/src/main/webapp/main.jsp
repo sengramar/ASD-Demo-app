@@ -18,7 +18,7 @@
     <script language="javascript">
         var LogoutTimer = function() {
         var session = {
-            timer : null, limit : 1000 * 20 * 1,
+            timer : null, limit : 1000 * 60 * 1,
             fnc   : function() {},
             start : function() {
                     session.timer = window.setTimeout(session.fnc, session.limit);
@@ -32,7 +32,7 @@
         return session;
       }();
 
-      LogoutTimer.limit = 1000 * 20 * 1;
+      LogoutTimer.limit = 1000 * 60 * 1;
  
       LogoutTimer.fnc = function() {
         alert("Your session is invalid.");
@@ -53,11 +53,7 @@
             <a HREF="javascript:document.WeatherForecast.submit()">WEATHER FORECAST</a></form>
             <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
             <a HREF="javascript:document.WeatherHistory.submit()">WEATHER HISTORY</a></form>
-            
-            <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
-            <a href="601_weather_history.jsp">WEATHER HISTORY</a>
-            <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
-            -->
+
             <a href="1111_WindSpeedMap.jsp">WIND SPEED MAP</a>
         </div>
 
