@@ -53,7 +53,7 @@
                 <div>
                     <ul>
                     <h3><%= forecast.get(i).getDate() %></h3>
-                    <li><B>TEMPERATURE</B> <%= forecast.get(i).getTemp() %></li>
+                    <li><B>TEMPERATURE</B> <%= forecast.get(i).getTemp() %>°C</li>
                     <li><B>HUMIDITY</B> <%= forecast.get(i).getHumidity() %>%</li>
                     <li><B>CLOUDINESS</B> <%= forecast.get(i).getCloudy() %>% </li>
                     <li><B>WIND SPEED</B> <%= forecast.get(i).getWindSpeed() %>m/s </li>
