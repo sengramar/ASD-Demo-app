@@ -52,6 +52,7 @@ public class WeatherForecast_Servlet extends HttpServlet {
         for (int i = 1; i< Result.length; i++)
         {
             if(forecastAPI.getDate(Result[i]).contains("00:00:00")){
+                
             WeatherForecast current = new WeatherForecast
             (forecastAPI.getDate(Result[i]),
             forecastAPI.getTemp(Result[i]),
@@ -59,7 +60,8 @@ public class WeatherForecast_Servlet extends HttpServlet {
             forecastAPI.getHumidity(Result[i]),
             forecastAPI.getWindSpeed(Result[i]),
             forecastAPI.getWindDeg(Result[i]),        
-            forecastAPI.getDescription(Result[i]));
+            forecastAPI.getDescription(Result[i]),
+            forecastAPI.getIcon(Result[i]));
             forecast.add(current);
             }
         }

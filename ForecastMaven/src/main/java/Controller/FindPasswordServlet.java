@@ -74,7 +74,7 @@ public class FindPasswordServlet extends HttpServlet  {
               System.out.println(pass);
               String message = "Your temporary password is" + " "+ pass;
               System.out.println(message);
-//              passemail.SendMail(Email,message);
+              passemail.SendMail(Email,message);
 
               session.setAttribute("SentEmail", "Message sent successfully");
               session.setAttribute("tempMsg", "Your temporary password is" + " "+ pass);

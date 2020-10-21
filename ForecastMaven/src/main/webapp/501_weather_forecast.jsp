@@ -58,7 +58,7 @@
                     <li><B>CLOUDINESS</B> <%= forecast.get(i).getCloudy() %>% </li>
                     <li><B>WIND SPEED</B> <%= forecast.get(i).getWindSpeed() %>m/s </li>
                     <li><B>WIND DEGREE</B> <%= forecast.get(i).getWindDegree() %> </li>
-                    <li><%= forecast.get(i).getDescription() %> </li>
+                    <li><%= forecast.get(i).getDescription() %> <img src= <%= forecast.get(i).getIcon() %>></li>
                     </ul>
                 </div>
             </div>

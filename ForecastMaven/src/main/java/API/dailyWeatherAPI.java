@@ -88,4 +88,11 @@ public class dailyWeatherAPI {
     {
         return find(APIResult,"description",14);
     }
+     public String getIcon(String APIResult)
+    {
+        String domain = "http://openweathermap.org/img/wn/";
+        String png ="@2x.png";
+        return domain+find(APIResult,"icon",7)+png;
+    }
+    
 }
