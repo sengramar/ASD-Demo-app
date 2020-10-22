@@ -17,7 +17,7 @@
         <style>
             .mainnav { height: 100%; width: 250px; position: fixed; top: -50px; left: 20px; font-family: Trebuchet MS; font-size: 30px; }
             .mainnav a { color: black; text-decoration: none; display: block;}
-            .subnav >p {display: inline-block;};
+            .subnav p {display: inline-block;};
         </style>
     </head>
     <body>
@@ -27,7 +27,7 @@
             String passErr = (String) session.getAttribute("passErr");
     %>
     <center>     
-        <h1 class="header">Administrator Sign Up</h1><span><%=(existErr != null ? existErr : "")%></span><br>
+        <h1 class="header">Administrator Sign In</h1><span><%=(existErr != null ? existErr : "")%></span><br>
         <div class="regbox">
         <form method="post" name="form" action="AdminLogin_Servlet">
         <table>
