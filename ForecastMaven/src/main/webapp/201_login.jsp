@@ -16,7 +16,7 @@
         <style>
             .mainnav { height: 100%; width: 250px; position: fixed; top: -50px; left: 20px; font-family: Trebuchet MS; font-size: 30px; }
             .mainnav a { color: black; text-decoration: none; display: block;}
-            .subnav >p {display: inline-block;};
+            .subnav p {display: inline-block;};
         </style>
     </head>
     <body>
