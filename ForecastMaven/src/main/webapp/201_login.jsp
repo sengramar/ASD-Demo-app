@@ -26,7 +26,7 @@
             String passErr = (String) session.getAttribute("passErr");
     %>
     <center>     
-        <h1 class="header">Sign Up</h1><span><%=(existErr != null ? existErr : "")%></span><br>
+        <h1 class="header">Sign In</h1><span><%=(existErr != null ? existErr : "")%></span><br>
         <div class="regbox">
         <form method="post" name="form" action="LoginMongoServlet">
         <table>
