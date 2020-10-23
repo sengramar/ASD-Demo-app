@@ -55,7 +55,43 @@ public class MongoDBManager
         //SELECT ALL 
     }
         return list_data;
-    }   
+    }
+    
+    public Location findLoc(int LocationId) 
+    {               
+        Document SearchBSON = new Document("LocationId", Integer.toString(LocationId));//WHERE LIKE 'SEARCH%'
+        for (Document doc : location.find(SearchBSON))
+        {
+            String Country =(String) doc.get("Country");
+            String Region = (String) doc.get("Region");
+            String State = (String) doc.get("State");
+            //you need to get all the data
+            Location currentLocation = new Location(LocationId, Country, State, Region);
+            return currentLocation;
+        }
+        return null;
+    }
+    
+    public LinkedList<User> findUserLoc(int locId) {
+        int userId, locationId;
+        String user_password, email, firstname,lastname;
+        LinkedList<User> newUserList = new LinkedList();
+        Document WhereDocs = new Document("locationID", locId);
+        System.out.println(WhereDocs.toString());
+        for (Document doc : users.find(WhereDocs))
+        {
+            userId = ((Integer) doc.get("userID"));
+            locationId = ((Integer) doc.get("locationID"));
+            user_password = ((String) doc.get("user_password"));
+            email =((String) doc.get("email"));
+            firstname =((String) doc.get("firstName"));
+            lastname = ((String) doc.get("lastName"));
+            //you need to get all the data
+            User newUser = new User(userId, locationId, user_password, email, firstname, lastname);
+            newUserList.push(newUser);          
+        }
+        return newUserList;
+    }
     
     public User findUser(String Email, String User_Password) 
     {
@@ -114,30 +150,12 @@ public class MongoDBManager
         logList.add(new Document("accesslogId", accesslogId).append("adminId", adminId).append("loginTime", loginDateTime).append("logoutTime", null));
         accesslog.insertMany(logList);
     }
-    
-//    public void storeLogin(int userId, String loginDateTime) {
-//        int accesslogId = returnID(accesslog, "accesslogId");
-//        logList.clear();
-//        logList.add(new Document("accesslogId", accesslogId).append("userId", userId).append("adminId", null).append("loginTime", loginDateTime).append("logoutTime", null));
-//        accesslog.insertMany(logList);
-//    }
-//	
-//    public void storeAdminLogin(int adminId, String loginDateTime) {
-//        int accesslogId = returnID(accesslog, "accesslogId");
-//        logList.clear();
-//        logList.add(new Document("accesslogId", accesslogId).append("userId", null).append("adminId", adminId).append("loginTime", loginDateTime).append("logoutTime", null));
-//        accesslog.insertMany(logList);
-//    }
             
     public void storeLogout(int accesslogId, String logoutDateTime) {
 	Document loghistory = new Document("accesslogId", accesslogId);
         Document logouthistory = new Document("$set",new Document("logoutTime",logoutDateTime));
         accesslog.updateOne(loghistory,logouthistory);
     }
-
-    //public void storeLogout(int accesslogId, String logoutDateTime) throws SQLException {
-    //    st.executeUpdate("UPDATE ACCESSLOG SET logoutTime = '" + logoutDateTime + "'" + "WHERE accesslogId = " + accesslogId + "");
-    // }
     
     public int findAccessLogID(int userId) {
         int id;
@@ -186,17 +204,10 @@ public class MongoDBManager
 
     public void updateUser(int id, String password, String email, String firstname, String lastname, int location) 
     {
-
-        //int ID = returnID(users, "userID");
-        //int ID = user.getId();
         PostList.clear();
        
         Document where = new Document("userID", id);
-        
-        //Document value = new Document("$set", new Document("user_password", password));
-        //Document value = new Document("userID", id).append("user_password", password).append("email", email).append("firstName",firstname)
-        //.append("lastName",lastname).append("locationID",location);
-        
+
         Document value = new Document("$set", new Document("user_password", password).append("email", email).append("firstName",firstname)
         .append("lastName",lastname).append("locationID",location));
         users.updateOne(where, value);
@@ -223,17 +234,10 @@ public class MongoDBManager
         
          public void updateAdmin(int id, String password, String email, String firstname, String lastname) 
     {
-
-        //int ID = returnID(users, "userID");
-        //int ID = user.getId();
         PostList.clear();
        
         Document where = new Document("adminId", id);
-        
-        //Document value = new Document("$set", new Document("user_password", password));
-        //Document value = new Document("userID", id).append("user_password", password).append("email", email).append("firstName",firstname)
-        //.append("lastName",lastname).append("locationID",location);
-        
+
         Document value = new Document("$set", new Document
         ("adminpassword", password).append("email", email).append("firstname",firstname)
         .append("lastname",lastname));
@@ -287,6 +291,5 @@ public class MongoDBManager
         list_data.add((String) doc.get("lastname"));
     }
     return list_data;
-    } 
-
+    }
 }
