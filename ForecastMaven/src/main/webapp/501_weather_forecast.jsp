@@ -49,19 +49,17 @@
             for(int i =0; i<forecast.size(); i++){
         %> 
 <!--            <form action="WeatherForecast_Servlet" method="POST">        -->
-           <div class="nav">
-                <div>
                     <ul>
                     <h3><%= forecast.get(i).getDate() %></h3>
+                    <li>< Average ></li>
                     <li><B>TEMPERATURE</B> <%= forecast.get(i).getTemp() %>°C</li>
                     <li><B>HUMIDITY</B> <%= forecast.get(i).getHumidity() %>%</li>
                     <li><B>CLOUDINESS</B> <%= forecast.get(i).getCloudy() %>% </li>
                     <li><B>WIND SPEED</B> <%= forecast.get(i).getWindSpeed() %>m/s </li>
                     <li><B>WIND DEGREE</B> <%= forecast.get(i).getWindDegree() %> </li>
-                    <li><%= forecast.get(i).getDescription() %> <img src= <%= forecast.get(i).getIcon() %>></li>
+                    <li><%= forecast.get(i).getDescription().toUpperCase() %> <img src= <%= forecast.get(i).getIcon() %>></li>
                     </ul>
-                </div>
-            </div>
+    
         <% } %>
        
         <div class="sidenav">

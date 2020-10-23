@@ -33,7 +33,7 @@
             <tr>
             <td><p class="subtitle"><label for="Email">Email</label></p></td>
                 <td><p>&nbsp;</p></td>
-                <td><p><input type="Email" name="Email"required="True" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>"></p></td>
+                <td><p><input type="Email" name="Email" required="True" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>"></p></td>
             </tr>
             <tr>
             <td><p class="subtitle"><label for="Password">Password</label></p></td>

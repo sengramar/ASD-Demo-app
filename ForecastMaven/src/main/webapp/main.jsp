@@ -18,7 +18,7 @@
     <script language="javascript">
         var LogoutTimer = function() {
         var session = {
-            timer : null, limit : 1000 * 60 * 1,
+            timer : null, limit : 1000 * 60 * 20,
             fnc   : function() {},
             start : function() {
                     session.timer = window.setTimeout(session.fnc, session.limit);
@@ -32,7 +32,7 @@
         return session;
       }();
 
-      LogoutTimer.limit = 1000 * 60 * 1;
+      LogoutTimer.limit = 1000 * 60 * 20;
  
       LogoutTimer.fnc = function() {
         alert("Your session is invalid.");

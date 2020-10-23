@@ -47,6 +47,7 @@ public class FindPasswordServlet extends HttpServlet  {
         String Email = (String) request.getParameter("Email");
         String Firstname = (String) request.getParameter("Firstname");
         String Lastname = (String) request.getParameter("Lastname");
+        Mail passemail = new Mail();
 
         Validator.clear(session);
         if (!Validator.validateEmail(Email)) {
@@ -63,25 +64,24 @@ public class FindPasswordServlet extends HttpServlet  {
         }
         else {
             User checkuser = null;
-            Mail passemail = null;
             checkuser =  Query.checkUser(Email);
             
             if (checkuser != null){
-              session.setAttribute("checkuser", checkuser);
-              int userId = Query.finduserID(Email,Firstname,  Lastname);
-              String pass = checkuser.randomPassword();
-              MongoManager.updatePass(userId, pass);
-              System.out.println(pass);
-              String message = "Your temporary password is" + " "+ pass;
-              System.out.println(message);
-              passemail.SendMail(Email,message);
+                session.setAttribute("checkuser", checkuser);
+                int userId = Query.finduserID(Email,Firstname,  Lastname);
+                String pass = checkuser.randomPassword();
+                MongoManager.updatePass(userId, pass);
+                System.out.println(pass);
+                String message = "Your temporary password is" + " "+ pass;
+                System.out.println(message);
+                passemail.SendMail(Email,message);
 
-              session.setAttribute("SentEmail", "Message sent successfully");
-              session.setAttribute("tempMsg", "Your temporary password is" + " "+ pass);
-              request.getRequestDispatcher("204_FindPassword.jsp").include(request,response);
+                session.setAttribute("SentEmail", "Message sent successfully");
+                session.setAttribute("tempMsg", "Your temporary password is" + " "+ pass);
+                request.getRequestDispatcher("204_FindPassword.jsp").include(request,response);
             }else {
-                 session.setAttribute("existErr", "Account does not exist");
-                 request.getRequestDispatcher("204_FindPassword.jsp").include(request,response);
+                session.setAttribute("existErr", "Account does not exist");
+                request.getRequestDispatcher("204_FindPassword.jsp").include(request,response);
             }
         }
         response.sendRedirect("204_FindPassword.jsp");

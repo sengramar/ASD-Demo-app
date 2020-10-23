@@ -49,23 +49,32 @@ public class LoginMongoServlet extends HttpServlet  {
         String Email = (String) request.getParameter("Email");
         String User_Password = (String) request.getParameter("Password");
         
-        User user=null;
-        user =  Query.findUser(Email, User_Password);
-        if (user != null) 
-        {
-            
-            session.setAttribute("user", user);
-            response.sendRedirect("main.jsp");
-            int userId = user.getUserId();
-            int AccessLogId = Query.returnID(accesslog,"accesslogId");
-            Query.storeLogin(AccessLogId, userId, loginDateTime);
-            session.setAttribute("AccessLogId", AccessLogId);              
-
+        Validator.clear(session);
+        if (!Validator.validateEmail(Email)) {
+            session.setAttribute("emailErr", "Error: Email format incorrect");
+            response.sendRedirect("203_AdminLogin.jsp");
         }
-        else {
-            session.setAttribute("existErr", " - Email or password incorrect");
-            response.sendRedirect("201_login.jsp");
-            
+        else if (!Validator.validatePassword(User_Password)) {
+            session.setAttribute("passErr", "Error: Password format incorrect");
+           response.sendRedirect("203_AdminLogin.jsp");
+        }
+        else{
+            User user=null;
+            user =  Query.findUser(Email, User_Password);
+
+            if (user != null) {
+                session.setAttribute("user", user);
+                response.sendRedirect("main.jsp");
+                int userId = user.getUserId();
+                int AccessLogId = Query.returnID(accesslog,"accesslogId");
+                Query.storeLogin(AccessLogId, userId, loginDateTime);
+                session.setAttribute("AccessLogId", AccessLogId);              
+            }
+            else {
+                session.setAttribute("existErr", " - Email or password incorrect");
+                response.sendRedirect("201_login.jsp");
+
+            }
         }
     }
 }
