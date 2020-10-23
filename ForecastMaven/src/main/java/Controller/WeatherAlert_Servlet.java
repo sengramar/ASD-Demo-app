@@ -4,13 +4,17 @@
  * and open the template in the editor.
  */
 package Controller;
+import API.Mail;
 import API.weatherAPI;
+import API.weatherAlertMail;
 import DAO.MongoDBManager;
+import Model.Location;
 import Model.User;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,30 +31,6 @@ public class WeatherAlert_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)   
             throws ServletException, IOException 
     {       
-         
-//        response.setContentType("text/html;charset=UTF-8");
-//        HttpSession session = request.getSession();
-//        
-//        int userId = Integer.parseInt(request.getParameter("userId"));
-//        String Email = (String) request.getParameter("Email");
-//        String Password = (String) request.getParameter("Password");
-//        String Firstname = (String) request.getParameter("Firstname");
-//        String Lastname = (String) request.getParameter("Lastname");
-//        int LocationID = (Integer) Integer.parseInt(request.getParameter("LocationID"));
-//        
-//        User user = new User(userId, LocationID, Password, Email, Firstname, Lastname);
-//        
-//        String Country = request.getParameter("Country");
-//        String Region = request.getParameter("Region");
-//            
-//        String Location = Region + ","+ Country;
-//        session.setAttribute("Location", Location);
-//        session.setAttribute("LocationID", LocationID);
-//        
-//        RequestDispatcher rd = request.getRequestDispatcher("CurrentWeather_Servlet");
-//        rd.forward(request, response);
-//        
-//        response.sendRedirect("alert.jsp");
              
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd");   
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -58,28 +38,22 @@ public class WeatherAlert_Servlet extends HttpServlet {
         String date = (dateFormat.format(now));
         String time = (timeFormat.format(now));
         
+        
         weatherAPI API = new weatherAPI();
         
         HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
-        //User user = (User)session.getAttribute("user");
-        String Location;
-        //int userId = Integer.parseInt(request.getParameter("userId"));
-        int LocationID = 0;
-        if(session.getAttribute("userId") == null)
-        {
-            Location = "Sydney, AU";
-            LocationID = 1;
-        }
-        else
-        {
-            Location = (String) session.getAttribute("Location");
-            LocationID = (int) session.getAttribute("location");
-        }
+        User user = (User)session.getAttribute("user");
+
+        int LocationID;
+        LocationID = user.getLocationId();
+            Location Current = Mongo.findLoc(LocationID);
+            String Country = Current.getCountry();
+            String Region = Current.getRegion();
+            String Location = Region + ","+ Country;
         
         String APIResult = API.request(Location);
         String City = "" + API.getCity(APIResult);
-        String Country = "" + API.getCountry(APIResult);
         String Celcius = Integer.toString(API.getCelcius(APIResult));
         String Fahrenheit = Integer.toString(API.getFahrenheit(APIResult));
         String Kelvin = Integer.toString(API.getKelvin(APIResult));
@@ -90,7 +64,12 @@ public class WeatherAlert_Servlet extends HttpServlet {
         String WindSpeed = API.getWindSpeed(APIResult);
         String Description = "" + API.getDescription(APIResult);
         
-        Mongo.saveToWeatherHistory(date,time,LocationID,Celcius,Humidity,WindSpeed,WindDegree,Cloudy,Description);//run query
+        LinkedList<User> ListUser = Mongo.findUserLoc(LocationID);
+
+        for (int i = 0 ; i < ListUser.size() ; i ++) 
+        { 
+            weatherAlertMail.SendMail(ListUser.get(i).getEmail(), "");
+        }
         
         session.setAttribute("Location", Location);
         session.setAttribute("Celcius", Celcius);
@@ -107,7 +86,7 @@ public class WeatherAlert_Servlet extends HttpServlet {
         session.setAttribute("WindSpeed", WindSpeed);
         session.setAttribute("Description", Description);
         
-        if(Integer.parseInt(Celcius) > 10){
+        if(Integer.parseInt(Celcius) > 40){
             session.setAttribute("warning", "The weather is hot and the sun is strong, so take sunscreen, hat, and sunglasses.");
             request.getRequestDispatcher("alert.jsp").include(request,response);
         }
