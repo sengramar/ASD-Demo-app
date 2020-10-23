@@ -9,34 +9,35 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="css/style.css"/>
 <script type="text/javascript">
-        function getCookie(name) { var cookie = document.cookie; 
-            if (document.cookie != "") { 
-                var cookie_array = cookie.split("; "); 
-                for ( var index in cookie_array) { 
-                    var cookie_name = cookie_array[index].split("="); 
-                    if (cookie_name[0] == "popupYN") { 
-                        return cookie_name[1]; 
-                    } 
-                } 
-            } 
-            return; 
-        }
+//        function getCookie(name) { var cookie = document.cookie; 
+//            if (document.cookie != "") { 
+//                var cookie_array = cookie.split("; "); 
+//                for ( var index in cookie_array) { 
+//                    var cookie_name = cookie_array[index].split("="); 
+//                    if (cookie_name[0] == "popupYN") { 
+//                        return cookie_name[1]ookie_array) { 
+//                    var cookie_name = cook; 
+//                    } 
+//                } 
+//            } 
+//            return; 
+//        }
         
         function popup() {
-            var cookieCheck = getCookie("popupYN");
+            //var cookieCheck = getCookie("popupYN");
             var popUrl = "alert.jsp";
             var popOption = "width=379, height=360, resizable=no, scrollbars=no, status=no;";
-            if (cookieCheck != 'N') {
+//            if (cookieCheck != 'N') {
                 window.open(popUrl, "WeatherAlert", popOption);
-            }
+//            }
             document.write("<form name="+"PopForm"+" target="+"WeatherAlert"+" method="+"post"+" action="+"WeatherAlert_Servlet"+">");
             document.write("<input type="+"hidden"+" name="+"param1"+" value="+"param1Value"+">");
             document.PopForm.submit();
             document.write("</form>");
-        }
+        }window.onload = popup();
     </script>
 </head>
-<body onload="popup();">
+<body>
     <%
             User user = (User)session.getAttribute("user");
             MongoDBManager manager = (MongoDBManager)session.getAttribute("manager"); 
