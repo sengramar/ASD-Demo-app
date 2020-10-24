@@ -15,7 +15,7 @@
 //                for ( var index in cookie_array) { 
 //                    var cookie_name = cookie_array[index].split("="); 
 //                    if (cookie_name[0] == "popupYN") { 
-//                        return cookie_name[1]ookie_array) { 
+//                        return cookie_name[1]cookie_array) { 
 //                    var cookie_name = cook; 
 //                    } 
 //                } 
