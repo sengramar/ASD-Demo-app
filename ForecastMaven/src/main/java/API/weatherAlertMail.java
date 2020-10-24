@@ -6,16 +6,26 @@
   
 package API;
 
+import DAO.MongoDBManager;
+import Model.Location;
+import Model.User;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.*;
 import javax.activation.CommandMap;
 import javax.activation.MailcapCommandMap;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-public class weatherAlertMail {
+public class weatherAlertMail{
 static { System.setProperty("https.protocols", "TLSv1.2"); }
-
+            
    public static void SendMail(String receipent, String msg) 
    {    
        final String email = "utsasdgroup3@yahoo.com";
@@ -74,9 +84,8 @@ static { System.setProperty("https.protocols", "TLSv1.2"); }
            message.setFrom(new InternetAddress(email));
            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
            message.setRecipient(Message.RecipientType.CC, new InternetAddress(cc));
-           message.setSubject("Weather"); //Set your Subject
-           message.setText(msg); //Set your Text
-           message.setText("It's raining. Take your umbrella");
+           message.setSubject("Weather Notification"); //Sest your Subject
+           message.setText(msg);
            System.out.println("TEST2");
            return message;
        } catch (Exception ex) {
