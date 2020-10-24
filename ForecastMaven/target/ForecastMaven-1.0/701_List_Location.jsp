@@ -15,9 +15,9 @@
         <link rel="stylesheet" href="css/style.css"/>
 
 
-<title class="title">List Product</title>
+<title class="title">List Location</title>
 
-    </head>
+</head>
 
     <Body>
 <table style="width: 70%" class="fl-table">

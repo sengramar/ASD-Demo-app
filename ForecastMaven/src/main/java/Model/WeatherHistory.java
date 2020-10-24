@@ -7,91 +7,99 @@ package Model;
 
 /**
  *
- * @author ASUS
+ * @author jiwonyou
  */
-public class WeatherHistory {
+public class WeatherHistory
+{
+    private String date, time, locationID, temperature, humidity, windspeed, winddirection, cloudy, description;
 
-    public WeatherHistory(String Celcius, String City, String Country, String Cloudy, String Humidity, String WindDegree, String WindSpeed, String Description) {
-        this.Celcius = Celcius;
-        this.City = City;
-        this.Country = Country;
-        this.Cloudy = Cloudy;
-        this.Humidity = Humidity;
-        this.WindDegree = WindDegree;
-        this.WindSpeed = WindSpeed;
-        this.Description = Description;
-    }
-    public String getCelcius() {
-        return Celcius;
-    }
+ 
 
-    public void setCelcius(String Celcius) {
-        this.Celcius = Celcius;
-    }
-
-    public String getCity() {
-        return City;
+    public WeatherHistory(String date, String time, String locationID, String temperature, String humidity, String windspeed, String winddirection, String cloudy, String description) 
+    {
+        this.date = date;
+        this.time = time;
+        this.locationID = locationID;
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.windspeed = windspeed;
+        this.winddirection = winddirection;
+        this.cloudy = cloudy;
+        this.description = description;
     }
 
-    public void setCity(String City) {
-        this.City = City;
+    public String getDate() {
+        return date;
     }
 
-    public String getCountry() {
-        return Country;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void setCountry(String Country) {
-        this.Country = Country;
+    public String getTime() {
+        return time;
     }
 
-    public String getCloudy() {
-        return Cloudy;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public void setCloudy(String Cloudy) {
-        this.Cloudy = Cloudy;
+    public String getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(String locationID) {
+        this.locationID = locationID;
+    }
+
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
     }
 
     public String getHumidity() {
-        return Humidity;
+        return humidity;
     }
 
-    public void setHumidity(String Humidity) {
-        this.Humidity = Humidity;
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
     }
 
-    public String getWindDegree() {
-        return WindDegree;
+    public String getWindspeed() {
+        return windspeed;
     }
 
-    public void setWindDegree(String WindDegree) {
-        this.WindDegree = WindDegree;
+    public void setWindspeed(String windspeed) {
+        this.windspeed = windspeed;
     }
 
-    public String getWindSpeed() {
-        return WindSpeed;
+    public String getWinddirection() {
+        return winddirection;
     }
 
-    public void setWindSpeed(String WindSpeed) {
-        this.WindSpeed = WindSpeed;
+    public void setWinddirection(String winddirection) {
+        this.winddirection = winddirection;
+    }
+
+    public String getCloudy() {
+        return cloudy;
+    }
+
+    public void setCloudy(String cloudy) {
+        this.cloudy = cloudy;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
-    String Celcius;
-    String City;
-    String Country;
-    String Cloudy;
-    String Humidity;
-    String WindDegree;
-    String WindSpeed;
-    String Description;
 
-
+ 
+    
 }

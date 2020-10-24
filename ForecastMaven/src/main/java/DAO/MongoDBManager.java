@@ -337,5 +337,134 @@ public class MongoDBManager
     return list_data;
     } 
     
+    public LinkedList<WeatherHistory> weather_analysis(String locationid) 
+    {
+        LinkedList<WeatherHistory> wa_list = new LinkedList<WeatherHistory>();
+        
+        Document docs = new Document("location ID", locationid);
+        
+        for(Document doc: History.find(docs))
+        {
+            WeatherHistory wh = new WeatherHistory((String) doc.get("Date"),(String) doc.get("Time"),(String) doc.get("location ID"),
+                                                        (String) doc.get("Temperature"),(String) doc.get("Humidity"),
+                                                        (String) doc.get("Wind speed"),(String) doc.get("Wind direction"),
+                                                         (String) doc.get("Cloudy"),(String) doc.get("danger level"));
+            wa_list.add(wh);
+            
+        }
+        
+        return wa_list;
+    }
+
+    public LinkedList<User> findUserLoc(int locId) 
+    {
+        int userId, locationId;
+        String user_password, email, firstname,lastname;
+        LinkedList<User> newUserList = new LinkedList();
+        Document WhereDocs = new Document("locationID", locId);
+        System.out.println(WhereDocs.toString());
+        for (Document doc : users.find(WhereDocs))
+        {
+            userId = ((Integer) doc.get("userID"));
+            locationId = ((Integer) doc.get("locationID"));
+            user_password = ((String) doc.get("user_password"));
+            email =((String) doc.get("email"));
+            firstname =((String) doc.get("firstName"));
+            lastname = ((String) doc.get("lastName"));
+            //you need to get all the data
+            User newUser = new User(userId, locationId, user_password, email, firstname, lastname);
+            newUserList.push(newUser);          
+        }
+        return newUserList;
+    }
+    
+    public User checkUser(String Email) 
+    {
+        int userId, locationId;
+        String user_password, email, firstname,lastname;
+        User newUser;
+        Document WhereDocs = new Document("email", Email);
+        System.out.println(WhereDocs.toString());
+        for (Document doc : users.find(WhereDocs))
+        {
+            userId = ((Integer) doc.get("userID"));
+            locationId = ((Integer) doc.get("locationID"));
+            user_password = ((String) doc.get("user_password"));
+            email =((String) doc.get("email"));
+            firstname =((String) doc.get("firstName"));
+            lastname = ((String) doc.get("lastName"));
+
+            newUser = new User(userId, locationId, user_password, email, firstname, lastname);
+            return newUser;
+        }
+        return newUser = null;
+    }
+    
+     public Administrator checkAdmin(String Email) 
+    {
+        int adminId;
+        String adminPassword, email, firstname,lastname;
+        Administrator newAdmin;
+        Document WhereDocs = new Document("email", Email);
+        System.out.println(WhereDocs.toString());
+        for (Document doc : admins.find(WhereDocs))
+        {
+            adminId = ((Integer) doc.get("adminId"));
+            adminPassword = ((String) doc.get("adminpassword"));
+            email =((String) doc.get("email"));
+            firstname =((String) doc.get("firstname"));
+            lastname = ((String) doc.get("lastname"));
+
+            newAdmin = new Administrator(adminId, adminPassword, email, firstname, lastname);
+            return newAdmin;
+        }
+        return newAdmin = null;
+    }
+     
+    public int finduserID(String Email, String Firstname, String Lastname) {
+        int id;
+        String email, firstname, lastname;
+        Document history =  new Document("email", Email).append("firstName",Firstname).append("lastName",Lastname);
+        for (Document doc : users.find(history)) {
+            email = (String) doc.get("email");
+            firstname = (String) doc.get("firstName");
+            lastname = (String) doc.get("lastName");
+            id = (int) doc.get("userID");
+            return id;
+        }
+        return 0;
+    }
+    
+    public int findAdminID(String Email, String Firstname, String Lastname) {
+        int id;
+        String email, firstname, lastname;
+        Document history =  new Document("email", Email).append("firstname",Firstname).append("lastname",Lastname);
+        for (Document doc : admins.find(history)) {
+            email = (String) doc.get("email");
+            firstname = (String) doc.get("firstname");
+            lastname = (String) doc.get("lastname");
+            id = (int) doc.get("adminId");
+            return id;
+        }
+        return 0;
+    }
+    
+    
+     public void updatePass(int id, String password) 
+    {
+        Document where = new Document("userID", id);        
+        Document value = new Document("$set", new Document("user_password", password));
+        users.updateOne(where, value);
+    }
+     
+     public void updateAdminPass(int id, String password) 
+    {
+        Document where = new Document("adminId", id);        
+        Document value = new Document("$set", new Document("adminpassword", password));
+        admins.updateOne(where, value);
+    }
+
+ 
+
 
 }

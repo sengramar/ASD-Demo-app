@@ -44,11 +44,33 @@ public class SelectLocation_Servlet extends HttpServlet
             RequestDispatcher rd = request.getRequestDispatcher("CurrentWeather_Servlet");
             rd.forward(request, response);
         }
+         else if (Redirect.equals("WeatherForecast_Servlet")) 
+        {
+            String Country = request.getParameter("Country");
+            String Region = request.getParameter("Region");
+            int LocationID = Integer.parseInt(request.getParameter("LocationID")); //Eunseo Replace ID wirh LocationID
+            
+            String Location = Region + ","+ Country;
+            session.setAttribute("Location", Location);
+            session.setAttribute("LocationID", LocationID);
+             
+            RequestDispatcher rd = request.getRequestDispatcher("WeatherForecast_Servlet");
+            rd.forward(request, response);
+        }
+         
         else if (Redirect.equals("601_weather_history.jsp"))
         {
             String Region = request.getParameter("Region");
             session.setAttribute("Region", Region);
             response.sendRedirect(Redirect);//redirect to index.html page
+        }
+        
+        else if(Redirect.equals("WeatherAnalysis_Servlet"))
+        {
+            String Region = request.getParameter("Region");
+            session.setAttribute("Region",Region);
+            RequestDispatcher rd = request.getRequestDispatcher(Redirect);
+            rd.forward(request, response);
         }
        
         

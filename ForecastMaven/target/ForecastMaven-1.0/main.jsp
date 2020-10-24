@@ -9,8 +9,60 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="css/style.css"/>
 
+<script language="javascript">
+        var LogoutTimer = function() {
+        var session = {
+            timer : null, limit : 1000 * 60 * 20,
+            fnc   : function() {},
+            start : function() {
+                    session.timer = window.setTimeout(session.fnc, session.limit);
+                    },
+            reset : function() {
+                    window.clearTimeout(session.timer);
+                    session.start();
+                    }
+            };   
+	document.onmousemove = function() { session.reset(); };
+        return session;
+      }();
+
+      LogoutTimer.limit = 1000 * 60 * 20;
+ 
+      LogoutTimer.fnc = function() {
+        alert("Your session is invalid.");
+        window.location = "LogoutServlet";
+      }
+ 
+      LogoutTimer.start();
+
+function popup() 
+       {
+            var popUrl = "alert.jsp";
+            var popOption = "width=379, height=360, resizable=no, scrollbars=no, status=no;";
+            window.open(popUrl, "WeatherAlert", popOption);
+            document.write("<form name="+"PopForm"+" target="+"WeatherAlert"+" method="+"post"+" action="+"WeatherAlert_Servlet"+">");
+            document.write("<input type="+"hidden"+" name="+"param1"+" value="+"param1Value"+">");
+            document.PopForm.submit();
+            document.write("</form>");
+        }
+        
+        <%
+            boolean popup = (boolean) session.getAttribute("popup");
+            if(popup)
+            {
+         %>
+            window.onload = popup();
+         <%       
+                popup = false;  
+                session.setAttribute ("popup", false);
+            }
+        %>
+</script>
+
 </head>
 <body>
+
+    
     <%
             User user = (User)session.getAttribute("user");
             MongoDBManager manager = (MongoDBManager)session.getAttribute("manager"); 
@@ -112,7 +164,9 @@
 </div>
     </body>
 
-    
+
     <jsp:include page="/ConnServlet" flush="true" />
 </html>
+
+
 

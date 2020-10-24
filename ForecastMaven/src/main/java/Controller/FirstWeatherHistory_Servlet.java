@@ -28,10 +28,7 @@ public class FirstWeatherHistory_Servlet extends HttpServlet
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         //int searchLocation = Integer.parseInt(request.getParameter("search"));
-        
-
-        
-        
+  
         //list = Query.search_history(searchLocation);//run query*/
         list = Query.weather_history("");
         session.setAttribute("ListHistory", list);//set attribute to be redirected

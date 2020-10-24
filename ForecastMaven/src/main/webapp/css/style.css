@@ -112,3 +112,12 @@ h1 {
 
     width: 450px;
 }
+
+.alertHeader {
+    background-color: #F1F1F1;
+    text-align: center;
+}
+
+.alertContent {
+    text-align: center;
+}

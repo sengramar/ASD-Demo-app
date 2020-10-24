@@ -59,7 +59,7 @@
             </table>
                 <br></br>
         <form action="ListLocation_Servlet" method="POST">
-        <td><p hidden><input type="text" name="Redirect" value= "CurrentWeather_Servlet"></p></td>     
+        <input type="hidden" name="Redirect" value= "CurrentWeather_Servlet">     
         <input type="submit" value="Change Location (LIST)" ></form>
                 <br></br>
         <button onclick="location.href = '801_Map_Location.jsp';" >Change Location (MAP)</button>  

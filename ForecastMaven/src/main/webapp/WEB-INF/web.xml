@@ -24,6 +24,26 @@
         <servlet-name>FirstWeatherHistory_Servlet</servlet-name>
         <servlet-class>Controller.FirstWeatherHistory_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WeatherAnalysis_Servlet</servlet-name>
+        <servlet-class>Controller.WeatherAnalysis_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WeatherAlert_Servlet</servlet-name>
+        <servlet-class>Controller.WeatherAlert_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FindPasswordServlet</servlet-name>
+        <servlet-class>Controller.FindPasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FirstWeatherForecast_Servlet</servlet-name>
+        <servlet-class>Controller.FirstWeatherForecast_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminFindPasswordServlet</servlet-name>
+        <servlet-class>Controller.AdminFindPasswordServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MapLocation_Servlet</servlet-name>
         <url-pattern>/MapLocation_Servlet</url-pattern>
@@ -47,6 +67,26 @@
     <servlet-mapping>
         <servlet-name>FirstWeatherHistory_Servlet</servlet-name>
         <url-pattern>/FirstWeatherHistory_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeatherAnalysis_Servlet</servlet-name>
+        <url-pattern>/WeatherAnalysis_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeatherAlert_Servlet</servlet-name>
+        <url-pattern>/WeatherAlert_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FindPasswordServlet</servlet-name>
+        <url-pattern>/FindPasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FirstWeatherForecast_Servlet</servlet-name>
+        <url-pattern>/FirstWeatherForecast_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminFindPasswordServlet</servlet-name>
+        <url-pattern>/AdminFindPasswordServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
