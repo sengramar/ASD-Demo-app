@@ -53,8 +53,18 @@ function popup()
             document.PopForm.submit();
             document.write("</form>");
         }
-        
-        
+        <%
+            boolean popup = (boolean) session.getAttribute("popup");
+            if(popup)
+            {
+         %>
+            window.onload = popup();
+         <%       
+                popup = false;  
+                session.setAttribute ("popup", false);
+            }
+        %>
+
 </script>
 
 </head>

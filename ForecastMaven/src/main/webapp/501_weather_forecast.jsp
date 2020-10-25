@@ -103,7 +103,7 @@
  
              <form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
                 <a  HREF="javascript:document.CurrentWeather.submit()">
-                    <img src="img/nav_3_1.png" width="337"></a>
+                    <img src="img/nav_1.png" width="337"></a>
             </form>
                 
             <form  class="nav_2" name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">

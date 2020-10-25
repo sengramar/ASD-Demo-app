@@ -51,8 +51,10 @@
                 <a  class="account" href="308_account_management_admin.jsp"><img src="img/account_btn_white.png" width="185"></a>
             </div>
  
-            <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_1.png" width="340"></form></a>
-                
+            <form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
+                <a  HREF="javascript:document.CurrentWeather.submit()">
+                    <img src="img/nav_1.png" width="337"></a>
+            </form> 
                 
             <form  class="nav_2" name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
                 <a  HREF="javascript:document.WeatherHistory.submit()"><img src="img/nav_2.png" width="340"></a></form>
@@ -101,9 +103,11 @@
                 <a  class="account" href="301_account_management.jsp"><img src="img/account_btn_white.png" width="185"></a>
             </div>
  
-            <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_1.png" width="340"></form></a>
-                
-                
+            <form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
+                <a  HREF="javascript:document.CurrentWeather.submit()">
+                    <img src="img/nav_1.png" width="337"></a>
+            </form>
+            
             <form  class="nav_2" name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
                 <a  HREF="javascript:document.WeatherHistory.submit()"><img src="img/nav_2.png" width="340"></a></form>
             

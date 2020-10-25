@@ -115,7 +115,7 @@
  
              <form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
                 <a  HREF="javascript:document.CurrentWeather.submit()">
-                    <img src="img/nav_3_1.png" width="337"></a>
+                    <img src="img/nav_1.png" width="337"></a>
             </form>
                 
             <form  class="nav_2" name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
@@ -265,12 +265,7 @@
                     <input type="hidden" name="State" value="SA">
                     <input type="hidden" name="Country" value="AU">
                     <input type="submit" name="Region" readonly="True" value="Whyalla" style="position: absolute; bottom:280px; right:400px;">
-                  
-                    <input type="hidden" name="LocationID" value=604>
-                    <input type="hidden" name="State" value="SA">
-                    <input type="hidden" name="Country" value="AU">
-                    <input type="submit" name="Region" readonly="True" value="Marla" style="position: absolute; bottom:400px; right:460px;">
-                  
+              
                     <%-- WA --%>
                     
                     <input type="hidden" name="LocationID" value=701>
