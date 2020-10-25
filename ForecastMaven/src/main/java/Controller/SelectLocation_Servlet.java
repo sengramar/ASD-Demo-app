@@ -48,7 +48,7 @@ public class SelectLocation_Servlet extends HttpServlet
         {
             String Country = request.getParameter("Country");
             String Region = request.getParameter("Region");
-            int LocationID = Integer.parseInt(request.getParameter("LocationID")); //Eunseo Replace ID wirh LocationID
+            int LocationID = Integer.parseInt(request.getParameter("ID")); //Eunseo Replace ID wirh LocationID
             
             String Location = Region + ","+ Country;
             session.setAttribute("Location", Location);
