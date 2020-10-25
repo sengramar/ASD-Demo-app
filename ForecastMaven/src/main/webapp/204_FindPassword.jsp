@@ -30,24 +30,22 @@
             String tempMsg = (String) session.getAttribute("tempMsg");
     %>
     <a href="index.jsp"> <img src="img/main_btn_1.png" class="main_link" ></a>
-  
-          <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_1.png" width="340"></form></a>
-                
-                
-            <form  class="nav_2" name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
-                <a  HREF="javascript:document.WeatherHistory.submit()"><img src="img/nav_2.png" width="340"></a></form>
+
+            <div class="topnav">   
+                <a href="101_register.jsp"><img src="img/register_btn.png" width="120"></a>
+                <a href="201_login.jsp"><img src="img/login_btn.png" width="120"></a>
+            </div>
             
-            <form class="nav_3" name="WeatherAnalysis" method="POST" action="WeatherAnalysis_Servlet">
-                <a  HREF="javascript:document.WeatherAnalysis.submit()"><img src="img/nav_3.png" width="341"></a></form>
-            
+            <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_3" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_3_1.png" width="337"></form></a>
+                
+              
             <form class="nav_4" name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
                 <a  HREF="javascript:document.WeatherForecast.submit()"><img src="img/nav_4.png" width="340"></a></form>
              
-            <a href="1112_PrecipitationMap.jsp"> <img src="img/nav_6.png" class="nav_5" ></a>
-   
-            <a href="1111_WindSpeedMap.jsp"> <img src="img/nav_7.png" class="nav_6" ></a>
+            <a href="1111_WindSpeedMap.jsp"> <img src="img/nav_5.png" class="nav_5" ></a>
             
-
+            <a href="1112_PrecipitationMap.jsp"> <img src="img/nav_6.png" class="nav_6" ></a>
+            
         
     
     <center>     
@@ -74,8 +72,8 @@
         </table>
             
         <button type="submit"> Get Temperary Password </button>
-        <button><a href="index.jsp"> Cancel</a> </button>
         </form>
+        <button><a href="index.jsp"> Cancel</a> </button>
         </div>
    </center>
 

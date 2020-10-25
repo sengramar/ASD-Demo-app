@@ -1,17 +1,21 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package asd.demo.model.dao;
 import org.junit.runner.JUnitCore;
+
 /**
  *
  * @author yujiwon
  */
+
 public class MavenJUnitRunner 
 {
-    public static void main(String[] args)
+    /*public static void main(String[] args)
     {
         System.out.println("-Testing MavenJUnitTest: ");
         org.junit.runner.Result result = JUnitCore.runClasses(MavenJUnitTest.class);
@@ -24,5 +28,6 @@ public class MavenJUnitRunner
         System.out.println("Number of Tests Failed=" + result.getFailureCount());
         System.out.println("Time =" + result.getRunTime()/1000.0+"s");
         
-    }
+    }*/
 }
+

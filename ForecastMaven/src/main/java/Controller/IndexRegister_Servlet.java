@@ -36,6 +36,7 @@ public class IndexRegister_Servlet extends HttpServlet
             session.setAttribute("Firstname", Empty);
             session.setAttribute("Lastname", Empty);
             session.setAttribute("LocationID", 0);
+            session.setAttribute("Region", Empty);
 
         response.sendRedirect("101_register.jsp");//redirect to index.html page
     }

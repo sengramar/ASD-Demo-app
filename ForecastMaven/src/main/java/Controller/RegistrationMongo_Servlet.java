@@ -63,6 +63,11 @@ public class RegistrationMongo_Servlet extends HttpServlet {
             session.setAttribute("error", "Last Name format is wrong");
             request.getRequestDispatcher("101_register.jsp").include(request,response);
         }
+        else if (LocationID == 0) 
+        {
+            session.setAttribute("error", "Haven't select the location");
+            request.getRequestDispatcher("101_register.jsp").include(request,response);
+        }
         else {
             Mongo.saveToUser(Password, Email, Firstname, Lastname,LocationID);
             response.sendRedirect("index.jsp");

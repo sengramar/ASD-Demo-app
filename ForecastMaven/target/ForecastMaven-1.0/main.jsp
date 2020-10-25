@@ -54,17 +54,7 @@ function popup()
             document.write("</form>");
         }
         
-        <%
-            boolean popup = (boolean) session.getAttribute("popup");
-            if(popup)
-            {
-         %>
-            window.onload = popup();
-         <%       
-                popup = false;  
-                session.setAttribute ("popup", false);
-            }
-        %>
+        
 </script>
 
 </head>
@@ -84,23 +74,24 @@ function popup()
         </form>   
 
          <form name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
-    <a class="current_weather" HREF="javascript:document.CurrentWeather.submit()"><img src="img/current_weather.png" width="180"></a></form>
+    <a class="main_1" HREF="javascript:document.CurrentWeather.submit()"><img src="img/current_weather.png" width="150"></a></form>
     
     <form name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
-    <a class="weather_forecast" HREF="javascript:document.WeatherForecast.submit()"><img src="img/weather_forecast.png" width="180"></a></form>
+    <a class="main_2" HREF="javascript:document.WeatherForecast.submit()"><img src="img/weather_forecast.png" width="150"></a></form>
     
     
     
     <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
-    <a class="weather_history" HREF="javascript:document.WeatherHistory.submit()"><img src="img/weather_history.png" width="180"></a></form>
+    <a class="main_3" HREF="javascript:document.WeatherHistory.submit()"><img src="img/weather_history.png" width="150"></a></form>
     
     
     <form name="WeatherAnalysis" method="POST" action="WeatherAnalysis_Servlet">
-    <a class="weather_analysis" HREF="javascript:document.WeatherAnalysis.submit()"><img src="img/weather_analysis.png" width="180"></a></form>
+    <a class="main_4" HREF="javascript:document.WeatherAnalysis.submit()"><img src="img/weather_analysis.png" width="150"></a></form>
     
     
-    <a class="wind_speed_map" href="1111_WindSpeedMap.jsp"><img src="img/wind_speed_map.png" width="185"></a>    
+    <a class="main_5" href="1111_WindSpeedMap.jsp"><img src="img/wind_speed_map.png" width="150"></a>    
        
+    <a class="main_6" href="1112_PrecipitationMap.jsp"> <img src="img/precipitation_map.png" width="165" ></a>
 
     </body>
 

@@ -50,12 +50,11 @@
             <a href="main.jsp"> <img src="img/main_btn_1.png" class="main_link" ></a>
             <%}
             %>
-            <a href="main.jsp"> <img src="img/main_btn_1.png" class="main_link" ></a>
-
             
-            <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_current_weather.png" width="337"></form></a>
-          <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_1.png" width="340"></form></a>
-                
+            <a  HREF="javascript:document.CurrentWeather.submit()">
+                <form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
+                    <img src="img/nav_current_weather.png" width="337"></form></a>
+         
                 
             <form  class="nav_2" name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
                 <a  HREF="javascript:document.WeatherHistory.submit()"><img src="img/nav_2.png" width="340"></a></form>

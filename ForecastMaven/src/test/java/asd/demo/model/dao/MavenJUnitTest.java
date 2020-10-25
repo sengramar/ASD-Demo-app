@@ -145,12 +145,35 @@ public class MavenJUnitTest
     public void testfindAdminID()
     {
         System.out.println("testfindAdminID()");
+        int adminid = mongo.findAdminID("hannah1234@gmail.com", "Hannah", "Kim");
+        assertEquals(8,adminid);
+
+    }
+    
+    @Test
+    public void testupdatePass()
+    {
+        System.out.println("test updating Password");
+        mongo.updatePass(1,"Qwerty123!");
+        User user = mongo.findUser( "jake1012@gmail.com","Qwerty123!");
+        String changedpassword = user.getUser_password();
+        assertEquals(changedpassword,"Qwerty123!");
         
     
     }
-}
-/*
     
+    @Test
+    public void testupdateAdminPass()
+    {
+        System.out.println("test updating Administrator Password");
+        mongo.updateAdminPass(2,"james10!!");
+        Administrator admin = mongo.findAdmin("james1234@gmail.com", "james10!!");
+        String changedpassword = admin.getAdminPassword();
+        assertEquals("james10!!",changedpassword);
+    }
+} 
+/*  
+    Feature R1 code
    @Test
      public void testFindAccessLogID()
      {
@@ -371,7 +394,6 @@ public class MavenJUnitTest
             System.out.println(list_data.get(i));
         }
     }
+    */
     
-    
-    
-}*/
+
