@@ -7,8 +7,16 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="css/style.css"/>
-
+<link rel="stylesheet" href="css/newcss.css"/>
+    
+<style>
+        body {
+            background-image: url("img/main_bg.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+ </style>
+<title>Home</title>
 <script language="javascript">
         var LogoutTimer = function() {
         var session = {
@@ -70,98 +78,30 @@ function popup()
             String email = request.getParameter("Email");
             String password = request.getParameter("Password");
     %>
+<a  class="account" href="301_account_management.jsp"><img src="img/account_btn.png" width="185"></a>
+    <form action="LogoutServlet" method="GET">
+            <button type="submit" class="logout"><img src="img/logout_btn.png" width="90"></button>
+        </form>   
 
-        <div class="sidenav">
-            <br><br>
-            <a href="main.jsp">HOME</a>
-            <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
-            <form name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
-            <a HREF="javascript:document.CurrentWeather.submit()">CURRENT WEATHER</a></form>
-            <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
-            <a HREF="javascript:document.WeatherHistory.submit()">WEATHER HISTORY</a></form>
-            
-            <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
-            <a href="601_weather_history.jsp">WEATHER HISTORY</a>
-            <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
-            -->
-            <a href="1111_WindSpeedMap.jsp">WIND SPEED MAP</a>
-        </div>
-
-        <div class="content">
-            <br><br>
-            <center>
-            <div class="header">
-                <h1>Weather Now</h1>
-            </div>
-            </center>
-            
-            <p align="center">Lulu lala I hope it wont be raining</p>
-
-        <form action="LogoutServlet" method="GET">
-            <button type="submit" class="button">Logout</button>
-
-        </form>
+         <form name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
+    <a class="current_weather" HREF="javascript:document.CurrentWeather.submit()"><img src="img/current_weather.png" width="180"></a></form>
+    
+    <form name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
+    <a class="weather_forecast" HREF="javascript:document.WeatherForecast.submit()"><img src="img/weather_forecast.png" width="180"></a></form>
+    
+    
+    
+    <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
+    <a class="weather_history" HREF="javascript:document.WeatherHistory.submit()"><img src="img/weather_history.png" width="180"></a></form>
+    
+    
+    <form name="WeatherAnalysis" method="POST" action="WeatherAnalysis_Servlet">
+    <a class="weather_analysis" HREF="javascript:document.WeatherAnalysis.submit()"><img src="img/weather_analysis.png" width="180"></a></form>
+    
+    
+    <a class="wind_speed_map" href="1111_WindSpeedMap.jsp"><img src="img/wind_speed_map.png" width="185"></a>    
        
- 
 
-  <div class="w3-container w3-padding-32" id="projects">
-      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Pages</h3>
-  </div>
-
-  <div class="w3-row-padding">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">***</div>
-        <img src="img/bus.JPG" alt="bus" style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">***</div>
-        <img src="img/snow.JPG" alt="snow" style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">***</div>
-        <img src="img/beach.JPG" alt="beach" style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">***</div>
-        <img src="img/thunder.JPG" alt="thunder" style="width:100%">
-      </div>
-    </div>
-  </div>
-
-  <div class="w3-row-padding">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">***</div>
-        <img src="img/rain.JPG" alt="rain" style="width:99%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">***</div>
-        <img src="img/clean.JPG" alt="clean" style="width:99%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">***</div>
-        <img src="img/cloud.JPG" alt="cloud" style="width:99%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">***</div>
-        <img src="img/storm.JPG" alt="storm" style="width:99%">
-      </div>
-    </div>
-  </div>
-</div>
     </body>
 
 

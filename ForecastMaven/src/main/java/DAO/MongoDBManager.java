@@ -295,7 +295,8 @@ public class MongoDBManager
   
     public Location findLocationId(String region) 
     {               
-        Document SearchBSON = new Document("Region", region.trim());//WHERE LIKE 'SEARCH%'
+        Document SearchBSON = new Document("Region",region);//WHERE LIKE 'SEARCH%'
+        //System.out.println(region);
         for (Document doc : location.find(SearchBSON))
         {
             String Country =(String) doc.get("Country");
@@ -463,8 +464,5 @@ public class MongoDBManager
         Document value = new Document("$set", new Document("adminpassword", password));
         admins.updateOne(where, value);
     }
-
- 
-
 
 }

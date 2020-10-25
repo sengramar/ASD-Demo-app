@@ -11,9 +11,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/newcss.css"/>
         <title>Weather Forecast Page</title>
         <style>
+            body {
+                background-image: url("img/sub_bg.png");
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+        
             ul {float:left;}
             ul li {list-style-type: none;}
             .topnav > div {float:right;}
@@ -24,15 +30,47 @@
     <body>
         <%
             User user = (User)session.getAttribute("user");
+            Administrator admin = (Administrator)session.getAttribute("admin");
             String City = (String) session.getAttribute("City");
             String Country = (String) session.getAttribute("Country");
         %>
-        <div class="content">
-                <br><br>
-            <div class="header">
-                <h1>Weather Forecast</h1>
-            </div>
         
+        <% if(user == null)
+            {
+            %>
+            <a href="index.jsp"> <img src="img/main_btn_1.png" class="main_link" ></a>
+            <%
+            }
+            else{
+            %>
+            <a href="main.jsp"> <img src="img/main_btn_1.png" class="main_link" ></a>
+            <%}
+            %>
+            
+
+            
+          <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_1.png" width="340"></form></a>
+                
+                
+            <form  class="nav_2" name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
+                <a  HREF="javascript:document.WeatherHistory.submit()"><img src="img/nav_2.png" width="340"></a></form>
+            
+            <form class="nav_3" name="WeatherAnalysis" method="POST" action="WeatherAnalysis_Servlet">
+                <a  HREF="javascript:document.WeatherAnalysis.submit()"><img src="img/nav_3.png" width="341"></a></form>
+            
+            <form class="nav_4" name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
+                <a  HREF="javascript:document.WeatherForecast.submit()"><img src="img/nav_4.png" width="340"></a></form>
+             
+            <a href="1112_PrecipitationMap.jsp"> <img src="img/nav_6.png" class="nav_5" ></a>
+   
+            <a href="1111_WindSpeedMap.jsp"> <img src="img/nav_7.png" class="nav_6" ></a>
+
+             
+                
+                <center>  
+        <div class="content">
+            <img class="heading_img_2" src="img/heading_weather_forecast.png">
+        <div class="regbox_1">
         <div class="selection">
             <div><h2><%=City %>, <%=Country%></h2></div>    
             &emsp;
@@ -60,23 +98,8 @@
     
         <% } %>
        
-        <div class="sidenav">
-                <br><br>
-        <% if(user == null){ %>
-            <a href="index.jsp">HOME</a>
-        <% } else{  %> 
-            <a href="main.jsp">HOME</a>
-            <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
-        <% } %>
-            <form name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
-            <a HREF="javascript:document.CurrentWeather.submit()">CURRENT WEATHER</a></form>
-            <form name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
-            <a HREF="javascript:document.WeatherForecast.submit()">WEATHER FORECAST</a></form>
-            <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
-            <a HREF="javascript:document.WeatherHistory.submit()">WEATHER HISTORY</a></form>
-            <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
-        </div>      
-    </div>
+        </div>
+        </div></center>
                 
     </body>
 </html>

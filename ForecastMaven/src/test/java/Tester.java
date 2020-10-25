@@ -13,8 +13,10 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Tester 
@@ -43,6 +45,17 @@ public class Tester
     {
         Assert.assertEquals("Home",driver.getTitle());
     }
+    
+   /* @Test
+    public void hello() 
+    {
+        WebDriver driver  = new FirefoxDriver();
+        driver.get("http://sqa.stackexchange.com/questions/13213/how-to-configure-selenium-webdriver-with-netbeans");
+        WebElement acceptAnswerLink = driver.findElement(By.id("vote-accepted-13214"));
+        acceptAnswerLink.click();
+        driver.quit();
+    }
+    */
     
     
 }

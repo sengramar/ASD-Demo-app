@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://www.w2schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="css/style.css"/>    
+        <link rel="stylesheet" href="css/newcss.css"/>    
         <style> 
         input[type=submit]
         {
@@ -33,6 +33,13 @@
             margin: 4px 2px;
             opacity: 0.5px;
         }
+        
+        body {
+                background-image: url("img/sub_bg.png");
+                background-size: 100%;
+                background-repeat: repeat;
+        }
+
        </style>
         <title class="title">Location Map Page</title>
         
@@ -40,9 +47,46 @@
     <body>
         <%       
         User user = (User)session.getAttribute("user");
-        %>
+        
+        if(user == null)
+            {
+            %>
+            <a href="index.jsp"> <img src="img/main_btn_1.png" class="main_link" ></a>
+            <%
+            }
+            else{
+            %>
+            <a href="main.jsp"> <img src="img/main_btn_1.png" class="main_link" ></a>
+            <%}
+            %>
+            
+
+            
+           <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_1.png" width="340"></form></a>
+                
+                
+            <form  class="nav_2" name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
+                <a  HREF="javascript:document.WeatherHistory.submit()"><img src="img/nav_2.png" width="340"></a></form>
+            
+            <form class="nav_3" name="WeatherAnalysis" method="POST" action="WeatherAnalysis_Servlet">
+                <a  HREF="javascript:document.WeatherAnalysis.submit()"><img src="img/nav_3.png" width="341"></a></form>
+            
+            <form class="nav_4" name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
+                <a  HREF="javascript:document.WeatherForecast.submit()"><img src="img/nav_4.png" width="340"></a></form>
+             
+            <a href="1112_PrecipitationMap.jsp"> <img src="img/nav_6.png" class="nav_5" ></a>
+   
+            <a href="1111_WindSpeedMap.jsp"> <img src="img/nav_7.png" class="nav_6" ></a>
+            
+
+        
+            
+            
+            
+    <center><img class="heading_img_2" src="img/heading_location_map.png">
+        
         <div class="content">
-             <div class="map" style="background-image: url(img/AussieMap.JPG); background-repeat:no-repeat; background-size: contain; position:relative;">
+             <div class="map" style="background-image: url(img/AussieMap.JPG); background-repeat:no-repeat; background-size: contain; position:relative; top:150px">
                  
                 <form method="post" action="LocationMap_Servlet">
            
@@ -217,31 +261,8 @@
              </div>
        
         </div>       
-        <div class="sidenav">
-             <br><br>
-            <% if(user == null)
-            {
-            %>
-            <a href="index.jsp">HOME</a>
-            <%
-            }
-            else{
-            %>
-            <a href="main.jsp">HOME</a>
-            <a href="301_account_management.jsp">ACCOUNT MANAGEMENT</a>
-            <%}
-            %>
-            <form name="submitForm" method="POST" action="CurrentWeather_Servlet">
-            <input type="hidden" name="param1" value="param1Value">
-            <a HREF="javascript:document.submitForm.submit()">CURRENT WEATHER</a></form>
-            <!--
-            <a href="501_weather_forecast.jsp">WEATHER FORECAST</a>
-            <a href="601_weather_history.jsp">WEATHER HISTORY</a>
-            <a href="901_weather_analysis.jsp">WEATHER ANALYSIS</a>
-            -->
-            <a href="1111_WindSpeedMap.jsp">WIND SPEED MAP</a>
         </div>
-
+    </center>
     </body>
     
 </html>

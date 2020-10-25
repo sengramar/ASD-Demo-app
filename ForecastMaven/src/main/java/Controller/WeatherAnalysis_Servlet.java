@@ -35,6 +35,7 @@ public class WeatherAnalysis_Servlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         String elements = ""+request.getParameter("weatheranalysis");
+        String region = ""+request.getParameter("Region");
         
         if(elements.equals("humidity"))
         {
@@ -52,9 +53,9 @@ public class WeatherAnalysis_Servlet extends HttpServlet {
         
         }
         
-        String region = " "+request.getParameter("Region");
-        System.out.println(request.getParameter("Region"));
-        if(region.trim().equals("null"))
+        
+        
+        if(region.equals("null"))
         {
                region = "Sydney";
                Location location = mongo.findLocationId(region);
@@ -63,8 +64,9 @@ public class WeatherAnalysis_Servlet extends HttpServlet {
         
         else
         {
-            Location location = mongo.findLocationId(region.trim());
+            Location location = mongo.findLocationId(region);
             wa_list= mongo.weather_analysis(""+location.getLocationID());
+
         }
         
         session.setAttribute("wa_list",wa_list);

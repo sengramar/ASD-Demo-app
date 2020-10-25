@@ -30,6 +30,7 @@ public class FirstWeatherHistory_Servlet extends HttpServlet
         //int searchLocation = Integer.parseInt(request.getParameter("search"));
   
         //list = Query.search_history(searchLocation);//run query*/
+        session.setAttribute("Region", "Select");
         list = Query.weather_history("");
         session.setAttribute("ListHistory", list);//set attribute to be redirected
         

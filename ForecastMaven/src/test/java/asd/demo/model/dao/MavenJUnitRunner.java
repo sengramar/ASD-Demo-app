@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*package asd.demo.model.dao;
-import org.junit.runner.JUnitCore;*/
+package asd.demo.model.dao;
+import org.junit.runner.JUnitCore;
 /**
  *
  * @author yujiwon
  */
-/*public class MavenJUnitRunner 
+public class MavenJUnitRunner 
 {
     public static void main(String[] args)
     {
@@ -25,4 +25,4 @@ import org.junit.runner.JUnitCore;*/
         System.out.println("Time =" + result.getRunTime()/1000.0+"s");
         
     }
-}*/
+}

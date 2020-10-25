@@ -59,6 +59,7 @@ public class CurrentWeather_Servlet extends HttpServlet
         String WindDegree = API.getWindDeg(APIResult);
         String WindSpeed = API.getWindSpeed(APIResult);
         String Description = "" + API.getDescription(APIResult);
+        String Icon = "" + API.getIcon(APIResult);
         
         Query = new MongoDBManager();
         Query.saveToWeatherHistory(date,time,LocationId,Celcius,Humidity,WindSpeed,WindDegree,Cloudy,Description);//run query
@@ -77,6 +78,7 @@ public class CurrentWeather_Servlet extends HttpServlet
         
         session.setAttribute("WindSpeed", WindSpeed);
         session.setAttribute("Description", Description);
+        session.setAttribute("Icon", Icon);
 
         response.sendRedirect("401_current_weather.jsp");//redirect to index.html page
     }

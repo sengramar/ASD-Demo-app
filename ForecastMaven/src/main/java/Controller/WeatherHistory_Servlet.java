@@ -34,12 +34,24 @@ public class WeatherHistory_Servlet extends HttpServlet
         {
             searchRegion = (String) request.getParameter("Region");
         }
+        
         String SearchRegion = searchRegion.substring(0, 1).toUpperCase() + searchRegion.substring(1); 
         
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         System.out.println("REGION NAME"+  searchRegion);
-        Location current = Query.findLocationId(SearchRegion);
+        
+        String result = "";
+        String[] r = searchRegion.split("(?=\\p{Upper})");
+        for(int i =0; i < r.length;i++)
+        {
+            result = result.trim() +" " + r[i];
+        }
+        
+        System.out.print("Ryo made it no error"+result);
+        
+        Location current = Query.findLocationId(result);
+       
         //list = Query.search_history(searchLocation);//run query*/
         list = Query.weather_history(Integer.toString(current.getLocationID()));
         session.setAttribute("ListHistory", list);//set attribute to be redirected

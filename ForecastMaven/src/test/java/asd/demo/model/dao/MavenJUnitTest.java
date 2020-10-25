@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*package asd.demo.model.dao;
+package asd.demo.model.dao;
 
 /**
  *
@@ -12,7 +12,7 @@
  * 
  */
 
-/*import API.weatherAPI;
+import API.weatherAPI;
 import DAO.MongoDBConnector;
 import DAO.MongoDBManager;
 import com.mongodb.client.MongoDatabase;
@@ -50,33 +50,125 @@ public class MavenJUnitTest
         
     }
     
-    
+    // Find methods, that the data from the database
+    @Test
+        public void testFindUser()
+        {
+            System.out.println("test Find User");
+            String email = "sengramar@gmail.com";
+            String userpassword = "jiwon123!";
+            System.out.println("Email:"+ email+" Password:" + userpassword);
+            User user = mongo.findUser(email, userpassword);
+            assertEquals(userpassword,user.getUser_password());
+
+        }
+        
+    @Test
+        public void testfindAdmin()
+        {
+            System.out.println("test Find Admin");
+            String email = "hannah1234@gmail.com";
+            String adminpassword = "hannah10**";
+            System.out.println("Admin Email:"+ email+"Admin Password:" + adminpassword);
+            Administrator admin = mongo.findAdmin(email, adminpassword);
+            assertEquals(adminpassword, admin.getAdminPassword());
+
+        }
+        
+    @Test 
+        public void testweatherhistory()
+        {
+            System.out.println("testweatherhistory");
+            LinkedList<String> hl = mongo.weather_history("102");
+            String location = hl.getFirst();
+            assertEquals("Newcastle",location);
+            
+        }
     
     @Test
-    public void testfindAdmin()
+    public void testfindLocationId()
     {
-        System.out.println("test Find Admin");
-        System.out.println("Input Administrator Email:");
-        String email = sc.nextLine();
-        System.out.println("Input Administrator password:");
-        String adminpassword = sc.nextLine();
-        System.out.println("Admin Email:"+ email+"Admin Password:" + adminpassword);
-        mongo.findAdmin(email, adminpassword);
-    
+        System.out.println("testfindlocationid");
+        Location location = mongo.findLocationId("Sydney");
+        assertEquals("Sydney",location.getRegion());
+        
     }
     
     @Test
-    public void testFindUser()
+    public void testweatheranalysis()
     {
-        System.out.println("test Find User");
-        System.out.println("Input user Email:");
-        String email = sc.nextLine();
-        System.out.println("Input user password:");
-        String userpassword = sc.nextLine();
-        System.out.println("Email:"+ email+" Password:" + userpassword);
-        mongo.findUser(email, userpassword);
+        System.out.println("testweatheranalysis");
+        LinkedList<WeatherHistory> list = mongo.weather_analysis("102");
+        WeatherHistory w = list.getFirst();
+        String num = w.getLocationID();
+        assertEquals("102",num);
+    }
+    
+    @Test 
+    public void testfindUserLoc()
+    {   
+        System.out.println("testfinduserloc");
+        LinkedList<User> list = mongo.findUserLoc(102);
+        User user = list.getFirst();
+        int locationid = user.getLocationId();
+        assertEquals(102,locationid);
+    
+    }
+    
+    @Test 
+    public void testCheckUser()
+    {
+        System.out.println("testcheckuser");
+        User user = mongo.checkUser("sengramar@gmail.com");
+        String email = user.getEmail();
+        assertEquals(email,"sengramar@gmail.com");
+    }
+    
+    @Test
+    public void checkAdmin()
+    {
+        System.out.println("testcheckAdmin");
+        Administrator admin = mongo.checkAdmin("hannah1234@gmail.com");
+        String email = admin.getEmail();
+        assertEquals(email,"hannah1234@gmail.com");
+    }
+    
+    @Test
+    public void testfinduserID()
+    {
+        System.out.println("testfinduserID");
+        int userid = mongo.finduserID("sengramar@gmail.com", "Jiwon", "You");
+        assertEquals(38,userid);
+    }
+    
+    @Test
+    public void testfindAdminID()
+    {
+        System.out.println("testfindAdminID()");
         
     
+    }
+}
+/*
+    
+   @Test
+     public void testFindAccessLogID()
+     {
+        System.out.println("test findAccessLogID");
+        System.out.println("Input userId:");
+        int userid = sc.nextInt();
+        mongo.findAccessLogID(userid);
+
+    }
+    
+    @Test
+    public void testFindAdminAccessLogID()
+    {
+        System.out.println("test FindAdminAccessLogID");
+        System.out.println("Input adminId:");
+        int adminid = sc.nextInt();
+        mongo.finAdmindAccessLogID(adminid);
+
     }
     
     @Test
@@ -119,27 +211,7 @@ public class MavenJUnitTest
     
     }
     
-    @Test
-    public void testFindAccessLogID()
-    {
-        System.out.println("test findAccessLogID");
-        System.out.println("Input userId:");
-        int userid = sc.nextInt();
-        mongo.findAccessLogID(userid);
-        
-    
-    }
-    
-    @Test
-    public void testFindAdminAccessLogID()
-    {
-        System.out.println("test FindAdminAccessLogID");
-        System.out.println("Input adminId:");
-        int adminid = sc.nextInt();
-        mongo.finAdmindAccessLogID(adminid);
-        
-    
-    }
+   
     
     @Test
         public void testSaveToWeatherHistory()

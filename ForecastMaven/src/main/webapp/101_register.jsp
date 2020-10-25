@@ -6,8 +6,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/newcss.css"/>
         <title>Register New Customer</title>
+        <style>
+        body {
+            background-image: url("img/sub_bg.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+    </style>
     </head>
     <body>
 <%
@@ -20,11 +27,36 @@
         String Region = (String) session.getAttribute("Region");
         String error = (String) session.getAttribute("error");
 %>
-      <center>     
-          <h1 class="header">Register</h1><span><%=(existErr != null ? existErr : "")%>
-          <h3><%=(error != null ? error : "")%></h3></span><br>
+      <a href="index.jsp"> <img src="img/main_btn_1.png" class="main_link"></a>  
+ 
+            <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_1" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_1.png" width="340"></form></a>
+                
+                
+            <form  class="nav_2" name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
+                <a  HREF="javascript:document.WeatherHistory.submit()"><img src="img/nav_2.png" width="340"></a></form>
+            
+            <form class="nav_3" name="WeatherAnalysis" method="POST" action="WeatherAnalysis_Servlet">
+                <a  HREF="javascript:document.WeatherAnalysis.submit()"><img src="img/nav_3.png" width="341"></a></form>
+            
+            <form class="nav_4" name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
+                <a  HREF="javascript:document.WeatherForecast.submit()"><img src="img/nav_4.png" width="340"></a></form>
+             
+            <a href="alert.jsp"> <img src="img/nav_5.png" class="nav_5" ></a>
+            
+           <a href="1112_PrecipitationMap.jsp"> <img src="img/nav_6.png" class="nav_5" ></a>
+   
+            <a href="1111_WindSpeedMap.jsp"> <img src="img/nav_7.png" class="nav_6" ></a>
+            
+
+        
+            
+    <center>     
+          <img class="heading_img_1" src="img/register_heading.png">
+          
 <div class="regbox">
         <form method="POST">
+            <span><%=(existErr != null ? existErr : "")%>
+          <h3><%=(error != null ? error : "")%></h3></span><br>
 <table>
 <tr>
 <td><p class="subtitle"><label for="Email">Email </label></p></td>
@@ -59,14 +91,12 @@
     <td>&nbsp;</td> 
     <td><button type="submit" formaction="ListLocation_Servlet"> Select </td>               
 </tr>
-</table>
-<p><button type="submit" formaction="RegistrationMongo_Servlet" ><h2> Add </h2></button></p> </form>
+</table><br>
+    </form>
+    <button class="btn" type="submit" formaction="RegistrationMongo_Servlet" ><img src="img/register_btn_black.png" width="120"> </button></form>
+ <button class="btn"><a href="index.jsp"> <img src="img/cancel_btn.png" width="130"></a> </button>
 </div>
-   
-    
-                             
-    <br><a>Go back to main menu </a>
-<a href="index.jsp"> click here!</a> 
+
     </center>
     </body>
 </html>
