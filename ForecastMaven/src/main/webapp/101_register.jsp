@@ -95,6 +95,7 @@
     </form>
     <button class="btn" type="submit" formaction="RegistrationMongo_Servlet" ><img src="img/register_btn_black.png" width="120"> </button></form>
  <button class="btn"><a href="index.jsp"> <img src="img/cancel_btn.png" width="130"></a> </button>
+	    <p>if you want to register as Admin Click <a href="102_register_admin.jsp"> Here </a>
 </div>
 
     </center>
