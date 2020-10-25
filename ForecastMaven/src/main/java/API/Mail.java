@@ -63,7 +63,7 @@ static { System.setProperty("https.protocols", "TLSv1.2"); }
            description += msg;
            description += "<p>Please update your password after receiving the temporary password.p>";
 //           message.setHtmlMsg(description);
-           message.setText("Hello \rYour username is " + recepient + "\r" +msg + "\r\r" + "Please update your password after receiving the temporary password."); //Set your Text
+           message.setText("Hello \rYour username is " + recepient + "\r" +msg + "\r\r" + "Please update your password after receiving the temporary password."+ "\r\r" +"Thank You" + "\r" +"Weather Now"); //Set your Text
            return message;
        } catch (Exception ex) {
            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
