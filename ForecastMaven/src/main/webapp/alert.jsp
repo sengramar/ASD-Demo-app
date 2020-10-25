@@ -39,10 +39,6 @@
             <div class="alertHeader"><h2> Welcome, <%=user.getFirstname()%></h2></div>
             <h2> You are in <%=City %>, <%=Country%> <img src= <%= Icon %>></h2>
             <h3><%=(warning != null ? warning : "")%></h3>
-            <%--<h3><%=(windWarning != null ? windWarning : "")%></h3>
-            <h3><%=(rainWarning != null ? rainWarning : "")%></h3>
-            <h3><%=(cloudWarning != null ? cloudWarning : "")%></h3>
-            <h3><%=(snowWarning != null ? snowWarning : "")%></h3>--%>
             <h3><%=Description.toUpperCase() %></h3>
         </div>
     </body>

@@ -22,7 +22,7 @@ static { System.setProperty("https.protocols", "TLSv1.2"); }
    public static void SendMail(LinkedList<User> receipent, String msg)//Add msg
    {    
        final String email = "utsasdgroup3@yahoo.com"; //Change
-       final String password = "lrkglwhjqsmmyhpb"; //Change
+       final String password = "eihsgqjgilzyupxf"; //Change
        
        System.out.println("Preparing Email");
 
