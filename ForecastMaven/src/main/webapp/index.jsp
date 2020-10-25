@@ -32,9 +32,9 @@
          <form name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
     <a class="main_2_1" HREF="javascript:document.CurrentWeather.submit()"><img src="img/current_weather.png" width="160"></a></form>
     
-    <form name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
-    <a class="main_3_1" HREF="javascript:document.WeatherForecast.submit()"><img src="img/weather_forecast.png" width="155"></a></form>
-    
+   <form name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
+    <a class="main_3_1" HREF="javascript:document.WeatherForecast.submit()">
+    <img src="img/weather_forecast.png" width="155"></a></form>
     
     
     <a class="main_4_1" href="1111_WindSpeedMap.jsp"><img src="img/wind_speed_map.png" width="165"></a>    

@@ -78,8 +78,7 @@ function popup()
     
     <form name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
     <a class="main_2" HREF="javascript:document.WeatherForecast.submit()"><img src="img/weather_forecast.png" width="150"></a></form>
-    
-    
+ 
     
     <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
     <a class="main_3" HREF="javascript:document.WeatherHistory.submit()"><img src="img/weather_history.png" width="150"></a></form>

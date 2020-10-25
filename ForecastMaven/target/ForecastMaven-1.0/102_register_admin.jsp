@@ -28,8 +28,9 @@
                 <a href="201_login.jsp"><img src="img/login_btn.png" width="120"></a>
             </div>
             
-            <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_3" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_3_1.png" width="337"></form></a>
-                
+            <form class="nav_3" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
+                <a HREF="javascript:document.CurrentWeather.submit()"><img src="img/nav_3_1.png" width="340"></a>
+            </form>   
               
             <form class="nav_4" name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
                 <a  HREF="javascript:document.WeatherForecast.submit()"><img src="img/nav_4.png" width="340"></a></form>

@@ -35,13 +35,11 @@
     %>
    <a href="index.jsp"> <img src="img/main_btn_1.png" class="main_link" ></a>
   
-            <div class="topnav">   
-                <a href="101_register.jsp"><img src="img/register_btn.png" width="120"></a>
-            </div>
             
-            <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_3" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_3_1.png" width="337"></form></a>
-                
-              
+            
+            <form class="nav_3" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
+                <a HREF="javascript:document.CurrentWeather.submit()"><img src="img/nav_3_1.png" width="340"></a>
+            </form>   
             <form class="nav_4" name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
                 <a  HREF="javascript:document.WeatherForecast.submit()"><img src="img/nav_4.png" width="340"></a></form>
              
@@ -81,7 +79,9 @@
         <div class="subnav">
             <p><a href="204_FindPassword.jsp">Forgot your password?</a>
                 &nbsp; &nbsp; &nbsp;
-            <p><a href="101_register.jsp"> Sign Up </a>
+           <form name="Register" method="POST" action="IndexRegister_Servlet">
+            <a HREF="javascript:document.Register.submit()">Sign up(User)</a></form>
+  
         </div>
         <p>if you want to login as Admin Click <a href="203_AdminLogin.jsp"> Here </a>
         </div>

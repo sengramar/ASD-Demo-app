@@ -71,7 +71,7 @@ body {
     
     
     
-    <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Servlet">
+    <form name="WeatherHistory" method="POST" action="FirstWeatherHistory_Saervlet">
     <a class="main_3" HREF="javascript:document.WeatherHistory.submit()"><img src="img/weather_history.png" width="150"></a></form>
     
     

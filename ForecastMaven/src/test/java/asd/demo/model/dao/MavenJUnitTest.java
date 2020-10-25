@@ -49,8 +49,9 @@ public class MavenJUnitTest
         System.out.println("\n<- Starting test-->");
         
     }
-    
-    // Find methods, that the data from the database
+}
+    // R2 Feature
+    /*
     @Test
         public void testFindUser()
         {
@@ -171,7 +172,7 @@ public class MavenJUnitTest
         String changedpassword = admin.getAdminPassword();
         assertEquals("james10!!",changedpassword);
     }
-} 
+} /*
 /*  
     Feature R1 code
    @Test

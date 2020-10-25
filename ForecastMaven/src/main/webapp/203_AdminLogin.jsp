@@ -34,14 +34,11 @@
     %>
     
     <a href="index.jsp"> <img src="img/main_btn_1.png" class="main_link" ></a>
-            <div class="topnav">   
-                <a href="101_register.jsp"><img src="img/register_btn.png" width="120"></a>
-                <a href="201_login.jsp"><img src="img/login_btn.png" width="120"></a>
-            </div>
-            
-            <a  HREF="javascript:document.CurrentWeather.submit()"><form class="nav_3" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet"><img src="img/nav_3_1.png" width="337"></form></a>
-                
-              
+  
+            <form class="nav_3" name="CurrentWeather" method="POST" action="FirstCurrentWeather_Servlet">
+                <a HREF="javascript:document.CurrentWeather.submit()"><img src="img/nav_3_1.png" width="340"></a>
+            </form>   
+    
             <form class="nav_4" name="WeatherForecast" method="POST" action="FirstWeatherForecast_Servlet">
                 <a  HREF="javascript:document.WeatherForecast.submit()"><img src="img/nav_4.png" width="340"></a></form>
              
@@ -75,7 +72,10 @@
         <div class="subnav">
             <p><a href="205_AdminFindPassword.jsp">Forgot your password?</a>
                 &nbsp; &nbsp; &nbsp;
-            <p><a href="102_register_admin.jsp"> Sign Up </a>
+            <form name="AdminRegister" method="POST" action="IndexAdminRegister_Servlet">
+            <a HREF="javascript:document.AdminRegister.submit()">Sign up(Admin)</a>
+            </form>
+    
         </div>
         <p>if you want to login as User Click <a href="201_login.jsp"> Here </a>
         
